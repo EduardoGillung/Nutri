@@ -15,7 +15,7 @@ const TelaLogin = ({ navigation }) => {
             .then((userCredential) => {
                 setLoginFailed(false)
                 console.log('Usuario logado com sucesso:', userCredential.user.email);
-                navigation.navigate('Home');
+                navigation.navigate('addTarefa');
             })
             .catch((error) => {
                 setLoginFailed(true)

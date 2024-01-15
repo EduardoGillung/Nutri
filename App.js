@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TelaLogin from './src/Telas/login';
 import TelaAddUser from './src/Telas/addUser';
-import TelaHome from './src/Telas/home';
+import TelaAddTarefa from './src/Telas/addTarefa';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Login'>
@@ -19,8 +20,9 @@ function App() {
          />
         <Stack.Screen
           options={{ headerShown: false }} 
-          name="home"
-          component={TelaHome}
+          name="addTarefa"
+          component={TelaAddTarefa}
+          
          />
          <Stack.Screen
           options={{ headerShown: false }} 

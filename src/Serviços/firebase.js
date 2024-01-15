@@ -13,9 +13,11 @@ const firebaseConfig = {
   storageBucket: "myapp-14570.appspot.com",
   messagingSenderId: "1010104961905",
   appId: "1:1010104961905:web:2131a85472e1c7a04ac4d0",
-  measurementId: "G-KWY37YFNL1"
+  measurementId: "G-KWY37YFNL1",
+  databaseURL: "https://myapp-14570-default-rtdb.firebaseio.com/"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
+export default app
