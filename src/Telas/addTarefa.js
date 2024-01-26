@@ -2,51 +2,69 @@ import React, { useState } from "react";
 import { View, TextInput, Button, StyleSheet, Platform } from 'react-native';
 import Header from "../Componentes/Header";
 import firebase from '../Serviços/firebase';
-import { getDatabase, ref, set, get, update, remove } from 'firebase/database'
-import { v4 as uuidv4 } from 'uuid';
-
+import { ref, set, onValue, remove } from 'firebase/database'
+import { db } from "../Serviços/firebase"
 
 const TelaAddTarefa = () => {
-    const [tarefa, setTarefas] = useState({nome: '', descricao: ''})
+    
+    const [username, setName] = useState('');
+    const [email, setEmail] = useState('');
 
-    const adicionaTarefa = (tarefa) => {     
-        const database = getDatabase(firebase);
-        let id = 5;
-        const tarefaRef = ref(database, 'tarefas/' + id);
-        set(tarefaRef, { tarefa: tarefa, completado: false })
-            .then(() => {
-                setTarefas((Tarefas) => [
-                    ...Tarefas,
-                    { id: id, tarefa: tarefa, completado: false },
-                ])
-                console.log("Tarefa adicionada com sucesso");
-            })
+    function addTask () {     
+        
+        var id = Date.now().toString()
+
+        set(ref(db, 'users/' + id), {
+            username: username,
+            email: email,   
+
+        }).then(() => {
+            //data saved sucessfully!
+            alert('data updated');
+        })
             .catch((error) => {
-                console.error("Erro ao adicionar tarefa", error);
-            })   
+                //write failed
+                alert(error);
+            });
+              
     };
+
+    function readData() {
+        const starCountRef = ref(db, 'users/' + username);
+        onValue(starCountRef, (snapshot) => {
+            const data = snapshot.val();
+
+            setEmail(data.email);
+        });
+    }
+
+    function deleteData() {
+        remove(ref(db, 'users/' + username));
+        alert('removed');
+    }
+
+    
 
     return (
         <View style={styles.container}>
-            <Header />
-            <TextInput
-                style={styles.input}
-                placeholder="Nova tarefa"
-                value={tarefa.nome}
-                onChangeText={(value) => setTarefas({...tarefa, nome: value})}
-            />
-            <TextInput
-                style={styles.input}
-                placeholder="Descrição"
-                multiline={true}
-                value={tarefa.descricao}
-                onChangeText={(value) => setTarefas({...tarefa, descricao: value})}
-            />
-            
+        <Header />
+        <TextInput
+            style={styles.input}
+            placeholder="User name"
+            value={username}
+            onChangeText={(username) => setName(username)}
+        />
+        <TextInput
+            style={styles.input}
+            placeholder="E-mail"
+            value={email}
+            onChangeText={(email) => setEmail(email)}
+        />
+        
+        <Button title="Salvar" onPress={addTask}/>
 
-            <Button title="Salvar" onPress={adicionaTarefa}/>
-        </View>
-    );
+    </View>
+);
 };
 
 const styles = StyleSheet.create({
