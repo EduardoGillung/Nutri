@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TelaLogin from './src/Telas/login';
 import TelaAddUser from './src/Telas/addUser';
 import TelaAddTarefa from './src/Telas/addTarefa';
+import TelaHome from './src/Telas/home';
 
 const Stack = createNativeStackNavigator();
 
@@ -12,7 +13,7 @@ function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Login'>
+      <Stack.Navigator initialRouteName='addTarefa'>
         <Stack.Screen
           options={{ headerShown: false }} 
           name="Login"
@@ -28,6 +29,11 @@ function App() {
           options={{ headerShown: false }} 
           name="addUser"
           component={TelaAddUser}
+         />
+         <Stack.Screen
+          options={{ headerShown: false }} 
+          name="Home"
+          component={TelaHome}
          />
 
       </Stack.Navigator>

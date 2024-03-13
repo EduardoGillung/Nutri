@@ -1,26 +1,29 @@
-import React, { useState } from "react";
-import { View, TextInput, Button, StyleSheet, Platform } from 'react-native';
+import React, { useEffect, useState } from "react";
+import { View, TextInput, Button, StyleSheet, Pressable, Text } from 'react-native';
 import Header from "../Componentes/Header";
-import firebase from '../Serviços/firebase';
-import { ref, set, onValue, remove } from 'firebase/database'
-import { db } from "../Serviços/firebase"
+import firebase, { db } from '../Serviços/firebase';
+import { ref, set, onValue, remove, Database, child } from 'firebase/database'
 
-const TelaAddTarefa = () => {
+
+const TelaAddTarefa = ({ navigation }) => {
     
-    const [username, setName] = useState('');
-    const [email, setEmail] = useState('');
+    const [task, setTask] = useState('');
+    const [description, setDescription] = useState('');
+    var userId = Date.now().toString()
+    const tarefaRef = ref(db, 'Lista de tarefas/' + task)
 
     function addTask () {     
         
-        var id = Date.now().toString()
-
-        set(ref(db, 'users/' + id), {
-            username: username,
-            email: email,   
-
+        set(tarefaRef, {
+            description: description,
+            taskId: userId,
+        
         }).then(() => {
             //data saved sucessfully!
-            alert('data updated');
+            alert('Tarefa adicionada');
+            navigation.navigate('Home')
+           
+            
         })
             .catch((error) => {
                 //write failed
@@ -29,49 +32,50 @@ const TelaAddTarefa = () => {
               
     };
 
-    function readData() {
-        const starCountRef = ref(db, 'users/' + username);
-        onValue(starCountRef, (snapshot) => {
-            const data = snapshot.val();
-
-            setEmail(data.email);
-        });
-    }
-
-    function deleteData() {
-        remove(ref(db, 'users/' + username));
-        alert('removed');
-    }
-
-    
-
     return (
         <View style={styles.container}>
         <Header />
+
         <TextInput
             style={styles.input}
-            placeholder="User name"
-            value={username}
-            onChangeText={(username) => setName(username)}
+            placeholder="Task name"
+            value={task}
+            onChangeText={(task) => setTask(task)}
         />
         <TextInput
             style={styles.input}
-            placeholder="E-mail"
-            value={email}
-            onChangeText={(email) => setEmail(email)}
+            placeholder="Description"
+            value={description}
+            onChangeText={(description) => setDescription(description)}
         />
         
-        <Button title="Salvar" onPress={addTask}/>
+        <Button style={styles.button} title="Salvar" onPress={addTask}/>
+
+        
+
+        <Pressable 
+            onPress={() => navigation.navigate('Home')}>
+            <Text style={styles.register}>Ir tela home </Text>
+        </Pressable>
 
     </View>
-);
+    );
 };
 
 const styles = StyleSheet.create({
     container:{
         flex: 1,
         backgroundColor: '#fff',    
-    }
+    },
+    input: {
+        width: '80%',
+        borderBottomWidth: 1,
+        padding: 10,
+      },
+      button: {
+       backgroundColor: '#708090',
+      },
+      
 })
 
 export default TelaAddTarefa;

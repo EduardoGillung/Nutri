@@ -14,12 +14,14 @@ const styles = StyleSheet.create({
         backgroundColor: 'blue',
         padding: 20,
         alignItems: 'center',
+        
+        
     },
     headerText: {
         paddingTop: 20,
-        fontSize: 24,
+        fontSize: 28,
         fontWeight: 'bold',
-        color: 'white'
+        color: 'white',
     },
 });
 
