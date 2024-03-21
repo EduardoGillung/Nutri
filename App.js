@@ -6,6 +6,8 @@ import TelaLogin from './src/Telas/login';
 import TelaAddUser from './src/Telas/addUser';
 import TelaAddTarefa from './src/Telas/addTarefa';
 import TelaHome from './src/Telas/home';
+import TelaWelcome from './src/Telas/Welcome';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -13,7 +15,7 @@ function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='addTarefa'>
+      <Stack.Navigator initialRouteName='Welcome'>
         <Stack.Screen
           options={{ headerShown: false }} 
           name="Login"
@@ -35,6 +37,12 @@ function App() {
           name="Home"
           component={TelaHome}
          />
+         <Stack.Screen
+          options={{ headerShown: false }} 
+          name="Welcome"
+          component={TelaWelcome}
+         />
+         
 
       </Stack.Navigator>
       

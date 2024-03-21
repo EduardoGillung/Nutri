@@ -5,16 +5,16 @@ import firebase, { db } from '../Serviços/firebase';
 import { ref, set, onValue, remove, Database, child } from 'firebase/database'
 
 
-const TelaAddTarefa = ({ navigation }) => {
+const TelaAddTarefa = ({ navigation, addTask }) => {
     
     const [task, setTask] = useState('');
     const [description, setDescription] = useState('');
     var userId = Date.now().toString()
     const tarefaRef = ref(db, 'Lista de tarefas/' + task)
 
-    function addTask () {     
-        
+    function addTask () {        
         set(tarefaRef, {
+            task: task,
             description: description,
             taskId: userId,
         
@@ -22,14 +22,20 @@ const TelaAddTarefa = ({ navigation }) => {
             //data saved sucessfully!
             alert('Tarefa adicionada');
             navigation.navigate('Home')
-           
-            
+            setTask('');
+            console.log("Tarefa salva com sucesso do banco de dados")
+
         })
             .catch((error) => {
                 //write failed
                 alert(error);
             });
-              
+    }     
+    const deleteTask = () => {
+        remove(ref(db, 'Lista de tarefas/'))
+            .then(() => {
+                console.log("Tarefa apagada com sucesso do banco de dados")
+            })    
     };
 
     return (
@@ -51,7 +57,7 @@ const TelaAddTarefa = ({ navigation }) => {
         
         <Button style={styles.button} title="Salvar" onPress={addTask}/>
 
-        
+        <Button style={styles.button} title="Deletar" onPress={deleteTask}/>
 
         <Pressable 
             onPress={() => navigation.navigate('Home')}>

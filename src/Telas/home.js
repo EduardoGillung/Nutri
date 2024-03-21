@@ -10,20 +10,20 @@ const TelaHome = ({ navigation }) => {
     const [tarefa1, setTarefa1] = useState('')
     const renderItem = ({ item }) => (
         <View>
+            <Text>{item.task}</Text>
             <Text>{item.description}</Text>
         </View>
     )
     useEffect(() => {
         const tarefaRef = ref(db, 'Lista de tarefas/')
-    
 
-    onValue(tarefaRef, (snapshot) => {
-        const data = snapshot.val();
-        const arrayData = Object.values(data)
-        console.log(arrayData);
+        onValue(tarefaRef, (snapshot) => {
+            const data = snapshot.val();
+            const arrayData = Object.values(data)
+            console.log(arrayData);
 
-        setTarefa1(arrayData)
-        console.log(tarefa1)
+            setTarefa1(arrayData)
+            console.log(tarefa1)
     })
 },[])
                                 
@@ -37,7 +37,6 @@ const TelaHome = ({ navigation }) => {
                     renderItem={renderItem}
                     keyExtractor={item => item.taskId}
                 />
-
             </Pressable>            
         </View>
     );
