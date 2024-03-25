@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 
 
 function TelaAddUser({navigation}) {
+  
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [createFailed, setCreateFailed] = useState(false)

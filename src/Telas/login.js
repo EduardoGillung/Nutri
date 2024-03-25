@@ -25,11 +25,12 @@ const TelaLogin = ({ navigation }) => {
 
 return (
     <View style={styles.container}>
+        <Text style={styles.header}>Seja muito bem vindo!</Text>
         <Image
                 source={require('../assets/maça-login.png')}
                 style={styles.logo}
             />
-        <Text style={styles.header}>Seja bem vindo!</Text>
+        
         <View style={styles.container2}>
             <Text style={styles.header}>Login</Text>
             {loginFailed && <Text style={styles.loginFailed}>Usuário ou senha inválidos</Text>}
@@ -46,10 +47,15 @@ return (
                 secureTextEntry
                 style={styles.input}
             />
-            <Button title="Login" onPress={handleLogin}/>
             <Pressable onPress={() => navigation.navigate('addUser')}>
                 <Text style={styles.register}>Registrar novo Usuário</Text>
             </Pressable>
+
+            <Pressable style={styles.button} 
+                onPress={handleLogin}>
+                <Text style={styles.buttonText}>Entrar</Text>
+            </Pressable> 
+            
         </View>
     </View>
 );
@@ -58,6 +64,8 @@ const styles = StyleSheet.create({
     container:{
         flex: 1,
         backgroundColor: '#4169e1',
+        alignItems: 'center',
+        justifyContent: 'center',
         
         
     },
@@ -66,19 +74,20 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: '40%',
-        borderRadius: 10,
+        marginTop: '20%',
+        borderRadius: 16,
+        width: '100%',
         
     },
     logo: {
         width: '40%',
         height: '20%',
-        
+        marginLeft: 150, 
     },
     header:{
-        fontSize: 36,
+        fontSize: 40,
         fontWeight: 'bold',
-        marginBottom: 20,
+        marginTop: 100,
         color: '#fff',        
     },
     input: {
@@ -88,6 +97,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         marginBottom: 10,
         padding: 10,
+        borderRadius: 10,
     },
     login: {
         backgroundColor: 'gray',
@@ -99,9 +109,24 @@ const styles = StyleSheet.create({
         margin: 10,
     },
     register: {
-        marginTop: 10,
+        
         fontSize: 16,
         color: '#696969',
-    }
+    },
+    button: {     
+        backgroundColor: '#4169e1',
+        width: 120,
+        height: 60,
+        borderRadius: 25,  
+        justifyContent: 'center',
+        alignItems: 'center', 
+        marginBottom: '10%',
+        margin: 15,
+        
+    },    
+    buttonText: {
+        color: '#fff',
+        fontSize: 20,
+    },  
 })
 export default TelaLogin; 

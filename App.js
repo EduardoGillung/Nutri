@@ -7,6 +7,7 @@ import TelaAddUser from './src/Telas/addUser';
 import TelaAddTarefa from './src/Telas/addTarefa';
 import TelaHome from './src/Telas/home';
 import TelaWelcome from './src/Telas/welcome';
+import TelaMain from './src/Telas/main';
 
 
 
@@ -42,6 +43,11 @@ function App() {
           options={{ headerShown: false }} 
           name="Welcome"
           component={TelaWelcome}
+         />
+         <Stack.Screen
+          options={{ headerShown: false }} 
+          name="Main"
+          component={TelaMain}
          />
          
          

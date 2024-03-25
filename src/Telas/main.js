@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, TextInput, Button, StyleSheet, Image, Pressable, Text, FlatList, TouchableOpacity } from 'react-native';
 
 
-const TelaWelcome = ({ navigation }) => {
+const TelaMain = ({ navigation }) => {
                               
     return (
         <View style={styles.container}>
@@ -10,9 +10,9 @@ const TelaWelcome = ({ navigation }) => {
                     source={require('../assets/logo.png')}
                     style={styles.logo}
             />
-            <Text style={styles.textLogo}>Nutrie</Text>
+            
                  <View style={styles.container2}>
-                <Text style={styles.text}>Monitore e cuide da sua alimentação de qualquer lugar!</Text>              
+                             
                 <Pressable style={styles.button} 
                     onPress={() => navigation.navigate('Login')}>
                     <Text style={styles.buttonText}>Iniciar</Text>
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         marginTop: '50%',
         width: '100%',
-        borderRadius: 16,
+        borderRadius: 8,
         alignItems: 'center',
         justifyContent: 'center',  
         
@@ -70,4 +70,4 @@ const styles = StyleSheet.create({
     },     
 })
 
-export default TelaWelcome
+export default TelaMain;
