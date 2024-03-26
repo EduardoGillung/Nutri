@@ -10,7 +10,7 @@ const TelaWelcome = ({ navigation }) => {
                     source={require('../assets/logo.png')}
                     style={styles.logo}
             />
-            <Text style={styles.textLogo}>Nutrie</Text>
+            <Text style={styles.textLogo}>Nutri</Text>
                  <View style={styles.container2}>
                 <Text style={styles.text}>Monitore e cuide da sua alimentação de qualquer lugar!</Text>              
                 <Pressable style={styles.button} 
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         marginTop: '50%',
         width: '100%',
-        borderRadius: 16,
+        borderRadius: 14,
         alignItems: 'center',
         justifyContent: 'center',  
         
@@ -46,9 +46,10 @@ const styles = StyleSheet.create({
         marginTop: '50%',
     },
     text: {
-        fontSize: 20,
+        fontSize: 22,
         fontWeight: 'bold',
-        marginBottom: 50,
+        marginBottom: '15%',
+        
     },
     textLogo:{
         color: '#fff',
@@ -58,8 +59,8 @@ const styles = StyleSheet.create({
     },
     button: {     
         backgroundColor: '#4169e1',
-        width: 120,
-        height: 60,
+        width: '40%',
+        height: '25%',
         borderRadius: 25,  
         justifyContent: 'center',
         alignItems: 'center', 
@@ -67,6 +68,7 @@ const styles = StyleSheet.create({
     buttonText: {
         color: '#fff',
         fontSize: 20,
+        fontWeight: 'bold',
     },     
 })
 

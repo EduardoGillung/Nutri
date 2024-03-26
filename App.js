@@ -17,7 +17,7 @@ function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Welcome'>
+      <Stack.Navigator initialRouteName='Main'>
         <Stack.Screen
           options={{ headerShown: false }} 
           name="Login"
@@ -26,8 +26,7 @@ function App() {
         <Stack.Screen
           options={{ headerShown: false }} 
           name="addTarefa"
-          component={TelaAddTarefa}
-          
+          component={TelaAddTarefa}    
          />
          <Stack.Screen
           options={{ headerShown: false }} 

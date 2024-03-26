@@ -15,7 +15,7 @@ const TelaLogin = ({ navigation }) => {
             .then((userCredential) => {
                 setLoginFailed(false)
                 console.log('Usuario logado com sucesso:', userCredential.user.email);
-                navigation.navigate('addTarefa');
+                navigation.navigate('Main');
             })
             .catch((error) => {
                 setLoginFailed(true)
@@ -32,7 +32,7 @@ return (
             />
         
         <View style={styles.container2}>
-            <Text style={styles.header}>Login</Text>
+            <Text style={styles.conta}>Entrar </Text>
             {loginFailed && <Text style={styles.loginFailed}>Usuário ou senha inválidos</Text>}
             <TextInput
                 placeholder="E-mail"
@@ -48,14 +48,13 @@ return (
                 style={styles.input}
             />
             <Pressable onPress={() => navigation.navigate('addUser')}>
-                <Text style={styles.register}>Registrar novo Usuário</Text>
+                <Text style={styles.register}>Não Possui uma conta? Clique Aqui</Text>
             </Pressable>
 
             <Pressable style={styles.button} 
                 onPress={handleLogin}>
-                <Text style={styles.buttonText}>Entrar</Text>
+                <Text style={styles.buttonText}>Iniciar</Text>
             </Pressable> 
-            
         </View>
     </View>
 );
@@ -65,24 +64,20 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#4169e1',
         alignItems: 'center',
-        justifyContent: 'center',
-        
-        
+        justifyContent: 'center',   
     },
     container2:{
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: '20%',
         borderRadius: 16,
-        width: '100%',
-        
+        width: '100%',   
     },
     logo: {
         width: '40%',
         height: '20%',
-        marginLeft: 150, 
+        marginLeft: '50%', 
     },
     header:{
         fontSize: 40,
@@ -92,10 +87,11 @@ const styles = StyleSheet.create({
     },
     input: {
         width: '80%',
+        
         height: 40,
         borderColor: 'gray',
         borderWidth: 1,
-        marginBottom: 10,
+        marginBottom: '8%',
         padding: 10,
         borderRadius: 10,
     },
@@ -127,6 +123,12 @@ const styles = StyleSheet.create({
     buttonText: {
         color: '#fff',
         fontSize: 20,
-    },  
+    },
+    conta: {
+        marginBottom: '5%',
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#696969',
+    }  
 })
 export default TelaLogin; 
