@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Pressable, Image } from 'react-native';
+import { View, Text, TextInput, SafeAreaView, StyleSheet, Pressable, Image } from 'react-native';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import firebase from '../Serviços/firebase';
 
@@ -24,7 +24,7 @@ const TelaLogin = ({ navigation }) => {
     }
 
 return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
         <Text style={styles.header}>Seja muito bem vindo!</Text>
         <Image
                 source={require('../assets/maça-login.png')}
@@ -56,7 +56,7 @@ return (
                 <Text style={styles.buttonText}>Iniciar</Text>
             </Pressable> 
         </View>
-    </View>
+    </SafeAreaView>
 );
 };
 const styles = StyleSheet.create({
@@ -71,7 +71,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 16,
+        borderTopLeftRadius: 16,
+        borderTopRightRadius: 16,
         width: '100%',   
     },
     logo: {
@@ -86,8 +87,7 @@ const styles = StyleSheet.create({
         color: '#fff',        
     },
     input: {
-        width: '80%',
-        
+        width: '80%',   
         height: 40,
         borderColor: 'gray',
         borderWidth: 1,

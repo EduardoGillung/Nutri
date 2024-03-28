@@ -40,8 +40,8 @@ const TelaAddTarefa = ({ navigation, addTask }) => {
 
     return (
         <View style={styles.container}>
-        <Header />
-
+            <Text style={styles.textHeader}> Rotina alimentar</Text>
+        <View style={styles.containerBody}>
         <TextInput
             style={styles.input}
             placeholder="Task name"
@@ -63,7 +63,7 @@ const TelaAddTarefa = ({ navigation, addTask }) => {
             onPress={() => navigation.navigate('Home')}>
             <Text style={styles.register}>Ir tela home </Text>
         </Pressable>
-
+        </View>
     </View>
     );
 };
@@ -71,15 +71,28 @@ const TelaAddTarefa = ({ navigation, addTask }) => {
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: '#fff',    
+        backgroundColor: '#4169e1',
+        alignItems: 'center',
+        justifyContent: 'center',    
+    },
+    containerBody: {
+        flex: 1,
+        marginTop: '40%',
+        width: '100%',
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',  
     },
     input: {
         width: '80%',
-        borderBottomWidth: 1,
+        height: '8%',
+        backgroundColor: 'gray',
+        marginBottom: '10%',
         padding: 10,
       },
       button: {
        backgroundColor: '#708090',
+      
       },
       
 })

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TelaLogin from './src/Telas/login';
 import TelaAddUser from './src/Telas/addUser';
@@ -11,48 +12,46 @@ import TelaMain from './src/Telas/main';
 
 
 
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Main'>
-        <Stack.Screen
-          options={{ headerShown: false }} 
-          name="Login"
-          component={TelaLogin}
-         />
-        <Stack.Screen
-          options={{ headerShown: false }} 
-          name="addTarefa"
-          component={TelaAddTarefa}    
-         />
-         <Stack.Screen
-          options={{ headerShown: false }} 
-          name="addUser"
-          component={TelaAddUser}
-         />
-         <Stack.Screen
-          options={{ headerShown: false }} 
-          name="Home"
-          component={TelaHome}
-         />
-         <Stack.Screen
+      <Tab.Navigator initialRouteName='Main'>
+        <Tab.Screen
           options={{ headerShown: false }} 
           name="Welcome"
           component={TelaWelcome}
          />
-         <Stack.Screen
+        <Tab.Screen
+          options={{ headerShown: false }} 
+          name="Login"
+          component={TelaLogin}
+         />
+         <Tab.Screen
+          options={{ headerShown: false }} 
+          name="addUser"
+          component={TelaAddUser}
+         />
+         <Tab.Screen
           options={{ headerShown: false }} 
           name="Main"
           component={TelaMain}
          />
+        <Tab.Screen
+          options={{ headerShown: false }} 
+          name="addTarefa"
+          component={TelaAddTarefa}    
+         />
+         <Tab.Screen
+          options={{ headerShown: false }} 
+          name="Home"
+          component={TelaHome}
+         />
          
          
-
-      </Stack.Navigator>
-      
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }

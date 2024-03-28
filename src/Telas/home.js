@@ -32,10 +32,11 @@ const TelaHome = ({ navigation }) => {
         <Header/>
         <Pressable onPress={() => navigation.navigate('addTarefa')}>
                 <Text style={styles.register}>Voltar Add tarefas </Text>
-                <FlatList
+                <FlatList style={styles.taskList}
                     data={tarefa1}
                     renderItem={renderItem}
                     keyExtractor={item => item.taskId}
+                    
                 />
             </Pressable>            
         </View>
@@ -51,7 +52,12 @@ const styles = StyleSheet.create({
         width: '80%',
         borderBottomWidth: 1,
         padding: 10,
-    },          
+    },
+    taskList:{
+        backgroundColor: 'gray',
+        padding: '10%',
+
+    }          
 })
 
 export default TelaHome;

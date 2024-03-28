@@ -33,18 +33,17 @@ const TelaMain = ({ navigation }) => {
                 />
                 </View>
                 
-                <View style={styles.container3}>            
+                <View style={styles.containerButtons}>             
                 <Pressable style={styles.button} 
-                    onPress={() => navigation.navigate('Login')}>
+                    onPress={() => navigation.navigate('Welcome')}>
                     <Text style={styles.buttonText}>Mais informações</Text>
                 </Pressable>
                 <Pressable style={styles.button} 
-                    onPress={() => navigation.navigate('Login')}>
+                    onPress={() => navigation.navigate('Welcome')}>
                     <Text style={styles.buttonText}>Configurações</Text>
-                </Pressable>         
-                </View> 
-            </View>
-
+                </Pressable>
+                </View>
+            </View> 
     );
 };
 
@@ -52,6 +51,9 @@ const styles = StyleSheet.create({
     container:{
         flex: 1,
         backgroundColor: '#4169e1',
+        justifyContent: 'center',
+        alignItems: 'center',
+        
             
     },
     container2: {
@@ -62,53 +64,56 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         flexDirection: 'row',      
     },
-    container3:{
+    containerButtons: {
         flex: 1,
-        backgroundColor: 'red',
+        backgroundColor: '#fff',
+        width: '100%',
+        justifyContent: 'center',
         alignItems: 'center',
-        justifyContent: 'center',      
     },
     headerText: {
-        
+       color: '#fff',
+       fontSize: 32,
+       fontWeight: 'bold',
+       marginTop: '3%',
+       marginBottom: '5%', 
     },
     logo: {
         height: '7%',
         width: '14%',
-        marginLeft: '5%',
+        marginRight: '75%',
         marginTop: '20%',
-        marginBottom: '20%',
+        
         
     },
     text: {
         fontSize: 20,
         fontWeight: 'bold',
-        marginBottom: 50,
     },
     textLogo:{
-        color: '',
-        fontSize: 30,
+        fontSize: 10,
         fontWeight: 'bold',
         fontStyle: 'italic',
     },
     comida: {
         height: '70%',
-        width: '36%',
+        width: '34%',
         margin: '10%',
         
     },
     button: {     
-        backgroundColor: 'gray',
+        backgroundColor: '#d3d3d3',
         width: '70%',
-        height: '10%',
-        borderRadius: 25,  
+        height: '30%',
+        borderRadius: 20,        
+        marginBottom: '2%',
+        marginTop: '2%', 
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: '5%' 
     },    
-    buttonText: {
-        color: '#fff',
-        fontSize: 20,
+    buttonText: {    
+        fontSize: 24,
+        fontWeight: 'bold',  
     },     
 })
-
 export default TelaMain;

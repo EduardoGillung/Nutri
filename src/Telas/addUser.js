@@ -49,6 +49,13 @@ function TelaAddUser({navigation}) {
         secureTextEntry={true}
         style={styles.input}
       />
+      <TextInput
+        placeholder="Confirme sua senha"
+        value={senha}
+        onChangeText={(text) => setSenha(text)}
+        secureTextEntry={true}
+        style={styles.input}
+      />
 
       <Pressable style={styles.button} 
           onPress={registrar}>

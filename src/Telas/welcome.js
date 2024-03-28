@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { View, TextInput, Button, StyleSheet, Image, Pressable, Text, FlatList, TouchableOpacity } from 'react-native';
+import { View, TextInput, SafeAreaView, StyleSheet, Image, Pressable, Text, FlatList, TouchableOpacity } from 'react-native';
 
 
 const TelaWelcome = ({ navigation }) => {
                               
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
                 <Image
                     source={require('../assets/logo.png')}
                     style={styles.logo}
@@ -18,7 +18,7 @@ const TelaWelcome = ({ navigation }) => {
                     <Text style={styles.buttonText}>Iniciar</Text>
                 </Pressable>        
             </View>    
-        </View>
+        </SafeAreaView>
 
     );
 };
@@ -35,10 +35,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         marginTop: '50%',
         width: '100%',
-        borderRadius: 14,
+        borderTopLeftRadius: 16,
+        borderTopRightRadius: 16,
         alignItems: 'center',
-        justifyContent: 'center',  
-        
+        justifyContent: 'center',    
     },
     logo: {
         height: '20%',
@@ -48,8 +48,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 22,
         fontWeight: 'bold',
-        marginBottom: '15%',
-        
+        marginBottom: '15%',    
     },
     textLogo:{
         color: '#fff',
