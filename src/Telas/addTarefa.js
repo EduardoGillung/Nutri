@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, TextInput, Button, StyleSheet, Pressable, Text } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Pressable, Text, Image } from 'react-native';
 import Header from "../Componentes/Header";
 import firebase, { db } from '../Serviços/firebase';
 import { ref, set, onValue, remove, Database, child } from 'firebase/database'
@@ -41,6 +41,10 @@ const TelaAddTarefa = ({ navigation, addTask }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.textHeader}> Rotina alimentar</Text>
+                <Image
+                source={require('../assets/comida.png')}
+                style={styles.logo}
+                />
         <View style={styles.containerBody}>
         <TextInput
             style={styles.input}
@@ -72,8 +76,16 @@ const styles = StyleSheet.create({
     container:{
         flex: 1,
         backgroundColor: '#4169e1',
-        alignItems: 'center',
-        justifyContent: 'center',    
+        alignItems: 'center',   
+    },
+    textHeader:{
+        color: '#fff',
+        marginTop: '30%',
+    },
+    logo: {
+        height: '15%',
+        width: '30%',
+        marginRight: '60%',
     },
     containerBody: {
         flex: 1,

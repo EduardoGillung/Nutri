@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Text, Pressable, StyleSheet } from 'react-native';
+import { View, TextInput, Text, Pressable, StyleSheet, Image } from 'react-native';
 import firebase from '../Serviços/firebase';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 
@@ -28,6 +28,10 @@ function TelaAddUser({navigation}) {
   return (
     <View style={styles.container}>
         <Text style={styles.header}>Cadastrando-se</Text>
+          <Image
+              source={require('../assets/registerLogo.png')}
+              style={styles.logo}
+          />
       <View style={styles.container2}>
       {createFailed && <Text style={styles.createFailed}>Falha ao criar Usuário, verifique os campos</Text>}
       <TextInput
@@ -70,23 +74,31 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: '#4169e1',
+    
   },
   container2: {
-    flex: 5,
+    flex: 1,
     width: '100%',
     alignItems: 'center',
     paddingTop: '10%',
     backgroundColor: '#fff',
-    borderRadius: 10,    
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+        
   },
   header: {
-    flex: 1,
-    paddingTop: 20,
+    paddingTop: '5%',
     marginTop: '10%',
+    marginBottom: '3%',
     color: '#fff',
-    fontSize: 40,
+    fontSize: 44,
     fontWeight: 'bold',
   },
+  logo:{
+    height: '15%',
+    width: '29%',
+    marginLeft: '60%',
+  },  
   input: {
     height: '10%',
     width: '80%',

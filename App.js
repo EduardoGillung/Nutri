@@ -9,6 +9,10 @@ import TelaAddTarefa from './src/Telas/addTarefa';
 import TelaHome from './src/Telas/home';
 import TelaWelcome from './src/Telas/welcome';
 import TelaMain from './src/Telas/main';
+import TelaPrescriptions from './src/Telas/prescriptions';
+import TelaRevenues from './src/Telas/revenues';
+import TelaHistoric from './src/Telas/historic';
+import TelaConfig from './src/Telas/config';
 
 
 
@@ -48,6 +52,26 @@ function App() {
           options={{ headerShown: false }} 
           name="Home"
           component={TelaHome}
+         />
+         <Tab.Screen
+          options={{ headerShown: false }} 
+          name="Prescriptions"
+          component={TelaPrescriptions}
+         />
+         <Tab.Screen
+          options={{ headerShown: false }} 
+          name="Revenues"
+          component={TelaRevenues}
+         />
+         <Tab.Screen
+          options={{ headerShown: false }} 
+          name="Historic"
+          component={TelaHistoric}
+         />
+         <Tab.Screen
+          options={{ headerShown: false }} 
+          name="Config"
+          component={TelaConfig}
          />
          
          
