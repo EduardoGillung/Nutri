@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { View, TextInput, Button, StyleSheet, Pressable, Text, Image } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Pressable, Text, Image, TouchableOpacity, Modal } from 'react-native';
 import Header from "../Componentes/Header";
 import firebase, { db } from '../Serviços/firebase';
-import { ref, set, onValue, remove, Database, child } from 'firebase/database'
+import { ref, set, onValue, remove, child } from 'firebase/database'
 
 
 const TelaAddTarefa = ({ navigation, addTask }) => {
@@ -11,6 +11,9 @@ const TelaAddTarefa = ({ navigation, addTask }) => {
     const [description, setDescription] = useState('');
     var userId = Date.now().toString()
     const tarefaRef = ref(db, 'Lista de tarefas/' + task)
+
+    const handleModal = () => setIsModalVisible(() => !isModalVisible);
+    const [isModalVisible, setIsModalVisible] = React.useState(false);
 
     function addTask () {        
         set(tarefaRef, {
@@ -42,10 +45,12 @@ const TelaAddTarefa = ({ navigation, addTask }) => {
         <View style={styles.container}>
             <Text style={styles.textHeader}> Rotina alimentar</Text>
                 <Image
-                source={require('../assets/comida.png')}
+                source={require('../assets/addButton.png')}
                 style={styles.logo}
                 />
+
         <View style={styles.containerBody}>
+           
         <TextInput
             style={styles.input}
             placeholder="Task name"
@@ -63,10 +68,14 @@ const TelaAddTarefa = ({ navigation, addTask }) => {
 
         <Button style={styles.button} title="Deletar" onPress={deleteTask}/>
 
+
         <Pressable 
             onPress={() => navigation.navigate('Home')}>
             <Text style={styles.register}>Ir tela home </Text>
         </Pressable>
+
+        
+
         </View>
     </View>
     );
@@ -97,15 +106,22 @@ const styles = StyleSheet.create({
     },
     input: {
         width: '80%',
-        height: '8%',
+        height: 50,
         backgroundColor: 'gray',
         marginBottom: '10%',
         padding: 10,
       },
-      button: {
-       backgroundColor: '#708090',
-      
-      },
+      button: {     
+        backgroundColor: '#d3d3d3',
+        width: '70%',
+        height: '30%',
+        borderRadius: 20,        
+        marginBottom: '2%',
+        marginTop: '2%', 
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+     
       
 })
 

@@ -6,25 +6,27 @@ const TelaHistoric = ({ navigation }) => {
                               
     return (
         <View style={styles.container}>
+            <View style={styles.containerHeader}>
                 <Image
                     source={require('../assets/substituicao.png')}
                     style={styles.logo}
                 />
-                <Text style={styles.headerText}>tela historic!</Text>
-            
-                 <View style={styles.container2}>
-               
+                <Text style={styles.headerText}>Histórico </Text>
                 </View>
-                
+                 
                 <View style={styles.containerButtons}>             
-                <Pressable style={styles.button} 
+                <TextInput style={styles.button} 
                     onPress={() => navigation.navigate('Welcome')}>
-                    <Text style={styles.buttonText}>Mais informações</Text>
-                </Pressable>
-                <Pressable style={styles.button} 
+                    
+                </TextInput>
+                
+
+                
+
+                <TextInput style={styles.button} 
                     onPress={() => navigation.navigate('Welcome')}>
-                    <Text style={styles.buttonText}>Configurações</Text>
-                </Pressable>
+                </TextInput>
+
                 </View>
             </View> 
     );
@@ -33,41 +35,37 @@ const TelaHistoric = ({ navigation }) => {
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: '#4169e1',
         justifyContent: 'center',
         alignItems: 'center',
-        
+        backgroundColor: 'green',
             
     },
-    container2: {
-        flex: 1,
-        backgroundColor: '#fff',
+    containerHeader: {
+        flex: 0.3,
+        backgroundColor: '#4169e1',
         width: '100%',
         alignItems: 'center',
-        justifyContent: 'space-evenly',
-        flexDirection: 'row',      
+        flexDirection: 'row',
+          
     },
     containerButtons: {
         flex: 1,
         backgroundColor: '#fff',
         width: '100%',
-        justifyContent: 'center',
         alignItems: 'center',
+        
     },
     headerText: {
        color: '#fff',
        fontSize: 32,
        fontWeight: 'bold',
-       marginTop: '3%',
-       marginBottom: '5%', 
+       marginLeft: '5%',
+      
     },
     logo: {
-        height: '7%',
-        width: '14%',
-        marginRight: '75%',
-        marginTop: '20%',
-        
-        
+        height: '40%',
+        width: '18%',
+        marginLeft: '5%', 
     },
     text: {
         fontSize: 20,
@@ -78,25 +76,24 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontStyle: 'italic',
     },
-    comida: {
-        height: '70%',
-        width: '34%',
-        margin: '10%',
-        
-    },
+   
     button: {     
         backgroundColor: '#d3d3d3',
-        width: '70%',
-        height: '30%',
+        width: '80%',
+        height: '35%',
         borderRadius: 20,        
-        marginBottom: '2%',
-        marginTop: '2%', 
+        marginTop: '15%',
         justifyContent: 'center',
         alignItems: 'center',
     },    
     buttonText: {    
         fontSize: 24,
         fontWeight: 'bold',  
-    },     
+    },
+    touchable: {
+        backgroundColor: 'grey',
+        width: '40%',
+      
+    },  
 })
 export default TelaHistoric;

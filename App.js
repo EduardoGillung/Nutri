@@ -27,11 +27,13 @@ function App() {
           options={{ headerShown: false }} 
           name="Welcome"
           component={TelaWelcome}
+          
          />
         <Tab.Screen
           options={{ headerShown: false }} 
           name="Login"
           component={TelaLogin}
+          
          />
          <Tab.Screen
           options={{ headerShown: false }} 
