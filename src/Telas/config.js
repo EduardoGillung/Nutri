@@ -6,23 +6,30 @@ const TelaConfig = ({ navigation }) => {
                               
     return (
         <View style={styles.container}>
+            <View style={styles.containerHeader}>
+                <Image
+                    source={require('../assets/return.png')}
+                    style={styles.logo}
+                />
                 <Image
                     source={require('../assets/logo.png')}
                     style={styles.logo}
                 />
-                <Text style={styles.headerText}>config!</Text>
-            
-                
-                
-                <View style={styles.containerButtons}>             
-                <Pressable style={styles.button} 
-                    onPress={() => navigation.navigate('Welcome')}>
-                    <Text style={styles.buttonText}>Mais informações</Text>
-                </Pressable>
-                <Pressable style={styles.button} 
-                    onPress={() => navigation.navigate('Welcome')}>
-                    <Text style={styles.buttonText}>Configurações</Text>
-                </Pressable>
+                </View>
+                <View style={styles.containerBody}>
+
+                    <Pressable onPress={() => navigation.navigate('Main')}>
+                        <Text style={styles.text}>Inicio</Text>
+                     </Pressable>
+                     <Pressable onPress={() => navigation.navigate('Main')}>
+                        <Text style={styles.text}>Sobre nós</Text>
+                     </Pressable> 
+                     <Pressable onPress={() => navigation.navigate('Main')}>
+                        <Text style={styles.text}>Atribuições e direitos</Text>
+                     </Pressable> 
+                     <Pressable onPress={() => navigation.navigate('Main')}>
+                        <Text style={styles.text}>Configurações</Text>
+                     </Pressable>                
                 </View>
             </View> 
     );
@@ -33,54 +40,48 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#4169e1',
         justifyContent: 'center',
+        alignItems: 'center',   
+    },
+    containerHeader: {
+        flex: 0.3,
+        backgroundColor: '#4169e1',
+        width: '100%',
         alignItems: 'center',
         
-            
+        flexDirection: 'row',    
     },
-    container2: {
+    containerBody: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#4169e1',
         width: '100%',
+        justifyContent: 'flex-start',
         alignItems: 'center',
-        justifyContent: 'space-evenly',
-        flexDirection: 'row',      
-    },
-    containerButtons: {
-        flex: 1,
-        backgroundColor: '#fff',
-        width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center',
+        
     },
     headerText: {
        color: '#fff',
        fontSize: 32,
        fontWeight: 'bold',
        marginTop: '3%',
-       marginBottom: '5%', 
+       marginBottom: '5%',
     },
     logo: {
-        height: '7%',
+        height: '31%',
         width: '14%',
-        marginRight: '75%',
+        marginRight: '5%',
         marginTop: '20%',
-        
-        
+          
     },
     text: {
-        fontSize: 20,
+        fontSize: 30,
         fontWeight: 'bold',
+        color: '#fff',
+        marginTop: 26,
     },
     textLogo:{
         fontSize: 10,
         fontWeight: 'bold',
         fontStyle: 'italic',
-    },
-    comida: {
-        height: '70%',
-        width: '34%',
-        margin: '10%',
-        
     },
     button: {     
         backgroundColor: '#d3d3d3',

@@ -39,7 +39,7 @@ const TelaMain = ({ navigation }) => {
                     <Text style={styles.buttonText}>Mais informações</Text>
                 </Pressable>
                 <Pressable style={styles.button} 
-                    onPress={() => navigation.navigate('Welcome')}>
+                    onPress={() => navigation.navigate('Config')}>
                     <Text style={styles.buttonText}>Configurações</Text>
                 </Pressable>
                 </View>

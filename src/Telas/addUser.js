@@ -83,8 +83,11 @@ const styles = StyleSheet.create({
     paddingTop: '10%',
     backgroundColor: '#fff',
     borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-        
+    borderTopRightRadius: 20,       
+  },
+  containerReturn: {
+    flex: 1,
+    backgroundColor: 'red',
   },
   header: {
     paddingTop: '5%',

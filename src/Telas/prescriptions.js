@@ -8,16 +8,16 @@ const TelaPrescriptions = ({ navigation }) => {
     const [passwordValue, setPasswordValue] = useState("")
     const [modalVisible, setModalVisible] = useState(false);
 
-       
-         
-
-  
                               
     return (
         <View style={styles.container}>
         <View style={styles.containerHeader}>
             <Image
-                source={require('../assets/receitas.png')}
+                source={require('../assets/return.png')}
+                style={styles.return}
+            />
+            <Image
+                source={require('../assets/prescricao.png')}
                 style={styles.logo}
             />
             <Text style={styles.headerText}>Prescrições</Text>
@@ -63,15 +63,14 @@ container:{
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'green',
-        
+       
 },
 containerHeader: {
     flex: 0.3,
     backgroundColor: '#4169e1',
     width: '100%',
     alignItems: 'center',
-    flexDirection: 'row',
-      
+    flexDirection: 'row',    
 },
 containerBody: {
     flex: 1,
@@ -98,7 +97,14 @@ headerText: {
 logo: {
     height: '40%',
     width: '18%',
-    marginLeft: '5%', 
+    
+},
+return: {
+    height: '26%',
+    width: '10%',
+    marginRight: '10%',
+    marginLeft: '3%',
+     
 },
 addButton: {
     height: '100%',
