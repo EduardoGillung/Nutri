@@ -1,11 +1,9 @@
-
-import { View, Text, StyleSheet, TouchableOpacity, Pressable } from 'react-native';
-
-
+import React, { useEffect, useState } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Pressable, TextInput, Image } from 'react-native';
 
 export function ModalPassword({password, handleClose}) {
     
-
+    const [task, setTask] = useState('');
 
     async function handleCopyPassword(){
         await Clipboard.setStringAsync(password)
@@ -19,13 +17,25 @@ export function ModalPassword({password, handleClose}) {
     return (
         <View style={styles.container}>
             <View style={styles.content}>
-                <Text style={styles.title}>Tarefa</Text>
-    
-                <Pressable style={styles.innerPassword} onLongPress={handleCopyPassword}> 
-                    <Text style={styles.text}>
-                        {password}
-                    </Text>
-                </Pressable>
+                <View style={styles.containerHeader}>
+                    <Text style={styles.title}>Tarefa</Text>
+                        <TouchableOpacity style={styles.touchable}
+                            onPress={handleClose}
+                        >
+                        <Image
+                            source={require('../assets/deleteButton.png')}
+                            style={styles.deleteButton}
+                        />
+            </TouchableOpacity>
+            </View>
+            
+                
+                
+                <TextInput
+                    style={styles.input}
+                    value={task}
+                    onChangeText={(task) => setTask(task)}
+                />
     
                 <View style={styles.buttonArea}>
                     <TouchableOpacity style={styles.button} onPress={handleClose}>
@@ -35,8 +45,11 @@ export function ModalPassword({password, handleClose}) {
                     <TouchableOpacity style={[styles.button, styles.buttonSave]} onPress={handleCopyPassword}>
                         <Text style={styles.buttonSaveText}>Salvar tarefa</Text>
                     </TouchableOpacity> 
+
+                    
+        
+        
                 </View>
-    
             </View>
         </View>
       );
@@ -58,16 +71,29 @@ export function ModalPassword({password, handleClose}) {
             justifyContent: 'flex-start',
             borderRadius: 8,
         },
+        containerHeader: {
+            width: '90%',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginLeft: '10%',
+
+        },
+        deleteButton: {
+            height: 35,
+            width: 35,
+            marginLeft: '10%',
+        },
+
         title:{
             fontSize: 20,
             fontWeight: 'bold',
             color: '#000',
             marginBottom: 24,
         },
-        innerPassword:{
+        input:{
             backgroundColor: '#d9d9d9',
             width: '90%',
-            height: '50%',
+            height: '60%',
             padding: 14,
             borderRadius: 8,
         },

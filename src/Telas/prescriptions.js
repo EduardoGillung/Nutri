@@ -8,7 +8,10 @@ const TelaPrescriptions = ({ navigation }) => {
     const [passwordValue, setPasswordValue] = useState("")
     const [modalVisible, setModalVisible] = useState(false);
 
-                              
+    const showModal = () => {
+        setModalVisible(true);
+    }
+
     return (
         <View style={styles.container}>
         <View style={styles.containerHeader}>
@@ -23,35 +26,30 @@ const TelaPrescriptions = ({ navigation }) => {
             <Text style={styles.headerText}>Prescrições</Text>
             </View>
              
-            <View style={styles.containerBody}>             
+            <View style={styles.containerBody}>
+                      
             <TextInput style={styles.button} 
                 onPress={() => navigation.navigate('Welcome')}>
                 
             </TextInput>
             <View style={styles.containerButtons}>
             <TouchableOpacity style={styles.touchable}
-                onPress={ () => navigation.navigate('Welcome')}
+                onPress={showModal}
              >
                  <Image
                     source={require('../assets/addButton.png')}
                     style={styles.addButton}
             />
             </TouchableOpacity>
-
-            <TouchableOpacity style={styles.touchable}
-                onPress={ () => navigation.navigate('Welcome')}
-             >
-                 <Image
-                    source={require('../assets/deleteButton.png')}
-                    style={styles.addButton}
-            />
-            </TouchableOpacity>
-
             </View>
             <TextInput style={styles.button} 
                 onPress={() => navigation.navigate('Welcome')}>
             </TextInput>
 
+            <Modal visible={modalVisible} animationType='fade'>
+                <ModalPassword  handleClose={ () => setModalVisible(false) } />
+            </Modal>
+            
             </View>
         </View> 
 );
@@ -80,10 +78,10 @@ containerBody: {
     
 },
 containerButtons: {
-    flex: 1,
-    justifyContent: 'space-around',
+    
+    height: '5%',
+    justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'row',
     width: '100%',
  
 },
@@ -107,7 +105,7 @@ return: {
      
 },
 addButton: {
-    height: '100%',
+    height: '300%',
     width: '100%',
 },
 text: {
@@ -119,26 +117,26 @@ textLogo:{
     fontWeight: 'bold',
     fontStyle: 'italic',
 },
+textBody: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#696969',
+},
 
 button: {     
     backgroundColor: '#d3d3d3',
     width: '80%',
     height: '35%',
     borderRadius: 20,        
-    marginTop: '12%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginTop: '9%',
 },    
 buttonText: {    
     fontSize: 24,
     fontWeight: 'bold',  
 },
 touchable: {
-    
     width: '10%',
     height: '40%',
-    
-  
 },  
 })
 export default TelaPrescriptions;

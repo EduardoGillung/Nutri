@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { View, TextInput, Button, StyleSheet, Pressable, Text, Image, TouchableOpacity, Modal } from 'react-native';
-import Header from "../Componentes/Header";
 import firebase, { db } from '../Serviços/firebase';
 import { ref, set, onValue, remove, child } from 'firebase/database'
+import { ModalPassword } from "../Componentes/modal";
 
 
-const TelaAddTarefa = ({ navigation, addTask }) => {
+const TelaAddTarefa = ({ navigation }) => {
     
     const [task, setTask] = useState('');
     const [description, setDescription] = useState('');
     var userId = Date.now().toString()
     const tarefaRef = ref(db, 'Lista de tarefas/' + task)
 
-    const handleModal = () => setIsModalVisible(() => !isModalVisible);
-    const [isModalVisible, setIsModalVisible] = React.useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
 
     function addTask () {        
         set(tarefaRef, {
@@ -25,7 +24,7 @@ const TelaAddTarefa = ({ navigation, addTask }) => {
             //data saved sucessfully!
             alert('Tarefa adicionada');
             navigation.navigate('Home')
-            setTask('');
+            
             console.log("Tarefa salva com sucesso do banco de dados")
 
         })
@@ -40,6 +39,10 @@ const TelaAddTarefa = ({ navigation, addTask }) => {
                 console.log("Tarefa apagada com sucesso do banco de dados")
             })    
     };
+
+    const showModal = () => {
+        setModalVisible(true);
+    }
 
     return (
         <View style={styles.container}>
@@ -73,6 +76,16 @@ const TelaAddTarefa = ({ navigation, addTask }) => {
             onPress={() => navigation.navigate('Home')}>
             <Text style={styles.register}>Ir tela home </Text>
         </Pressable>
+
+        <TouchableOpacity style={styles.button} onPress={showModal}>
+          <Text style={styles.buttonText}>Adicionar tarefa</Text>
+        </TouchableOpacity>
+
+        <Modal visible={modalVisible} animationType='fade'>
+          <ModalPassword  handleClose={ () => setModalVisible(false) } />
+        </Modal>
+
+        
 
         
 

@@ -13,7 +13,7 @@ function TelaAddUser({navigation}) {
 
   const registrar = () => {
     const auth = getAuth()
-    createUserWithEmailAndPassword(auth, nome, email, senha)
+    createUserWithEmailAndPassword(auth, email, senha)
       .then((userCredential) => { 
         console.log('Usuario criado com sucesso', userCredential.user.email);
         setCreateFailed(false)
@@ -53,13 +53,7 @@ function TelaAddUser({navigation}) {
         secureTextEntry={true}
         style={styles.input}
       />
-      <TextInput
-        placeholder="Confirme sua senha"
-        value={senha}
-        onChangeText={(text) => setSenha(text)}
-        secureTextEntry={true}
-        style={styles.input}
-      />
+      
 
       <Pressable style={styles.button} 
           onPress={registrar}>
@@ -103,7 +97,7 @@ const styles = StyleSheet.create({
     marginLeft: '60%',
   },  
   input: {
-    height: '10%',
+    height: 60,
     width: '80%',
     padding: 10,
     backgroundColor: '#dcdcdc',
