@@ -1,99 +1,103 @@
 import React, { useEffect, useState } from "react";
-import { View, TextInput, Button, StyleSheet, Image, Pressable, Text, FlatList, TouchableOpacity } from 'react-native';
-
+import { View, TextInput, Button, StyleSheet, Image, Pressable, Text, FlatList, TouchableOpacity, Modal } from 'react-native';
+import { ModalPassword } from "../Componentes/modal";
 
 const TelaRevenues = ({ navigation }) => {
-                              
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const showModal = () => {
+        setModalVisible(true);
+    }
+
     return (
         <View style={styles.container}>
-            <View style={styles.containerHeader}>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('Main')}>       
+                <Image
+                    source={require('../assets/return.png')}
+                    style={styles.returnButton}
+                />
+                </TouchableOpacity>
+
                 <Image
                     source={require('../assets/receitas.png')}
                     style={styles.logo}
                 />
                 <Text style={styles.headerText}>Receitas e Dicas</Text>
-                </View>
-                 
-                <View style={styles.containerButtons}>             
-                <TextInput style={styles.button} 
-                    onPress={() => navigation.navigate('Welcome')}>
-                    
-                </TextInput>
                 
+            <View style={styles.content}>
+                 <TouchableOpacity onPress={showModal}>       
+                <Image
+                    source={require('../assets/add.png')}
+                    style={styles.addButton}
+                />
+                </TouchableOpacity> 
+                <Text style={styles.text}>Adicionar tarefa </Text>
 
-                
-
-                <TextInput style={styles.button} 
-                    onPress={() => navigation.navigate('Welcome')}>
-                </TextInput>
-
-                </View>
+                <Modal visible={modalVisible} animationType='fade'>
+                    <ModalPassword  handleClose={ () => setModalVisible(false) } />
+                </Modal>
             </View> 
+            <View style={styles.InputContent}>
+                <TextInput style={styles.input}>
+
+                </TextInput>                   
+        </View>  
+
+        </View> 
     );
 };
 
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
-        backgroundColor: 'green',
-            
+        paddingTop: '20%',
+        backgroundColor: '#f0f0f0'       
     },
-    containerHeader: {
-        flex: 0.3,
-        backgroundColor: '#4169e1',
+    content: {  
         width: '100%',
         alignItems: 'center',
         flexDirection: 'row',
-          
+        paddingTop: '3%',        
     },
-    containerButtons: {
-        flex: 1,
-        backgroundColor: '#fff',
-        width: '100%',
+    InputContent: {
+        width: '100%', 
         alignItems: 'center',
-        
+        paddingTop: '3%',
+    },
+    input: {
+        backgroundColor: '#fff',
+        width: '90%',
+        height: '55%',
+        borderRadius: 20,
     },
     headerText: {
-       color: '#fff',
+       color: 'gray',
        fontSize: 32,
        fontWeight: 'bold',
-       marginLeft: '5%',
-      
+       marginLeft: '10%',
     },
     logo: {
-        height: '40%',
-        width: '18%',
-        marginLeft: '5%', 
+        height: 60,
+        width: 60,    
+    },
+    returnButton: {
+        height: 40,
+        width: 40,
+        marginRight: '90%',
+        marginLeft: 10,    
+    },
+    addButton: {
+        height: 60,
+        width: 60,
+        marginLeft: 20,
     },
     text: {
         fontSize: 20,
         fontWeight: 'bold',
-    },
-    textLogo:{
-        fontSize: 10,
-        fontWeight: 'bold',
-        fontStyle: 'italic',
-    },
-   
-    button: {     
-        backgroundColor: '#d3d3d3',
-        width: '80%',
-        height: '35%',
-        borderRadius: 20,        
-        marginTop: '15%',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },    
-    buttonText: {    
-        fontSize: 24,
-        fontWeight: 'bold',  
-    },
-    touchable: {
-        backgroundColor: 'grey',
-        width: '40%',
-      
-    },  
+        color: 'gray',
+    }, 
 })
 export default TelaRevenues;

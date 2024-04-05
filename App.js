@@ -79,7 +79,7 @@ function App() {
          }}  
          />
          <Tab.Screen
-         name="Prescriptions"
+         name="Prescription"
          component={TelaPrescriptions}
          options={{ headerShown: false, tabBarIcon: ({ focused, size, color }) => {
           if(focused){

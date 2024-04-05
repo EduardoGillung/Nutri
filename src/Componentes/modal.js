@@ -28,9 +28,6 @@ export function ModalPassword({password, handleClose}) {
                         />
             </TouchableOpacity>
             </View>
-            
-                
-                
                 <TextInput
                     style={styles.input}
                     value={task}
@@ -91,7 +88,7 @@ export function ModalPassword({password, handleClose}) {
             marginBottom: 24,
         },
         input:{
-            backgroundColor: '#d9d9d9',
+            backgroundColor: '#f0f0f0',
             width: '90%',
             height: '60%',
             padding: 14,

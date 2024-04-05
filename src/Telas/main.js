@@ -13,24 +13,42 @@ const TelaMain = ({ navigation }) => {
                 <Text style={styles.headerText}>Seja bem vindo Usuario!</Text>
             
                  <View style={styles.container2}>
+                 <TouchableOpacity
+                    onPress={() => navigation.navigate('addTarefa')}
+                    >
                  <Image
                     source={require('../assets/comida.png')}
                     style={styles.comida}
                 />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('Prescription')}
+                    >
                  <Image
                     source={require('../assets/prescricao.png')}
-                    style={styles.comida}
+                    style={styles.prescricao}
                 />
+                </TouchableOpacity>
+
                 </View>
                 <View style={styles.container2}>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('Revenues')}
+                    >
                  <Image
                     source={require('../assets/receitas.png')}
-                    style={styles.comida}
+                    style={styles.receitas}
                 />
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('Historic')}
+                    >
                  <Image
                     source={require('../assets/substituicao.png')}
-                    style={styles.comida}
+                    style={styles.substituicao}
                 />
+                </TouchableOpacity>
                 </View>
                 
                 <View style={styles.containerButtons}>             
@@ -60,8 +78,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         width: '100%',
-        alignItems: 'center',
-        justifyContent: 'space-evenly',
         flexDirection: 'row',      
     },
     containerButtons: {
@@ -97,12 +113,26 @@ const styles = StyleSheet.create({
     },
     comida: {
         height: '70%',
-        width: '34%',
-        margin: '10%',
-        
+        width: 135,
+        margin: '10%', 
+    },
+    prescricao: {
+        height: '70%',
+        width: 135,
+        margin: '10%', 
+    },
+    receitas: {
+        height: '70%',
+        width: 135,
+        margin: '10%', 
+    },
+    substituicao: {
+        height: '70%',
+        width: 135,
+        margin: '10%', 
     },
     button: {     
-        backgroundColor: '#d3d3d3',
+        backgroundColor: '#f0f0f0',
         width: '70%',
         height: '30%',
         borderRadius: 20,        
@@ -113,7 +143,8 @@ const styles = StyleSheet.create({
     },    
     buttonText: {    
         fontSize: 24,
-        fontWeight: 'bold',  
+        fontWeight: 'bold',
+        color: 'gray',  
     },     
 })
 export default TelaMain;
