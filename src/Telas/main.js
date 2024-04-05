@@ -76,13 +76,13 @@ const styles = StyleSheet.create({
     },
     container2: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#f0f0f0',
         width: '100%',
         flexDirection: 'row',      
     },
     containerButtons: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#f0f0f0',
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
         margin: '10%', 
     },
     button: {     
-        backgroundColor: '#f0f0f0',
+        backgroundColor: '#fff',
         width: '70%',
         height: '30%',
         borderRadius: 20,        

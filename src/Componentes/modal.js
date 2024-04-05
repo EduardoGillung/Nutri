@@ -18,7 +18,9 @@ export function ModalPassword({password, handleClose}) {
         <View style={styles.container}>
             <View style={styles.content}>
                 <View style={styles.containerHeader}>
-                    <Text style={styles.title}>Tarefa</Text>
+                    <TextInput style={styles.taskName}
+                        placeholder="Adicione o titulo">   
+                    </TextInput>
                         <TouchableOpacity style={styles.touchable}
                             onPress={handleClose}
                         >
@@ -30,8 +32,7 @@ export function ModalPassword({password, handleClose}) {
             </View>
                 <TextInput
                     style={styles.input}
-                    value={task}
-                    onChangeText={(task) => setTask(task)}
+                    placeholder="Descrição"
                 />
     
                 <View style={styles.buttonArea}>
@@ -80,7 +81,14 @@ export function ModalPassword({password, handleClose}) {
             width: 35,
             marginLeft: '10%',
         },
-
+        taskName: {
+            backgroundColor: '#f0f0f0',
+            height: 40,
+            width: '70%',
+            borderRadius: 8,
+            marginBottom: '5%', 
+               
+        },  
         title:{
             fontSize: 20,
             fontWeight: 'bold',

@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#fff'       
+        backgroundColor: '#f0f0f0'       
     },
     content: {  
         width: '100%',
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         paddingTop: '3%',
     },
     input: {
-        backgroundColor: '#f0f0f0',
+        backgroundColor: '#fff',
         width: '90%',
         height: '55%',
         borderRadius: 20,
