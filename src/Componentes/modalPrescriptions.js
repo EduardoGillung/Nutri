@@ -3,12 +3,12 @@ import { View, Text, StyleSheet, TouchableOpacity, Pressable, TextInput, Image }
 import { db } from "../Serviços/firebase";
 import { ref, set, remove } from 'firebase/database'
 
-export function ModalFood({ handleClose }) {
+export function ModalPrescriptions({ handleClose }) {
     
     const [task, setTask] = useState('');
     const [description, setDescription] = useState('');
     var userId = Date.now().toString()
-    const tarefaRef = ref(db, 'Rotina Alimentar/' + task)
+    const tarefaRef = ref(db, 'Prescrições/' + task)
 
 
     function addTask () {        

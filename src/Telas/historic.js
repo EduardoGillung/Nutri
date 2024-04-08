@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         paddingTop: '20%',
-        backgroundColor: '#f0f0f0'       
+        backgroundColor: '#fff'       
     },
     content: {  
         width: '100%',
@@ -61,9 +61,9 @@ const styles = StyleSheet.create({
         paddingTop: '3%',
     },
     input: {
-        backgroundColor: '#fff',
+        backgroundColor: '#f0f0f0',
         width: '90%',
-        height: '90%',
+        height: '85%',
         borderRadius: 20,
     },
     headerText: {

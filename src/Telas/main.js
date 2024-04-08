@@ -14,7 +14,7 @@ const TelaMain = ({ navigation }) => {
             
                  <View style={styles.container2}>
                  <TouchableOpacity
-                    onPress={() => navigation.navigate('addTarefa')}
+                    onPress={() => navigation.navigate('Rotina')}
                     >
                  <Image
                     source={require('../assets/comida.png')}

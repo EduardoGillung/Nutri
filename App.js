@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TelaLogin from './src/Telas/login';
 import TelaAddUser from './src/Telas/addUser';
 import TelaAddTarefa from './src/Telas/addTarefa';
@@ -16,7 +14,7 @@ import TelaConfig from './src/Telas/config';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
-import TelaTeste from './src/Telas/teste';
+import TelaRotina from './src/Telas/rotina';
 
 const Tab = createBottomTabNavigator();
 
@@ -56,8 +54,8 @@ function App() {
           
          />
         <Tab.Screen
-          name="addTarefa"
-          component={TelaAddTarefa}   
+          name="Rotina"
+          component={TelaRotina}   
           options={{ headerShown: false, tabBarIcon: ({ focused, size, color }) => {
             if(focused){
                 return <MaterialCommunityIcons size={size} color={color} name="food-apple" />
@@ -67,17 +65,7 @@ function App() {
          }} 
            
          />
-         <Tab.Screen
-          name="Home"
-          component={TelaHome}
-          options={{ headerShown: false, tabBarIcon: ({ focused, size, color }) => {
-            if(focused){
-                return <MaterialCommunityIcons size={size} color={color} name="book-open" />
-            }
-            return <MaterialCommunityIcons size={size} color={color} name="book-open-outline" />
-          }
-         }}  
-         />
+         
          <Tab.Screen
          name="Prescription"
          component={TelaPrescriptions}
@@ -122,18 +110,6 @@ function App() {
           
          />   
 
-        <Tab.Screen
-            name="Teste"
-            component={TelaTeste}
-            options={{ headerShown: false, tabBarIcon: ({ focused, size, color }) => {
-              if(focused){
-                  return <Ionicons size={size} color={color} name="home" />
-              }
-              return <Ionicons size={size} color={color} name="home-outline" />
-            }
-          }} 
-          
-         />
       </Tab.Navigator>
     </NavigationContainer>
   );

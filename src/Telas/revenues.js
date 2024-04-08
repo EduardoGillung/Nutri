@@ -1,13 +1,38 @@
 import React, { useEffect, useState } from "react";
-import { View, TextInput, Button, StyleSheet, Image, Pressable, Text, FlatList, TouchableOpacity, Modal } from 'react-native';
-import { ModalPassword } from "../Componentes/modal";
+import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, TouchableOpacity, Modal } from 'react-native';
+import { ModalRevenues } from "../Componentes/modalRevenues"; 
+import { ref, get, set, push, onValue, remove, getDatabase, update, child } from 'firebase/database'
+import { db } from "../Serviços/firebase";
 
 const TelaRevenues = ({ navigation }) => {
+
     const [modalVisible, setModalVisible] = useState(false);
+    const [prescription, setPrescription] = useState('')
 
     const showModal = () => {
         setModalVisible(true);
     }
+    const renderItem = ({ item }) => (
+        <View style={styles.prescriptions}>
+            <Text style={styles.data}>{item.task}</Text>
+            <Text style={styles.data}>{item.description}</Text>
+        </View>
+    )
+
+    useEffect(() => {
+        const tarefaRef = ref(db, 'Receitas/')
+
+        onValue(tarefaRef, (snapshot) => {
+            if(snapshot.exists()) {
+            const data = snapshot.val();
+            const getData = Object.values(data)
+
+            setPrescription(getData)
+            console.log(prescription)
+            }
+        })
+        
+    },[])
 
     return (
         <View style={styles.container}>
@@ -23,7 +48,7 @@ const TelaRevenues = ({ navigation }) => {
                     source={require('../assets/receitas.png')}
                     style={styles.logo}
                 />
-                <Text style={styles.headerText}>Receitas e Dicas</Text>
+                <Text style={styles.headerText}>Receitas e Dicas </Text>
                 
             <View style={styles.content}>
                  <TouchableOpacity onPress={showModal}>       
@@ -35,13 +60,16 @@ const TelaRevenues = ({ navigation }) => {
                 <Text style={styles.text}>Adicionar tarefa </Text>
 
                 <Modal visible={modalVisible} animationType='fade'>
-                    <ModalPassword  handleClose={ () => setModalVisible(false) } />
+                    <ModalRevenues  handleClose={ () => setModalVisible(false) } />
                 </Modal>
             </View> 
             <View style={styles.InputContent}>
-                <TextInput style={styles.input}>
-
-                </TextInput>                   
+                <FlatList style={styles.taskList}
+                    data={prescription}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.taskId}
+                    
+                />                  
         </View>  
 
         </View> 
@@ -51,33 +79,44 @@ const TelaRevenues = ({ navigation }) => {
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
-        
-        backgroundColor: '#f0f0f0'       
+        backgroundColor: '#fff',
+        paddingTop: 50,       
     },
     content: {  
         width: '100%',
         alignItems: 'center',
         flexDirection: 'row',
-        paddingTop: '3%',        
+        paddingTop: '5%',        
     },
     InputContent: {
-        width: '100%', 
-        alignItems: 'center',
-        paddingTop: '3%',
+        width: '90%', 
+        paddingTop: 10,
+        paddingTop: 10,
+        backgroundColor: '#f0f0f0',
+        borderRadius: 20,
+        paddingBottom: 10,
+    },
+    data: {
+        color: 'gray',
+        fontSize: 20,
+        fontWeight: 'bold',
+        margin: 8,
     },
     input: {
         backgroundColor: '#fff',
         width: '90%',
         height: '55%',
         borderRadius: 20,
+        lineHeight: 2,
     },
     headerText: {
        color: 'gray',
-       fontSize: 32,
+       fontSize: 30,
        fontWeight: 'bold',
        marginLeft: '10%',
+       marginTop: '2%',
     },
     logo: {
         height: 60,

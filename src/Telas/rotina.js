@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, TouchableOpacity, Modal } from 'react-native';
-import { ModalPrescriptions } from "../Componentes/modalPrescriptions"; 
+import { ModalFood, ModalPassword } from "../Componentes/modal";
 import { ref, get, set, push, onValue, remove, getDatabase, update, child } from 'firebase/database'
 import { db } from "../Serviços/firebase";
 
-const TelaPrescriptions = ({ navigation }) => {
+const TelaRotina = ({ navigation }) => {
 
     const [modalVisible, setModalVisible] = useState(false);
-    const [prescription, setPrescription] = useState('')
+    const [prescription, setPrescription] = useState('');
 
     const showModal = () => {
         setModalVisible(true);
@@ -20,15 +20,15 @@ const TelaPrescriptions = ({ navigation }) => {
     )
 
     useEffect(() => {
-        const tarefaRef = ref(db, 'Prescrições/')
-        
-        onValue(tarefaRef, (snapshot) => {
-            if(snapshot.exists()) {
+        const tarefaRef = ref(db, 'Rotina Alimentar/')
+
+        onValue(tarefaRef, (snapshot) =>{
+        if(snapshot.exists()) {
             const data = snapshot.val();
             const getData = Object.values(data)
 
             setPrescription(getData)
-            console.log(prescription)
+            console.log(getData)
             }
         })
     },[])
@@ -44,10 +44,10 @@ const TelaPrescriptions = ({ navigation }) => {
                 </TouchableOpacity>
 
                 <Image
-                    source={require('../assets/prescricao.png')}
+                    source={require('../assets/comida.png')}
                     style={styles.logo}
                 />
-                <Text style={styles.headerText}>Suplementos e Prescrições </Text>
+                <Text style={styles.headerText}>Rotina Alimentar </Text>
                 
             <View style={styles.content}>
                  <TouchableOpacity onPress={showModal}>       
@@ -59,7 +59,7 @@ const TelaPrescriptions = ({ navigation }) => {
                 <Text style={styles.text}>Adicionar tarefa </Text>
 
                 <Modal visible={modalVisible} animationType='fade'>
-                    <ModalPrescriptions  handleClose={ () => setModalVisible(false) } />
+                    <ModalFood handleClose={ () => setModalVisible(false) } />
                 </Modal>
             </View> 
             <View style={styles.InputContent}>
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
         paddingTop: '5%',        
     },
     InputContent: {
-        width: '90%',
+        width: '90%', 
         paddingTop: 10,
         backgroundColor: '#f0f0f0',
         borderRadius: 20,
@@ -137,4 +137,4 @@ const styles = StyleSheet.create({
         color: 'gray',
     }, 
 })
-export default TelaPrescriptions;
+export default TelaRotina;
