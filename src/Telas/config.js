@@ -6,16 +6,10 @@ const TelaConfig = ({ navigation }) => {
                               
     return (
         <View style={styles.container}>
-            <View style={styles.containerHeader}>
-                <Image
-                    source={require('../assets/return.png')}
-                    style={styles.logo}
-                />
                 <Image
                     source={require('../assets/logo.png')}
                     style={styles.logo}
                 />
-                </View>
                 <View style={styles.containerBody}>
 
                     <Pressable onPress={() => navigation.navigate('Main')}>
@@ -46,11 +40,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',   
     },
     containerHeader: {
-        flex: 0.3,
         backgroundColor: '#4169e1',
         width: '100%',
         alignItems: 'center',
-        flexDirection: 'row',    
+    
     },
     containerBody: {
         flex: 1,
@@ -68,9 +61,9 @@ const styles = StyleSheet.create({
        marginBottom: '5%',
     },
     logo: {
-        height: '31%',
-        width: '14%',
-        marginRight: '5%',
+        height: 60,
+        width: 60,
+        marginRight: '70%',
         marginTop: '20%',
           
     },
@@ -78,7 +71,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: 'bold',
         color: '#fff',
-        marginTop: 26,
+        marginTop: 40,
     },
     textLogo:{
         fontSize: 10,

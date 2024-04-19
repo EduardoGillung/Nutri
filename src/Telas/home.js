@@ -20,7 +20,6 @@ const TelaHome = ({ navigation }) => {
         onValue(tarefaRef, (snapshot) => {
             const data = snapshot.val();
             const arrayData = Object.values(data)
-            console.log(arrayData);
 
             setTarefa1(arrayData)
             console.log(tarefa1)

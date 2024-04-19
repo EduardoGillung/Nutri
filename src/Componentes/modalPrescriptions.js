@@ -13,7 +13,6 @@ export function ModalPrescriptions({ handleClose }) {
 
     function addTask () {        
         set(tarefaRef, {
-            task: task,
             description: description,
             taskId: userId,
         

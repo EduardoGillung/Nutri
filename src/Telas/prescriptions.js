@@ -30,6 +30,9 @@ const TelaPrescriptions = ({ navigation }) => {
             setPrescription(getData)
             console.log(prescription)
             }
+            else{
+                alert('Não foi encontrado nenhum item')
+            }
         })
     },[])
 

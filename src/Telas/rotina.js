@@ -19,6 +19,20 @@ const TelaRotina = ({ navigation }) => {
         </View>
     )
 
+    let deleteTask = ({ task }) => {
+        get(child(db, 'Receitas/' + task)).then(snapshot => {
+          if(snapshot.exists()) {
+            remove(ref(db, 'Receitas/' + task))
+            .then(() => {
+                console.log("Tarefa apagada com sucesso do banco de dados" + task)
+            })
+          }     
+        })
+        
+              
+    }
+    
+
     useEffect(() => {
         const tarefaRef = ref(db, 'Rotina Alimentar/')
 
@@ -30,11 +44,15 @@ const TelaRotina = ({ navigation }) => {
             setPrescription(getData)
             console.log(getData)
             }
+            else{
+                alert('Não foi encontrado nenhum item')
+            }
         })
     },[])
 
     return (
         <View style={styles.container}>
+            
             <TouchableOpacity
                 onPress={() => navigation.navigate('Main')}>       
                 <Image
@@ -83,12 +101,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         paddingTop: 50,       
     },
+    
     content: {  
         width: '100%',
         alignItems: 'center',
         flexDirection: 'row',
-        paddingTop: '5%',        
+        paddingTop: '5%',
+                
     },
+
     InputContent: {
         width: '90%', 
         paddingTop: 10,
@@ -108,6 +129,7 @@ const styles = StyleSheet.create({
         height: '55%',
         borderRadius: 20,
         lineHeight: 2,
+        
     },
     headerText: {
        color: 'gray',

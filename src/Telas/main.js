@@ -34,10 +34,10 @@ const TelaMain = ({ navigation }) => {
                 </View>
                 <View style={styles.container2}>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('Revenues')}
+                    onPress={() => navigation.navigate('Calculator')}
                     >
                  <Image
-                    source={require('../assets/receitas.png')}
+                    source={require('../assets/calculadora.png')}
                     style={styles.receitas}
                 />
                 </TouchableOpacity>

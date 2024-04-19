@@ -13,7 +13,6 @@ export function ModalRevenues({ handleClose }) {
 
     function addTask () {        
         set(tarefaRef, {
-            task: task,
             description: description,
             taskId: userId,
         
@@ -28,12 +27,7 @@ export function ModalRevenues({ handleClose }) {
                 alert(error);
             });
     }  
-    const deleteTask = () => {
-        remove(ref(db, 'Lista de tarefas/'))
-            .then(() => {
-                console.log("Tarefa apagada com sucesso do banco de dados")
-            })    
-    };
+   
 
     return (
         <View style={styles.container}>

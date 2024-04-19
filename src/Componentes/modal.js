@@ -10,10 +10,8 @@ export function ModalFood({ handleClose }) {
     var userId = Date.now().toString()
     const tarefaRef = ref(db, 'Rotina Alimentar/' + task)
 
-
     function addTask () {        
         set(tarefaRef, {
-            task: task,
             description: description,
             taskId: userId,
         
@@ -28,12 +26,7 @@ export function ModalFood({ handleClose }) {
                 alert(error);
             });
     }  
-    const deleteTask = () => {
-        remove(ref(db, 'Lista de tarefas/'))
-            .then(() => {
-                console.log("Tarefa apagada com sucesso do banco de dados")
-            })    
-    };
+    
 
     return (
         <View style={styles.container}>
