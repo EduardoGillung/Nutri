@@ -16,14 +16,8 @@ const TelaConfig = ({ navigation }) => {
                         <Text style={styles.text}>Inicio</Text>
                      </Pressable>
                      <Pressable onPress={() => navigation.navigate('Main')}>
-                        <Text style={styles.text}>Sobre nós</Text>
+                        <Text style={styles.text}>Sobre min</Text>
                      </Pressable> 
-                     <Pressable onPress={() => navigation.navigate('Main')}>
-                        <Text style={styles.text}>Atribuições e direitos</Text>
-                     </Pressable> 
-                     <Pressable onPress={() => navigation.navigate('Main')}>
-                        <Text style={styles.text}>Configurações</Text>
-                     </Pressable>
                      <Pressable onPress={() => navigation.navigate('Main')}>
                         <Text style={styles.text}>Sair</Text>
                      </Pressable>                 

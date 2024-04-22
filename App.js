@@ -8,14 +8,15 @@ import TelaHome from './src/Telas/home';
 import TelaWelcome from './src/Telas/welcome';
 import TelaMain from './src/Telas/main';
 import TelaPrescriptions from './src/Telas/prescriptions';
-import TelaHistoric from './src/Telas/historic';
 import TelaConfig from './src/Telas/config';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
+import { FontAwesome6 } from '@expo/vector-icons';
 import TelaRotina from './src/Telas/rotina';
 import TelaCalculator from './src/Telas/calculator';
+import TelaWaterCalculator from './src/Telas/waterCalculator';
 
 const Tab = createBottomTabNavigator();
 
@@ -93,13 +94,13 @@ function App() {
          />
          <Tab.Screen
            
-          name="Historic"
-          component={TelaHistoric}
+          name="WaterCalculator"
+          component={TelaWaterCalculator}
           options={{ headerShown: false, tabBarIcon: ({ focused, size, color }) => {
             if(focused){
-                return <MaterialCommunityIcons size={size} color={color} name="history" />
+                return <MaterialCommunityIcons size={size} color={color} name="cup-water" />
             }
-            return <MaterialCommunityIcons size={size} color={color} name="history" />
+            return <MaterialCommunityIcons size={size} color={color} name="cup-water" />
           }
          }}
          />

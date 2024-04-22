@@ -12,7 +12,7 @@ const TelaMain = ({ navigation }) => {
                 />
                 <Text style={styles.headerText}>Seja bem vindo Usuario!</Text>
             
-                 <View style={styles.container2}>
+                 <View style={styles.containerBody}>
                  <TouchableOpacity
                     onPress={() => navigation.navigate('Rotina')}
                     >
@@ -32,7 +32,7 @@ const TelaMain = ({ navigation }) => {
                 </TouchableOpacity>
 
                 </View>
-                <View style={styles.container2}>
+                <View style={styles.containerBody}>
                 <TouchableOpacity
                     onPress={() => navigation.navigate('Calculator')}
                     >
@@ -42,24 +42,25 @@ const TelaMain = ({ navigation }) => {
                 />
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('Historic')}
+                    onPress={() => navigation.navigate('WaterCalculator')}
                     >
                  <Image
-                    source={require('../assets/substituicao.png')}
+                    source={require('../assets/agua.png')}
                     style={styles.substituicao}
                 />
                 </TouchableOpacity>
                 </View>
                 
                 <View style={styles.containerButtons}>             
-                <Pressable style={styles.button} 
-                    onPress={() => navigation.navigate('Welcome')}>
-                    <Text style={styles.buttonText}>Mais informações</Text>
-                </Pressable>
-                <Pressable style={styles.button} 
+                
+                <TouchableOpacity style={styles.button} 
                     onPress={() => navigation.navigate('Config')}>
+                    <Image
+                    source={require('../assets/config.png')}
+                    style={styles.configButton}
+                    />
                     <Text style={styles.buttonText}>Configurações</Text>
-                </Pressable>
+                </TouchableOpacity>
                 </View>
             </View> 
     );
@@ -74,18 +75,19 @@ const styles = StyleSheet.create({
         
             
     },
-    container2: {
+    containerBody: {
         flex: 1,
-        backgroundColor: '#f0f0f0',
+        backgroundColor: '#fff',
         width: '100%',
         flexDirection: 'row',      
     },
     containerButtons: {
         flex: 1,
-        backgroundColor: '#f0f0f0',
+        backgroundColor: '#fff',
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
+           
     },
     headerText: {
        color: '#fff',
@@ -131,20 +133,26 @@ const styles = StyleSheet.create({
         width: 135,
         margin: '10%', 
     },
+    configButton: {
+        height: 30,
+        width: 30,
+  
+    },
     button: {     
-        backgroundColor: '#fff',
-        width: '70%',
+        backgroundColor: '#E6E6E6',
+        width: '80%',
         height: '30%',
         borderRadius: 20,        
-        marginBottom: '2%',
-        marginTop: '2%', 
         justifyContent: 'center',
         alignItems: 'center',
+        flexDirection: 'row',
+        
     },    
     buttonText: {    
         fontSize: 24,
         fontWeight: 'bold',
-        color: 'gray',  
+        color: 'gray',
+        marginHorizontal: 20,  
     },     
 })
 export default TelaMain;

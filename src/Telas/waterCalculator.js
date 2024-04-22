@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, TouchableOpacity } from 'react-native';
 
-const TelaCalculator = ({ navigation }) => {
+const TelaWaterCalculator = ({ navigation }) => {
 
     
     return (
@@ -15,54 +15,32 @@ const TelaCalculator = ({ navigation }) => {
                 </TouchableOpacity>
 
                 <Image
-                    source={require('../assets/calculadora.png')}
+                    source={require('../assets/agua.png')}
                     style={styles.logo}
                 />
-                <Text style={styles.headerText}>Calculadora IMC </Text>
-                <Text style={styles.text}>IMC é o  Índice de Massa Corpórea, parâmetro para calcular o peso ideal de cada pessoa. </Text>
+                <Text style={styles.headerText}>Calculadora de Água </Text>
+                <Text style={styles.text}>Use a calculadora abaixo para saber a quantia de água que você precisa tomar diariamente. </Text>
             <View style={styles.content}>
                 <Text style={styles.text}>Peso</Text>    
-                <Text style={styles.text}>Altura</Text>
             </View> 
         <View style={styles.content}>
             <TextInput style={styles.input}>   
-            </TextInput>
-            <TextInput style={styles.input}>   
-            </TextInput>              
+            </TextInput>            
         </View>
         <View style={styles.ButtonContent}>
             <TouchableOpacity style={styles.touchable}>
-                <Text style={styles.touchableText}>Calcular IMC</Text>
+                <Text style={styles.touchableText}>Calcular Água</Text>
             </TouchableOpacity>
         </View>
             <View style={styles.IMCcontent}>
-                <Text style={styles.text}>Seu IMC:</Text>
+                <Text style={styles.text}>Quantia diária:</Text>
                 <TextInput style={styles.input}>   
                 </TextInput>
             </View>
-            <View style={styles.TableContent}>
-                <Text style={styles.textTable}>IMC</Text>
-                <Text style={styles.textTable}>Categoria</Text>
-            </View>
-            <View style={styles.Table}>
-                <Text style={styles.text}>Menor que 18,5</Text>
-                <Text style={styles.text}>Magreza</Text>
-            </View>
-            <View style={styles.Table}>
-                <Text style={styles.text}>Entre 18,5 e 24,9</Text>
-                <Text style={styles.text}>Normal</Text>
-            </View>
-            <View style={styles.Table}>
-                <Text style={styles.text}>Entre 25,0 e 29,9</Text>
-                <Text style={styles.text}>Sobrepeso</Text>
-            </View>
-            <View style={styles.Table}>
-                <Text style={styles.text}>Entre 30,0 e 39,9</Text>
-                <Text style={styles.text}>Obesidade</Text>
-            </View>
-            <View style={styles.Table}>
-                <Text style={styles.text}>Maior que 40,0</Text>
-                <Text style={styles.text}>Obesidade Grave</Text>
+            <View style={styles.info}>
+                <Text style={styles.text}>Lembre-se a quantidade diária de água varia conforme a atividade física e temperatura ambiente.
+                 Durante exercícios intensos, pode variar entre 500 ml a 1 litro por hora.
+                 Consulte um profissional de saúde para orientações personalizadas, considerando fatores individuais além de idade e peso.</Text> 
             </View>
         </View> 
     );
@@ -100,7 +78,13 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         width: '100%',
         marginBottom: '5%',
-    }, 
+    },
+    info: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 20,
+    },
+
     ButtonContent: {
         width: '100%',
         justifyContent: 'center',
@@ -163,4 +147,4 @@ const styles = StyleSheet.create({
         color: '#fff',
     },  
 })
-export default TelaCalculator;
+export default TelaWaterCalculator;
