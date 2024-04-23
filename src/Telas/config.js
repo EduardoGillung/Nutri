@@ -15,10 +15,8 @@ const TelaConfig = ({ navigation }) => {
                     <Pressable onPress={() => navigation.navigate('Main')}>
                         <Text style={styles.text}>Inicio</Text>
                      </Pressable>
-                     <Pressable onPress={() => navigation.navigate('Main')}>
-                        <Text style={styles.text}>Sobre min</Text>
-                     </Pressable> 
-                     <Pressable onPress={() => navigation.navigate('Main')}>
+                    
+                     <Pressable onPress={() => navigation.navigate('Welcome')}>
                         <Text style={styles.text}>Sair</Text>
                      </Pressable>                 
                 </View>

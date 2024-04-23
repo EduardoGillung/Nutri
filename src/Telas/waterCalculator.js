@@ -2,8 +2,17 @@ import React, { useEffect, useState } from "react";
 import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, TouchableOpacity } from 'react-native';
 
 const TelaWaterCalculator = ({ navigation }) => {
+    const [pesoUsuario, setPesoUsuario] = useState("")
+    const quantiaAgua = pesoUsuario * 0.03;
+        
 
-    
+        const calcularAgua = () => {
+            if (pesoUsuario === '') {
+              alert('Por favor, insira seu peso.');
+              return;
+            }
+            
+    }
     return (
         <View style={styles.container}>
             <TouchableOpacity
@@ -24,21 +33,28 @@ const TelaWaterCalculator = ({ navigation }) => {
                 <Text style={styles.text}>Peso</Text>    
             </View> 
         <View style={styles.content}>
-            <TextInput style={styles.input}>   
-            </TextInput>            
+            <TextInput style={styles.input}
+                placeholder="Insira seu peso (kg)"
+                keyboardType="numeric"
+                value={pesoUsuario}
+                onChangeText={text => setPesoUsuario(text)}
+            />
+            
+                       
         </View>
         <View style={styles.ButtonContent}>
-            <TouchableOpacity style={styles.touchable}>
+            <TouchableOpacity style={styles.touchable} onPress={calcularAgua}>
                 <Text style={styles.touchableText}>Calcular Água</Text>
             </TouchableOpacity>
         </View>
             <View style={styles.IMCcontent}>
                 <Text style={styles.text}>Quantia diária:</Text>
-                <TextInput style={styles.input}>   
+                <TextInput style={styles.input}>
+                <Text style={styles.waterText}> {quantiaAgua}  L</Text>   
                 </TextInput>
             </View>
             <View style={styles.info}>
-                <Text style={styles.text}>Lembre-se a quantidade diária de água varia conforme a atividade física e temperatura ambiente.
+                <Text style={styles.text}>A quantidade diária de água varia conforme a atividade física e temperatura ambiente.
                  Durante exercícios intensos, pode variar entre 500 ml a 1 litro por hora.
                  Consulte um profissional de saúde para orientações personalizadas, considerando fatores individuais além de idade e peso.</Text> 
             </View>
@@ -72,6 +88,7 @@ const styles = StyleSheet.create({
         height: 40,
         width: '35%',
         borderRadius: 20,
+        padding: 10,
     },
     IMCcontent: {
         flexDirection: 'row',
@@ -83,6 +100,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 20,
+    },
+    waterText: {
+        fontWeight: 'bold',
+        color: 'gray',
+        fontSize: 18,
+       
     },
 
     ButtonContent: {
