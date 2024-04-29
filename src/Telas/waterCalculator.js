@@ -1,18 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, TouchableOpacity } from 'react-native';
+import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, TouchableOpacity, Keyboard } from 'react-native';
 
 const TelaWaterCalculator = ({ navigation }) => {
-    const [pesoUsuario, setPesoUsuario] = useState("")
-    const quantiaAgua = pesoUsuario * 0.03;
-        
+    const [peso, setPeso] = useState('');
+    const [quantiaAgua, setQuantiaAgua] = useState(null);
 
+        useEffect(() => {
+            // Limpa os estados ao montar o componente
+            setPeso('');
+            setQuantiaAgua(null);
+          
+        }, []);
+        
         const calcularAgua = () => {
-            if (pesoUsuario === '') {
-              alert('Por favor, insira seu peso.');
-              return;
-            }
-            
-    }
+          const pesoKg = parseFloat(peso);
+      
+          if (pesoKg) {
+            const quantiaAgua = pesoKg * 0.035
+            setQuantiaAgua(quantiaAgua.toFixed(2));
+          } else {
+            setQuantiaAgua(null);
+          }
+          // Close the keyboard
+            Keyboard.dismiss();
+        }
+
+
     return (
         <View style={styles.container}>
             <TouchableOpacity
@@ -34,10 +47,9 @@ const TelaWaterCalculator = ({ navigation }) => {
             </View> 
         <View style={styles.content}>
             <TextInput style={styles.input}
-                placeholder="Insira seu peso (kg)"
-                keyboardType="numeric"
-                value={pesoUsuario}
-                onChangeText={text => setPesoUsuario(text)}
+            onChangeText={text => setPeso(text)}
+            value={peso}
+            keyboardType="numeric"
             />
             
                        
@@ -50,7 +62,9 @@ const TelaWaterCalculator = ({ navigation }) => {
             <View style={styles.IMCcontent}>
                 <Text style={styles.text}>Quantia diária:</Text>
                 <TextInput style={styles.input}>
-                <Text style={styles.waterText}> {quantiaAgua}  L</Text>   
+                <Text style={styles.waterText}> 
+                {quantiaAgua !== null && <Text style={styles.text}>{quantiaAgua} L </Text>} 
+                </Text>   
                 </TextInput>
             </View>
             <View style={styles.info}>

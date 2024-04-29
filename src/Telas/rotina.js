@@ -13,7 +13,7 @@ const TelaRotina = ({ navigation }) => {
         setModalVisible(true);
     }
     const renderItem = ({ item }) => (
-        <View style={styles.prescriptions}>
+        <View style={styles.InputContent}>
             <Text style={styles.data}>{item.task}</Text>
             <Text style={styles.data}>{item.description}</Text>
         </View>
@@ -32,7 +32,6 @@ const TelaRotina = ({ navigation }) => {
               
     }
     
-
     useEffect(() => {
         const tarefaRef = ref(db, 'Rotina Alimentar/')
 
@@ -101,7 +100,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         paddingTop: 50,       
     },
-    
     content: {  
         width: '100%',
         alignItems: 'center',
@@ -109,19 +107,23 @@ const styles = StyleSheet.create({
         paddingTop: '5%',
                 
     },
+    renderItem: {
+        paddingBottom: 20,
+    },
 
     InputContent: {
         width: '90%', 
-        paddingTop: 10,
-        backgroundColor: '#f0f0f0',
-        borderRadius: 20,
-        paddingBottom: 10,
+        padding: 10,
+        backgroundColor: 'green',
+        borderRadius: 8,
+        
+        
     },
     data: {
         color: 'gray',
         fontSize: 20,
         fontWeight: 'bold',
-        margin: 8,
+        
     },
     input: {
         backgroundColor: '#fff',

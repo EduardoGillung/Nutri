@@ -1,8 +1,40 @@
 import React, { useEffect, useState } from "react";
-import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, TouchableOpacity } from 'react-native';
+import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, TouchableOpacity, Keyboard } from 'react-native';
 
 const TelaCalculator = ({ navigation }) => {
 
+        const [peso, setPeso] = useState('');
+        const [altura, setAltura] = useState('');
+        const [imc, setImc] = useState(null);
+
+        useEffect(() => {
+            // Limpa os estados ao montar o componente
+            setPeso('');
+            setAltura('');
+            setImc(null);
+          
+        }, []);
+        const calcularIMC = () => {
+          const pesoKg = parseFloat(peso);
+          const alturaM = parseFloat(altura.replace(',', '.')) / 100;
+      
+          if (pesoKg && alturaM) {
+            const imcValue = pesoKg / (alturaM * alturaM);
+            setImc(imcValue.toFixed(2));
+          } else {
+            setImc(null);
+          }
+          // Close the keyboard
+            Keyboard.dismiss();
+        }
+        const formatoAltura = (text) => {
+            // Adiciona uma vírgula após o primeiro caractere digitado
+            if (text.length === 1 && text !== '0') {
+              return text + ',';
+            }
+            return text;
+          };
+    
     
     return (
         <View style={styles.container}>
@@ -20,29 +52,42 @@ const TelaCalculator = ({ navigation }) => {
                 />
                 <Text style={styles.headerText}>Calculadora IMC </Text>
                 <Text style={styles.text}>IMC é o  Índice de Massa Corpórea, parâmetro para calcular o peso ideal de cada pessoa. </Text>
-            <View style={styles.content}>
-                <Text style={styles.text}>Peso</Text>    
-                <Text style={styles.text}>Altura</Text>
+                <View style={styles.content}>
+                    <Text style={styles.text}>Peso</Text>    
+                    <Text style={styles.text}>Altura</Text>
             </View> 
+
+
         <View style={styles.content}>
-            <TextInput style={styles.input}>   
-            </TextInput>
-            <TextInput style={styles.input}>   
-            </TextInput>              
+            <TextInput style={styles.input}
+            onChangeText={text => setPeso(text)}
+            value={peso}
+            keyboardType="numeric"
+            />
+            <TextInput style={styles.input}
+            onChangeText={text => setAltura(formatoAltura(text))}
+            value={altura}
+            keyboardType="numeric"
+            />   
+                         
         </View>
         <View style={styles.ButtonContent}>
-            <TouchableOpacity style={styles.touchable}>
+
+            <TouchableOpacity style={styles.touchable} onPress={calcularIMC} >
                 <Text style={styles.touchableText}>Calcular IMC</Text>
+                
             </TouchableOpacity>
+
         </View>
             <View style={styles.IMCcontent}>
                 <Text style={styles.text}>Seu IMC:</Text>
-                <TextInput style={styles.input}>   
+                <TextInput style={styles.imcInput}>
+                    {imc !== null && <Text style={styles.imc}>{imc}</Text>}   
                 </TextInput>
             </View>
             <View style={styles.TableContent}>
                 <Text style={styles.textTable}>IMC</Text>
-                <Text style={styles.textTable}>Categoria</Text>
+                <Text style={styles.textTable}>Classificação</Text>
             </View>
             <View style={styles.Table}>
                 <Text style={styles.text}>Menor que 18,5</Text>
@@ -80,8 +125,7 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'space-around',
         alignItems: 'center',
-        flexDirection: 'row',
-        
+        flexDirection: 'row',    
     },
     InputContent: {
         flexDirection: 'row',
@@ -94,6 +138,18 @@ const styles = StyleSheet.create({
         height: 40,
         width: '35%',
         borderRadius: 20,
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: 'gray',
+        padding: 10,
+        
+    },
+    imcInput: {
+        backgroundColor: '#E6E6E6',
+        height: 40,
+        width: '35%',
+        borderRadius: 20,
+        padding: 10,
     },
     IMCcontent: {
         flexDirection: 'row',
@@ -109,8 +165,7 @@ const styles = StyleSheet.create({
     },
     TableContent: {
         width: '100%',
-        
-        height: 40,
+        height: 50,
         alignItems: 'center',
         justifyContent: 'space-around',
         flexDirection: 'row',
@@ -151,6 +206,11 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         color: 'gray',
+    },
+    imc: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: 'red',
     },
     textTable: {
         fontSize: 20,
