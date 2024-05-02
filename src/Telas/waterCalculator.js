@@ -17,7 +17,7 @@ const TelaWaterCalculator = ({ navigation }) => {
       
           if (pesoKg) {
             const quantiaAgua = pesoKg * 0.035
-            setQuantiaAgua(quantiaAgua.toFixed(2));
+            setQuantiaAgua(quantiaAgua.toFixed(1));
           } else {
             setQuantiaAgua(null);
           }
@@ -63,7 +63,7 @@ const TelaWaterCalculator = ({ navigation }) => {
                 <Text style={styles.text}>Quantia diária:</Text>
                 <TextInput style={styles.input}>
                 <Text style={styles.waterText}> 
-                {quantiaAgua !== null && <Text style={styles.text}>{quantiaAgua} L </Text>} 
+                {quantiaAgua !== null && <Text style={styles.WaterText}>{quantiaAgua} L </Text>} 
                 </Text>   
                 </TextInput>
             </View>
@@ -103,6 +103,9 @@ const styles = StyleSheet.create({
         width: '35%',
         borderRadius: 20,
         padding: 10,
+        color: 'grey',
+        fontSize: 20,
+        fontWeight: 'bold',
     },
     IMCcontent: {
         flexDirection: 'row',
@@ -117,8 +120,8 @@ const styles = StyleSheet.create({
     },
     waterText: {
         fontWeight: 'bold',
-        color: 'gray',
-        fontSize: 18,
+        color: '#0085FF',
+        fontSize: 20,
        
     },
 
@@ -130,7 +133,6 @@ const styles = StyleSheet.create({
     },
     TableContent: {
         width: '100%',
-        
         height: 40,
         alignItems: 'center',
         justifyContent: 'space-around',

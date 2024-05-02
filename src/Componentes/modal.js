@@ -38,16 +38,7 @@ export function ModalFood({ handleClose }) {
                         onChangeText={(task) => setTask(task)}   
                     >
                     </TextInput>
-                        <TouchableOpacity style={styles.touchable}
-                            onPress={
-                                handleClose
-                            }
-                        >
-                        <Image
-                            source={require('../assets/deleteButton.png')}
-                            style={styles.deleteButton}
-                        />
-            </TouchableOpacity>
+                        
             </View>
                 <TextInput
                     style={styles.input}

@@ -16,10 +16,17 @@ const TelaRotina = ({ navigation }) => {
         <View style={styles.InputContent}>
             <Text style={styles.data}>{item.task}</Text>
             <Text style={styles.data}>{item.description}</Text>
+            <TouchableOpacity onPress={() => deleteTask(item.taskId)}>       
+                <Image
+                    source={require('../assets/deleteButton.png')}
+                    style={styles.addButton}
+                />
+                </TouchableOpacity> 
+            
         </View>
     )
 
-    let deleteTask = ({ task }) => {
+    let deleteTask = (task) => {
         get(child(db, 'Receitas/' + task)).then(snapshot => {
           if(snapshot.exists()) {
             remove(ref(db, 'Receitas/' + task))
@@ -27,9 +34,7 @@ const TelaRotina = ({ navigation }) => {
                 console.log("Tarefa apagada com sucesso do banco de dados" + task)
             })
           }     
-        })
-        
-              
+        })               
     }
     
     useEffect(() => {
@@ -114,7 +119,7 @@ const styles = StyleSheet.create({
     InputContent: {
         width: '90%', 
         padding: 10,
-        backgroundColor: 'green',
+        backgroundColor: '#E6E6E6',
         borderRadius: 8,
         
         

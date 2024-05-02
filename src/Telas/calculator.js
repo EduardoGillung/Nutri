@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, TouchableOpacity, Keyboard } from 'react-native';
 
-const TelaCalculator = ({ navigation }) => {
+const TelaCalculator = ({ navigation, route }) => {
 
         const [peso, setPeso] = useState('');
         const [altura, setAltura] = useState('');
@@ -13,10 +13,10 @@ const TelaCalculator = ({ navigation }) => {
             setAltura('');
             setImc(null);
           
-        }, []);
+        }, [navigation]);
         const calcularIMC = () => {
           const pesoKg = parseFloat(peso);
-          const alturaM = parseFloat(altura.replace(',', '.')) / 100;
+          const alturaM = parseFloat(altura.replace(',', '.'));
       
           if (pesoKg && alturaM) {
             const imcValue = pesoKg / (alturaM * alturaM);
