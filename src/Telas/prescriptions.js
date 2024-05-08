@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, TouchableOpacity, Modal } from 'react-native';
+import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, TouchableOpacity, Modal, SafeAreaView } from 'react-native';
 import { ModalPrescriptions } from "../Componentes/modalPrescriptions"; 
 import { ref, get, set, push, onValue, remove, getDatabase, update, child } from 'firebase/database'
 import { db } from "../Serviços/firebase";
@@ -13,11 +13,32 @@ const TelaPrescriptions = ({ navigation }) => {
         setModalVisible(true);
     }
     const renderItem = ({ item }) => (
-        <View style={styles.prescriptions}>
-            <Text style={styles.data}>{item.task}</Text>
-            <Text style={styles.data}>{item.description}</Text>
-        </View>
+        <SafeAreaView style={styles.InputContent}>
+            <Text style={styles.title}>{item.task}</Text>
+            <View style={styles.descriptionItem}>
+                <TouchableOpacity onPress={deleteTask}>       
+                    <Image
+                        source={require('../assets/deleteButton.png')}
+                        style={styles.deleteButton}
+                    />
+                    </TouchableOpacity> 
+                    </View>    
+                <Text style={styles.description}>{item.description}</Text>    
+        </SafeAreaView>
     )
+
+    let deleteTask = ({ task }) => {
+        get(child(db, 'Receitas/' + task)).then(snapshot => {
+          if(snapshot.exists()) {
+            remove(ref(db, 'Receitas/' + task))
+            .then(() => {
+                console.log("Tarefa apagada com sucesso do banco de dados" + task)
+            })
+          }     
+        })
+        
+              
+    }
 
     useEffect(() => {
         const tarefaRef = ref(db, 'Prescrições/')
@@ -37,7 +58,7 @@ const TelaPrescriptions = ({ navigation }) => {
     },[])
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <TouchableOpacity
                 onPress={() => navigation.navigate('Main')}>       
                 <Image
@@ -59,22 +80,22 @@ const TelaPrescriptions = ({ navigation }) => {
                     style={styles.addButton}
                 />
                 </TouchableOpacity> 
-                <Text style={styles.text}>Adicionar tarefa </Text>
+                <Text style={styles.text}>Adicionar prescrição </Text>
 
                 <Modal visible={modalVisible} animationType='fade'>
                     <ModalPrescriptions  handleClose={ () => setModalVisible(false) } />
                 </Modal>
             </View> 
-            <View style={styles.InputContent}>
-                <FlatList style={styles.taskList}
+            <View style={styles.flatContent}>
+                <FlatList 
                     data={prescription}
                     renderItem={renderItem}
                     keyExtractor={item => item.taskId}
                     
                 />                  
-        </View>  
+            </View>  
 
-        </View> 
+        </SafeAreaView> 
     );
 };
 
@@ -90,27 +111,54 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems: 'center',
         flexDirection: 'row',
-        paddingTop: '5%',        
+        paddingTop: '5%',
+                
+    },
+    renderItem: {
+        borderRadius: 20,
+        margin: 10,
+        paddingTop: 10,
+
+    },
+    descriptionItem: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        
     },
     InputContent: {
-        width: '90%',
-        paddingTop: 10,
         backgroundColor: '#f0f0f0',
         borderRadius: 20,
-        paddingBottom: 10,
+        margin: 10,
+        padding: 15,
     },
-    data: {
+    flatContent: {
+        flex: 0.95,
+        width: '90%',
+        margin: 10,
+        padding: 5,
+        justifyContent: 'center',
+        alignItems: 'center', 
+        
+    },
+    description: {
         color: 'gray',
-        fontSize: 20,
-        fontWeight: 'bold',
-        margin: 8,
+        fontSize: 18,
+        fontWeight: '400',
+        
     },
+    title: {
+        color: '#585858',
+        fontSize: 20,
+        fontWeight: 'bold', 
+    },
+    
     input: {
         backgroundColor: '#fff',
         width: '90%',
         height: '55%',
         borderRadius: 20,
         lineHeight: 2,
+        
     },
     headerText: {
        color: 'gray',
@@ -134,10 +182,18 @@ const styles = StyleSheet.create({
         width: 60,
         marginLeft: 20,
     },
+    deleteButton: {
+        height: 25,
+        width: 25,
+        marginHorizontal: 10,
+    },
     text: {
         fontSize: 20,
         fontWeight: 'bold',
         color: 'gray',
-    }, 
+    },
+    prescriptions: {
+        paddingTop: 10
+    } 
 })
 export default TelaPrescriptions;

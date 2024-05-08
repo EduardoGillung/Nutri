@@ -13,20 +13,22 @@ const TelaRotina = ({ navigation }) => {
         setModalVisible(true);
     }
     const renderItem = ({ item }) => (
-        <View style={styles.InputContent}>
-            <Text style={styles.data}>{item.task}</Text>
-            <Text style={styles.data}>{item.description}</Text>
-            <TouchableOpacity onPress={() => deleteTask(item.taskId)}>       
-                <Image
-                    source={require('../assets/deleteButton.png')}
-                    style={styles.addButton}
-                />
-                </TouchableOpacity> 
+        <View style={styles.InputContent} animationType='fade'>
+            <Text style={styles.title}>{item.task}</Text>
+            <View style={styles.descriptionItem}>
+                <TouchableOpacity onPress={deleteTask}>       
+                    <Image
+                        source={require('../assets/deleteButton.png')}
+                        style={styles.deleteButton}
+                    />
+                    </TouchableOpacity> 
+                    </View>    
+                <Text style={styles.description}>{item.description}</Text>
             
         </View>
     )
 
-    let deleteTask = (task) => {
+    let deleteTask = ({ task }) => {
         get(child(db, 'Receitas/' + task)).then(snapshot => {
           if(snapshot.exists()) {
             remove(ref(db, 'Receitas/' + task))
@@ -34,7 +36,9 @@ const TelaRotina = ({ navigation }) => {
                 console.log("Tarefa apagada com sucesso do banco de dados" + task)
             })
           }     
-        })               
+        })
+        
+              
     }
     
     useEffect(() => {
@@ -71,28 +75,27 @@ const TelaRotina = ({ navigation }) => {
                 />
                 <Text style={styles.headerText}>Rotina Alimentar </Text>
                 
-            <View style={styles.content}>
-                 <TouchableOpacity onPress={showModal}>       
-                <Image
-                    source={require('../assets/add.png')}
-                    style={styles.addButton}
-                />
-                </TouchableOpacity> 
-                <Text style={styles.text}>Adicionar tarefa </Text>
+                <View style={styles.content}>
+                    <TouchableOpacity onPress={showModal}>       
+                    <Image
+                        source={require('../assets/add.png')}
+                        style={styles.addButton}
+                    />
+                    </TouchableOpacity> 
+                        <Text style={styles.text}>Adicionar refeição </Text>
 
-                <Modal visible={modalVisible} animationType='fade'>
-                    <ModalFood handleClose={ () => setModalVisible(false) } />
-                </Modal>
-            </View> 
-            <View style={styles.InputContent}>
-                <FlatList style={styles.taskList}
+                    <Modal visible={modalVisible} animationType='fade'>
+                        <ModalFood handleClose={ () => setModalVisible(false) } />
+                    </Modal>
+                </View> 
+            <View style={styles.flatContent}>
+                <FlatList style={styles.flatlist}
                     data={prescription}
                     renderItem={renderItem}
                     keyExtractor={item => item.taskId}
                     
                 />                  
-        </View>  
-
+            </View>  
         </View> 
     );
 };
@@ -103,7 +106,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         backgroundColor: '#fff',
-        paddingTop: 50,       
+        paddingTop: 50,      
     },
     content: {  
         width: '100%',
@@ -113,23 +116,40 @@ const styles = StyleSheet.create({
                 
     },
     renderItem: {
-        paddingBottom: 20,
-    },
+        borderRadius: 20,
+        margin: 10,
+        paddingTop: 10,
 
+    },
+    descriptionItem: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        
+    },
     InputContent: {
-        width: '90%', 
-        padding: 10,
-        backgroundColor: '#E6E6E6',
-        borderRadius: 8,
-        
-        
+        backgroundColor: '#f0f0f0',
+        borderRadius: 20,
+        margin: 10,
+        padding: 15,
     },
-    data: {
+    flatContent: {
+        flex: 0.95,
+        width: '90%',
+        margin: 10, 
+        padding: 5,
+    },
+    description: {
         color: 'gray',
-        fontSize: 20,
-        fontWeight: 'bold',
+        fontSize: 16,
+        fontWeight: '400',
         
     },
+    title: {
+        color: '#585858',
+        fontSize: 20,
+        fontWeight: 'bold', 
+    },
+    
     input: {
         backgroundColor: '#fff',
         width: '90%',
@@ -160,10 +180,18 @@ const styles = StyleSheet.create({
         width: 60,
         marginLeft: 20,
     },
+    deleteButton: {
+        height: 25,
+        width: 25,
+        marginHorizontal: 10,
+    },
     text: {
         fontSize: 20,
         fontWeight: 'bold',
         color: 'gray',
-    }, 
+    },
+    prescriptions: {
+        paddingTop: 10
+    } 
 })
 export default TelaRotina;

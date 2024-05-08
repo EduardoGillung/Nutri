@@ -35,7 +35,6 @@ const TelaWaterCalculator = ({ navigation }) => {
                     style={styles.returnButton}
                 />
                 </TouchableOpacity>
-
                 <Image
                     source={require('../assets/agua.png')}
                     style={styles.logo}
@@ -43,17 +42,15 @@ const TelaWaterCalculator = ({ navigation }) => {
                 <Text style={styles.headerText}>Calculadora de Água </Text>
                 <Text style={styles.text}>Use a calculadora abaixo para saber a quantia de água que você precisa tomar diariamente. </Text>
             <View style={styles.content}>
-                <Text style={styles.text}>Peso</Text>    
+                <Text style={styles.text}>Peso (ex: 70 kg)</Text>    
             </View> 
-        <View style={styles.content}>
-            <TextInput style={styles.input}
-            onChangeText={text => setPeso(text)}
-            value={peso}
-            keyboardType="numeric"
-            />
-            
-                       
-        </View>
+            <View style={styles.content}>
+                <TextInput style={styles.input}
+                onChangeText={text => setPeso(text)}
+                value={peso}
+                keyboardType="numeric"
+                />              
+            </View>
         <View style={styles.ButtonContent}>
             <TouchableOpacity style={styles.touchable} onPress={calcularAgua}>
                 <Text style={styles.touchableText}>Calcular Água</Text>
@@ -61,11 +58,11 @@ const TelaWaterCalculator = ({ navigation }) => {
         </View>
             <View style={styles.IMCcontent}>
                 <Text style={styles.text}>Quantia diária:</Text>
-                <TextInput style={styles.input}>
-                <Text style={styles.waterText}> 
-                {quantiaAgua !== null && <Text style={styles.WaterText}>{quantiaAgua} L </Text>} 
-                </Text>   
-                </TextInput>
+                <Pressable style={styles.input}>
+                    <Text style={styles.waterText}> 
+                    {quantiaAgua !== null && <Text style={styles.WaterText}>{quantiaAgua} L </Text>} 
+                    </Text>   
+                </Pressable>
             </View>
             <View style={styles.info}>
                 <Text style={styles.text}>A quantidade diária de água varia conforme a atividade física e temperatura ambiente.
@@ -89,7 +86,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
         flexDirection: 'row',
-        
+        paddingTop: '2%',
     },
     InputContent: {
         flexDirection: 'row',
@@ -98,20 +95,23 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     },
     input: {
+        alignItems: 'center',
         backgroundColor: '#E6E6E6',
-        height: 40,
+        height: 50,
         width: '35%',
         borderRadius: 20,
-        padding: 10,
-        color: 'grey',
-        fontSize: 20,
+        fontSize: 22,
         fontWeight: 'bold',
+        color: 'gray',
+        padding: 10,
+        marginLeft: 20,
     },
     IMCcontent: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         width: '100%',
-        marginBottom: '5%',
+        marginBottom: '2%',
+        alignItems: 'center',
     },
     info: {
         justifyContent: 'center',
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     waterText: {
         fontWeight: 'bold',
         color: '#0085FF',
-        fontSize: 20,
+        fontSize: 28,
        
     },
 

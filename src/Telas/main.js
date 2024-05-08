@@ -20,6 +20,7 @@ const TelaMain = ({ navigation }) => {
                     source={require('../assets/comida.png')}
                     style={styles.comida}
                 />
+                
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -29,6 +30,7 @@ const TelaMain = ({ navigation }) => {
                     source={require('../assets/prescricao.png')}
                     style={styles.prescricao}
                 />
+               
                 </TouchableOpacity>
 
                 </View>
@@ -46,7 +48,7 @@ const TelaMain = ({ navigation }) => {
                     >
                  <Image
                     source={require('../assets/agua.png')}
-                    style={styles.substituicao}
+                    style={styles.receitas}
                 />
                 </TouchableOpacity>
                 </View>
@@ -76,24 +78,25 @@ const styles = StyleSheet.create({
             
     },
     containerBody: {
-        flex: 1,
         backgroundColor: '#fff',
         width: '100%',
-        flexDirection: 'row',      
+        flexDirection: 'row',
+        alignItems: 'center',  
+        justifyContent: 'space-between',
+        padding: '5%',    
     },
     containerButtons: {
-        flex: 1,
         backgroundColor: '#fff',
         width: '100%',
-        justifyContent: 'center',
         alignItems: 'center',
+        paddingTop: '15%',
            
     },
     headerText: {
        color: '#fff',
        fontSize: 32,
        fontWeight: 'bold',
-       marginTop: '3%',
+       marginTop: '5%',
        marginBottom: '5%', 
     },
     logo: {
@@ -114,19 +117,20 @@ const styles = StyleSheet.create({
         fontStyle: 'italic',
     },
     comida: {
-        height: '70%',
-        width: 135,
-        margin: '10%', 
+        height: 150,
+        width: 150,
+        
+        
     },
     prescricao: {
-        height: '70%',
-        width: 135,
-        margin: '10%', 
+        height: 150,
+        width: 150,
+        
     },
     receitas: {
-        height: '70%',
-        width: 135,
-        margin: '10%', 
+        height: 150,
+        width: 150,
+        
     },
     substituicao: {
         height: '70%',

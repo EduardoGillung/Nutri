@@ -14,6 +14,7 @@ const TelaCalculator = ({ navigation, route }) => {
             setImc(null);
           
         }, [navigation]);
+
         const calcularIMC = () => {
           const pesoKg = parseFloat(peso);
           const alturaM = parseFloat(altura.replace(',', '.'));
@@ -53,8 +54,8 @@ const TelaCalculator = ({ navigation, route }) => {
                 <Text style={styles.headerText}>Calculadora IMC </Text>
                 <Text style={styles.text}>IMC é o  Índice de Massa Corpórea, parâmetro para calcular o peso ideal de cada pessoa. </Text>
                 <View style={styles.content}>
-                    <Text style={styles.text}>Peso</Text>    
-                    <Text style={styles.text}>Altura</Text>
+                    <Text style={styles.text}>Peso (ex: 70 kg)</Text>    
+                    <Text style={styles.text}>Altura (ex: 180 cm)</Text>
             </View> 
 
 
@@ -72,17 +73,15 @@ const TelaCalculator = ({ navigation, route }) => {
                          
         </View>
         <View style={styles.ButtonContent}>
-
             <TouchableOpacity style={styles.touchable} onPress={calcularIMC} >
                 <Text style={styles.touchableText}>Calcular IMC</Text>
-                
             </TouchableOpacity>
 
         </View>
             <View style={styles.IMCcontent}>
                 <Text style={styles.text}>Seu IMC:</Text>
                 <TextInput style={styles.imcInput}>
-                    {imc !== null && <Text style={styles.imc}>{imc}</Text>}   
+                    {imc !== null && <Text style={styles.imc}>{imc} {}</Text>}   
                 </TextInput>
             </View>
             <View style={styles.TableContent}>
@@ -125,7 +124,8 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'space-around',
         alignItems: 'center',
-        flexDirection: 'row',    
+        flexDirection: 'row',
+        marginTop: '3%',    
     },
     InputContent: {
         flexDirection: 'row',
@@ -134,28 +134,31 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     },
     input: {
+        alignItems: 'center',
         backgroundColor: '#E6E6E6',
-        height: 40,
+        height: 50,
         width: '35%',
         borderRadius: 20,
-        fontSize: 20,
+        fontSize: 22,
         fontWeight: 'bold',
         color: 'gray',
         padding: 10,
-        
+
     },
     imcInput: {
         backgroundColor: '#E6E6E6',
-        height: 40,
+        height: 50,
         width: '35%',
         borderRadius: 20,
         padding: 10,
+        alignItems: 'center',
     },
     IMCcontent: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         width: '100%',
         marginBottom: '5%',
+        alignItems: 'center',
     }, 
     ButtonContent: {
         width: '100%',
@@ -181,7 +184,7 @@ const styles = StyleSheet.create({
     },
     touchable: {
         width: '85%',
-        height: '30%',
+        height: '35%',
         backgroundColor: '#7AA466',
         alignItems: 'center',
         justifyContent: 'center',
@@ -208,7 +211,7 @@ const styles = StyleSheet.create({
         color: 'gray',
     },
     imc: {
-        fontSize: 20,
+        fontSize: 24,
         fontWeight: 'bold',
         color: 'red',
     },
