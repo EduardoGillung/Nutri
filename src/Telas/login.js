@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, SafeAreaView, StyleSheet, Pressable, Image, Keyboard } from 'react-native';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, getReactNativePersistence } from "firebase/auth";
 import { auth } from '../Serviços/firebase';
 
 
@@ -11,7 +11,7 @@ const TelaLogin = ({ navigation }) => {
 
 
     const handleLogin = async () => {
-        
+
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 setLoginFailed(false)

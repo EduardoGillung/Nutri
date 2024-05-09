@@ -37,9 +37,9 @@ const TelaRotina = ({ navigation }) => {
     )
 
     let deleteTask = ({ task }) => {
-        get(child(db, 'Receitas/' + task)).then(snapshot => {
+        get(child(db, 'Receitas/' + task.taskId)).then(snapshot => {
           if(snapshot.exists()) {
-            remove(ref(db, 'Receitas/' + task))
+            remove(ref(db, 'Receitas/' + task.taskId))
             .then(() => {
                 console.log("Tarefa apagada com sucesso do banco de dados" + task)
             })
