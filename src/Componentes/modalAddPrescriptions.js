@@ -3,15 +3,17 @@ import { View, Text, StyleSheet, TouchableOpacity, Pressable, TextInput, Image }
 import { db } from "../Serviços/firebase";
 import { ref, set, remove } from 'firebase/database'
 
-export function ModalFood({ handleClose }) {
+export function ModalAddPrescriptions({ handleClose }) {
     
     const [task, setTask] = useState('');
     const [description, setDescription] = useState('');
     var userId = Date.now().toString()
-    const tarefaRef = ref(db, 'Rotina Alimentar/' + task)
+    const tarefaRef = ref(db, 'Prescrições/' + task)
+
 
     function addTask () {        
         set(tarefaRef, {
+            task: task,
             description: description,
             taskId: userId,
         
@@ -26,7 +28,12 @@ export function ModalFood({ handleClose }) {
                 alert(error);
             });
     }  
-    
+    const deleteTask = () => {
+        remove(ref(db, 'Lista de tarefas/'))
+            .then(() => {
+                console.log("Tarefa apagada com sucesso do banco de dados")
+            })    
+    };
 
     return (
         <View style={styles.container}>
@@ -53,7 +60,7 @@ export function ModalFood({ handleClose }) {
                     </TouchableOpacity>
     
                     <TouchableOpacity style={[styles.button, styles.buttonSave]} onPress={addTask}>
-                        <Text style={styles.buttonSaveText}>Salvar tarefa</Text>
+                        <Text style={styles.buttonSaveText}>Salvar prescrição</Text>
                     </TouchableOpacity>        
                 </View>
             </View>
@@ -137,7 +144,7 @@ export function ModalFood({ handleClose }) {
             color: 'gray',
         },
         buttonSave:{
-            backgroundColor: '#4169e1',
+            backgroundColor: '#7AA466',
             borderRadius: 8,
             justifyContent: 'center',
             height: 50,

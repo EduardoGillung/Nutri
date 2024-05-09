@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, SafeAreaView, StyleSheet, Pressable, Image } from 'react-native';
+import { View, Text, TextInput, SafeAreaView, StyleSheet, Pressable, Image, Keyboard } from 'react-native';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import firebase from '../Serviços/firebase';
+import { auth } from '../Serviços/firebase';
 
 
 const TelaLogin = ({ navigation }) => {
@@ -9,19 +9,24 @@ const TelaLogin = ({ navigation }) => {
     const [password, setPassword] = useState('')
     const [loginFailed, setLoginFailed] = useState(false)
 
+
     const handleLogin = async () => {
-        const auth = getAuth()
+        
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 setLoginFailed(false)
                 console.log('Usuario logado com sucesso:', userCredential.user.email);
                 navigation.navigate('Main');
+                Keyboard.dismiss();
             })
             .catch((error) => {
                 setLoginFailed(true)
                 console.log('Erro ao fazer o login:', error.message)
+                // Close the keyboard
+                Keyboard.dismiss();
             })
     }
+    
 
 return (
     <SafeAreaView style={styles.container}>

@@ -3,7 +3,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TelaLogin from './src/Telas/login';
 import TelaAddUser from './src/Telas/addUser';
-import TelaAddTarefa from './src/Telas/addTarefa';
 import TelaHome from './src/Telas/home';
 import TelaWelcome from './src/Telas/welcome';
 import TelaMain from './src/Telas/main';
@@ -15,8 +14,8 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome6 } from '@expo/vector-icons';
 import TelaRotina from './src/Telas/rotina';
-import TelaCalculator from './src/Telas/calculator';
 import TelaWaterCalculator from './src/Telas/waterCalculator';
+import TelaIMCcalculator from './src/Telas/imcCalculator';
 
 const Tab = createBottomTabNavigator();
 
@@ -82,7 +81,7 @@ function App() {
          />
          <Tab.Screen
           name="Calculator"
-          component={TelaCalculator}
+          component={TelaIMCcalculator}
           options={{ headerShown: false, tabBarIcon: ({ focused, size, color }) => {
             if(focused){
                 return <AntDesign size={size} color={color} name="calculator" />

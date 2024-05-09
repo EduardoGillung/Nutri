@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, TouchableOpacity, Modal } from 'react-native';
-import { ModalFood, ModalPassword } from "../Componentes/modal";
 import { ref, get, set, push, onValue, remove, getDatabase, update, child } from 'firebase/database'
 import { db } from "../Serviços/firebase";
+import { ModalAddFood } from "../Componentes/modalAddFood";
+import { ModalDeleteFood } from "../Componentes/modalDeleteFood";
+
+
+
+
 
 const TelaRotina = ({ navigation }) => {
 
@@ -16,7 +21,10 @@ const TelaRotina = ({ navigation }) => {
         <View style={styles.InputContent} animationType='fade'>
             <Text style={styles.title}>{item.task}</Text>
             <View style={styles.descriptionItem}>
-                <TouchableOpacity onPress={deleteTask}>       
+                <TouchableOpacity onPress={deleteTask}>
+                <Modal visible={modalVisible} animationType='fade'>
+                        <ModalDeleteFood handleClose={ () => setModalVisible(false) } />
+                    </Modal>       
                     <Image
                         source={require('../assets/deleteButton.png')}
                         style={styles.deleteButton}
@@ -85,7 +93,7 @@ const TelaRotina = ({ navigation }) => {
                         <Text style={styles.text}>Adicionar refeição </Text>
 
                     <Modal visible={modalVisible} animationType='fade'>
-                        <ModalFood handleClose={ () => setModalVisible(false) } />
+                        <ModalAddFood handleClose={ () => setModalVisible(false) } />
                     </Modal>
                 </View> 
             <View style={styles.flatContent}>

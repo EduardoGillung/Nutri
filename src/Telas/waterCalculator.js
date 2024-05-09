@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
         flexDirection: 'row',
-        paddingTop: '2%',
+        
     },
     InputContent: {
         flexDirection: 'row',
@@ -97,20 +97,18 @@ const styles = StyleSheet.create({
     input: {
         alignItems: 'center',
         backgroundColor: '#E6E6E6',
-        height: 50,
+        height: '100%',
         width: '35%',
         borderRadius: 20,
         fontSize: 22,
         fontWeight: 'bold',
         color: 'gray',
         padding: 10,
-        marginLeft: 20,
     },
     IMCcontent: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         width: '100%',
-        marginBottom: '2%',
         alignItems: 'center',
     },
     info: {
@@ -121,7 +119,7 @@ const styles = StyleSheet.create({
     waterText: {
         fontWeight: 'bold',
         color: '#0085FF',
-        fontSize: 28,
+        fontSize: 30,
        
     },
 
@@ -131,29 +129,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',  
     },
-    TableContent: {
-        width: '100%',
-        height: 40,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        flexDirection: 'row',
-        backgroundColor: '#4169E1',        
-    },
-    Table: {
-        width: '100%',
-        height: 40,
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        flexDirection: 'row',
-        backgroundColor: '#fff',        
-    },
+    
     touchable: {
-        width: '85%',
-        height: '30%',
+        width: '90%',
+        height: '40%',
         backgroundColor: '#7AA466',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 12,
+        borderRadius: 20,
     },
     headerText: {
        color: 'gray',
@@ -175,11 +158,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'gray',
     },
-    textTable: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: '#FFF',
-    },
+  
     touchableText: {
         fontSize: 20,
         fontWeight: 'bold',

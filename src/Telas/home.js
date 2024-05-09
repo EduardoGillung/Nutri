@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { View, TextInput, Button, StyleSheet, Platform, Pressable, Text, FlatList } from 'react-native';
-import Header from "../Componentes/Header";
 import { ref, get, set, push, onValue, remove, getDatabase, update, child } from 'firebase/database'
 import { db } from "../Serviços/firebase"
 

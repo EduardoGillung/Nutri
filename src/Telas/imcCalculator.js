@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, TouchableOpacity, Keyboard } from 'react-native';
 
-const TelaCalculator = ({ navigation, route }) => {
+const TelaIMCcalculator = ({ navigation, route }) => {
 
         const [peso, setPeso] = useState('');
         const [altura, setAltura] = useState('');
@@ -80,9 +80,9 @@ const TelaCalculator = ({ navigation, route }) => {
         </View>
             <View style={styles.IMCcontent}>
                 <Text style={styles.text}>Seu IMC:</Text>
-                <TextInput style={styles.imcInput}>
+                <Pressable style={styles.imcInput}>
                     {imc !== null && <Text style={styles.imc}>{imc} {}</Text>}   
-                </TextInput>
+                </Pressable>
             </View>
             <View style={styles.TableContent}>
                 <Text style={styles.textTable}>IMC</Text>
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',        
     },
     touchable: {
-        width: '85%',
+        width: '90%',
         height: '35%',
         backgroundColor: '#7AA466',
         alignItems: 'center',
@@ -194,6 +194,7 @@ const styles = StyleSheet.create({
        color: 'gray',
        fontSize: 30,
        fontWeight: 'bold',
+       textAlign: 'center',
     },
     logo: {
         height: 60,
@@ -209,21 +210,25 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         color: 'gray',
+        textAlign: 'center',
     },
     imc: {
-        fontSize: 24,
+        fontSize: 28,
         fontWeight: 'bold',
         color: 'red',
+        textAlign: 'center',
     },
     textTable: {
         fontSize: 20,
         fontWeight: 'bold',
         color: '#FFF',
+        textAlign: 'center',
     },
     touchableText: {
         fontSize: 20,
         fontWeight: 'bold',
         color: '#fff',
+        textAlign: 'center',
     },  
 })
-export default TelaCalculator;
+export default TelaIMCcalculator;

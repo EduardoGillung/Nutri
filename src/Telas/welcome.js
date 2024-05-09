@@ -48,7 +48,8 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 22,
         fontWeight: 'bold',
-        marginBottom: '15%',    
+        marginBottom: '15%',
+        color: '#585858'   
     },
     textLogo:{
         color: '#fff',

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, TextInput, Button, StyleSheet, Image, Modal, Text, FlatList, TouchableOpacity } from 'react-native';
-import { ModalPassword } from "../Componentes/modal";
+
 
 const TelaHistoric = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);

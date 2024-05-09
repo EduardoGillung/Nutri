@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Text, Pressable, StyleSheet, Image } from 'react-native';
 import firebase from '../Serviços/firebase';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
-
+import { auth } from '../Serviços/firebase';
 
 function TelaAddUser({navigation}) {
 
@@ -12,7 +12,6 @@ function TelaAddUser({navigation}) {
   const [createFailed, setCreateFailed] = useState(false)
 
   const registrar = () => {
-    const auth = getAuth()
     createUserWithEmailAndPassword(auth, email, senha)
       .then((userCredential) => { 
         console.log('Usuario criado com sucesso', userCredential.user.email);

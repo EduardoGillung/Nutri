@@ -1,24 +1,32 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Pressable, TextInput, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Pressable, TextInput, Image, Modal } from 'react-native';
 import { db } from "../Serviços/firebase";
 import { ref, set, remove } from 'firebase/database'
+import { ModalAlertFood } from "./modalAlertFood";
 
-export function ModalRevenues({ handleClose }) {
+export function ModalAddFood({ handleClose }) {
     
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const showModal = () => {
+        setModalVisible(true);
+    }
+
     const [task, setTask] = useState('');
     const [description, setDescription] = useState('');
     var userId = Date.now().toString()
-    const tarefaRef = ref(db, 'Receitas/' + task)
+    const tarefaRef = ref(db, 'Rotina Alimentar/' + task)
 
 
     function addTask () {        
         set(tarefaRef, {
+            task: task,
             description: description,
             taskId: userId,
         
         }).then(() => {
             //data saved sucessfully!
-            alert('Tarefa adicionada');
+            
             console.log("Tarefa salva com sucesso do banco de dados")
 
         })
@@ -27,7 +35,7 @@ export function ModalRevenues({ handleClose }) {
                 alert(error);
             });
     }  
-   
+    
 
     return (
         <View style={styles.container}>
@@ -39,16 +47,7 @@ export function ModalRevenues({ handleClose }) {
                         onChangeText={(task) => setTask(task)}   
                     >
                     </TextInput>
-                        <TouchableOpacity style={styles.touchable}
-                            onPress={
-                                handleClose
-                            }
-                        >
-                        <Image
-                            source={require('../assets/deleteButton.png')}
-                            style={styles.deleteButton}
-                        />
-            </TouchableOpacity>
+                        
             </View>
                 <TextInput
                     style={styles.input}
@@ -63,7 +62,7 @@ export function ModalRevenues({ handleClose }) {
                     </TouchableOpacity>
     
                     <TouchableOpacity style={[styles.button, styles.buttonSave]} onPress={addTask}>
-                        <Text style={styles.buttonSaveText}>Salvar tarefa</Text>
+                        <Text style={styles.buttonSaveText}>Salvar</Text>
                     </TouchableOpacity>        
                 </View>
             </View>
@@ -80,7 +79,7 @@ export function ModalRevenues({ handleClose }) {
         content:{
             backgroundColor: '#FFF',
             width: '90%',
-            height: 450,
+            height: 400,
             paddingTop: 24,
             paddingBottom: 24,
             alignItems: 'center',
@@ -94,19 +93,7 @@ export function ModalRevenues({ handleClose }) {
             marginLeft: '10%',
 
         },
-        deleteButton: {
-            height: 35,
-            width: 35,
-            marginLeft: '10%',
-        },
-        taskName: {
-            backgroundColor: '#f0f0f0',
-            height: 40,
-            width: '70%',
-            borderRadius: 8,
-            marginBottom: '5%', 
-               
-        },  
+        
         title:{
             fontSize: 20,
             fontWeight: 'bold',

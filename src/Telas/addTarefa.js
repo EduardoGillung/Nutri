@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, TextInput, Button, StyleSheet, Pressable, Text, Image, TouchableOpacity, Modal } from 'react-native';
 import firebase, { db } from '../Serviços/firebase';
 import { ref, set, onValue, remove, child } from 'firebase/database'
-import { ModalPassword } from "../Componentes/modal";
+
 
 
 const TelaAddTarefa = ({ navigation }) => {

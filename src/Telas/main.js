@@ -74,8 +74,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#4169e1',
         justifyContent: 'center',
         alignItems: 'center',
+        paddingTop: '15%',
         
-            
     },
     containerBody: {
         backgroundColor: '#fff',
@@ -89,7 +89,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         width: '100%',
         alignItems: 'center',
-        paddingTop: '15%',
+        paddingTop: '10%',
+        
            
     },
     headerText: {
@@ -100,7 +101,7 @@ const styles = StyleSheet.create({
        marginBottom: '5%', 
     },
     logo: {
-        height: '7%',
+        height: '8%',
         width: '14%',
         marginRight: '75%',
         marginTop: '20%',

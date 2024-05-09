@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, TouchableOpacity, Modal, SafeAreaView } from 'react-native';
-import { ModalPrescriptions } from "../Componentes/modalPrescriptions"; 
 import { ref, get, set, push, onValue, remove, getDatabase, update, child } from 'firebase/database'
 import { db } from "../Serviços/firebase";
+import { ModalAddPrescriptions } from "../Componentes/modalAddPrescriptions";
 
 const TelaPrescriptions = ({ navigation }) => {
 
@@ -83,7 +83,7 @@ const TelaPrescriptions = ({ navigation }) => {
                 <Text style={styles.text}>Adicionar prescrição </Text>
 
                 <Modal visible={modalVisible} animationType='fade'>
-                    <ModalPrescriptions  handleClose={ () => setModalVisible(false) } />
+                    <ModalAddPrescriptions  handleClose={ () => setModalVisible(false) } />
                 </Modal>
             </View> 
             <View style={styles.flatContent}>
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         backgroundColor: '#fff',
-        paddingTop: 50,       
+        paddingTop: 50,      
     },
     content: {  
         width: '100%',
@@ -134,15 +134,12 @@ const styles = StyleSheet.create({
     flatContent: {
         flex: 0.95,
         width: '90%',
-        margin: 10,
+        margin: 10, 
         padding: 5,
-        justifyContent: 'center',
-        alignItems: 'center', 
-        
     },
     description: {
         color: 'gray',
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: '400',
         
     },
@@ -192,8 +189,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'gray',
     },
-    prescriptions: {
-        paddingTop: 10
-    } 
+    
 })
 export default TelaPrescriptions;
