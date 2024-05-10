@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, TouchableOpacity, Keyboard } from 'react-native';
 
-const TelaIMCcalculator = ({ navigation, route }) => {
+const TelaIMCcalculator = ({ navigation }) => {
 
         const [peso, setPeso] = useState('');
         const [altura, setAltura] = useState('');
@@ -13,7 +13,7 @@ const TelaIMCcalculator = ({ navigation, route }) => {
             setAltura('');
             setImc(null);
           
-        }, [navigation]);
+        }, []);
 
         const calcularIMC = () => {
           const pesoKg = parseFloat(peso);
@@ -51,8 +51,8 @@ const TelaIMCcalculator = ({ navigation, route }) => {
                     source={require('../assets/calculadora.png')}
                     style={styles.logo}
                 />
-                <Text style={styles.headerText}>Calculadora IMC </Text>
-                <Text style={styles.text}>IMC é o  Índice de Massa Corpórea, parâmetro para calcular o peso ideal de cada pessoa. </Text>
+                <Text style={styles.title}>Calculadora IMC </Text>
+                <Text style={styles.description}>IMC é o  Índice de Massa Corpórea, parâmetro para calcular o peso ideal de cada pessoa. </Text>
                 <View style={styles.content}>
                     <Text style={styles.text}>Peso (ex: 70 kg)</Text>    
                     <Text style={styles.text}>Altura (ex: 180 cm)</Text>
@@ -90,23 +90,23 @@ const TelaIMCcalculator = ({ navigation, route }) => {
             </View>
             <View style={styles.Table}>
                 <Text style={styles.text}>Menor que 18,5</Text>
-                <Text style={styles.text}>Magreza</Text>
+                <Text style={styles.description}>Magreza</Text>
             </View>
             <View style={styles.Table}>
                 <Text style={styles.text}>Entre 18,5 e 24,9</Text>
-                <Text style={styles.text}>Normal</Text>
+                <Text style={styles.description}>Normal</Text>
             </View>
             <View style={styles.Table}>
                 <Text style={styles.text}>Entre 25,0 e 29,9</Text>
-                <Text style={styles.text}>Sobrepeso</Text>
+                <Text style={styles.description}>Sobrepeso</Text>
             </View>
             <View style={styles.Table}>
                 <Text style={styles.text}>Entre 30,0 e 39,9</Text>
-                <Text style={styles.text}>Obesidade</Text>
+                <Text style={styles.description}>Obesidade</Text>
             </View>
             <View style={styles.Table}>
                 <Text style={styles.text}>Maior que 40,0</Text>
-                <Text style={styles.text}>Obesidade Grave</Text>
+                <Text style={styles.description}>Obesidade Grave</Text>
             </View>
         </View> 
     );
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
         width: '35%',
         borderRadius: 20,
         fontSize: 22,
-        fontWeight: 'bold',
+        fontWeight: '500',
         color: 'gray',
         padding: 10,
 
@@ -150,8 +150,8 @@ const styles = StyleSheet.create({
         height: 50,
         width: '35%',
         borderRadius: 20,
-        padding: 10,
         alignItems: 'center',
+        justifyContent: 'center',
     },
     IMCcontent: {
         flexDirection: 'row',
@@ -184,17 +184,25 @@ const styles = StyleSheet.create({
     },
     touchable: {
         width: '90%',
-        height: '35%',
+        paddingBottom: 14,
+        paddingTop: 14,
+        margin: 18,
         backgroundColor: '#7AA466',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 12,
+        borderRadius: 20,
     },
-    headerText: {
+    title: {
        color: 'gray',
        fontSize: 30,
        fontWeight: 'bold',
        textAlign: 'center',
+    },
+    description: {
+        color: 'gray',
+        fontSize: 20,
+        fontWeight: '500',
+        textAlign: 'center',
     },
     logo: {
         height: 60,
@@ -213,10 +221,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     imc: {
-        fontSize: 28,
+        fontSize: 30,
         fontWeight: 'bold',
         color: 'red',
-        textAlign: 'center',
+        
     },
     textTable: {
         fontSize: 20,

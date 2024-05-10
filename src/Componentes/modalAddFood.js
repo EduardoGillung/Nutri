@@ -8,10 +8,7 @@ export function ModalAddFood({ handleClose }) {
     
     const [modalVisible, setModalVisible] = useState(false);
 
-    const showModal = () => {
-        setModalVisible(true);
-    }
-
+  
     const [task, setTask] = useState('');
     const [description, setDescription] = useState('');
     var userId = Date.now().toString()
@@ -41,8 +38,8 @@ export function ModalAddFood({ handleClose }) {
         <View style={styles.container}>
             <View style={styles.content}>
                 <View style={styles.containerHeader}>
-                    <TextInput style={styles.taskName}
-                        placeholder="Adicione o titulo"
+                    <TextInput style={styles.title}
+                        placeholder="Nome da refeição"
                         value={task}
                         onChangeText={(task) => setTask(task)}   
                     >
@@ -79,45 +76,55 @@ export function ModalAddFood({ handleClose }) {
         content:{
             backgroundColor: '#FFF',
             width: '90%',
-            height: 400,
             paddingTop: 24,
             paddingBottom: 24,
             alignItems: 'center',
-            justifyContent: 'flex-start',
-            borderRadius: 8,
+            justifyContent: 'center',
+            borderRadius: 12,
         },
         containerHeader: {
             width: '90%',
             flexDirection: 'row',
             justifyContent: 'space-between',
-            marginLeft: '10%',
-
         },
-        
         title:{
-            fontSize: 20,
+            fontSize: 24,
             fontWeight: 'bold',
-            color: '#000',
-            marginBottom: 24,
+            color: '#7C7C7C',
+            
         },
         input:{
             backgroundColor: '#f0f0f0',
             width: '90%',
-            height: '60%',
+            margin: 14,
             padding: 14,
-            borderRadius: 8,
+            borderRadius: 12,
+            fontSize: 16,
+            fontWeight: '400',
+            color: '#7C7C7C',
+            
         },
+        title: {
+            backgroundColor: '#f0f0f0',
+            width: '70%',
+            borderRadius: 12,
+            marginBottom: '5%',
+            padding: 12,
+            fontSize: 16,
+            fontWeight: '400',
+            color: '#7C7C7C', 
+               
+        },  
         text:{
             color: '#FFF',
             textAlign: 'center',
-            fontSize: 20,
+            fontSize: 24,
             fontWeight: 'bold',
             textAlign: 'center',
         },
         buttonArea:{
             flexDirection: 'row',
             width: '90%',
-            marginTop: 8,
             alignItems: 'center',
             justifyContent: 'space-between',
         },
@@ -130,11 +137,11 @@ export function ModalAddFood({ handleClose }) {
         },
         buttonText:{
             fontWeight: 'bold',
-            fontSize: 18,
+            fontSize: 20,
             color: 'gray',
         },
         buttonSave:{
-            backgroundColor: '#4169e1',
+            backgroundColor: '#7AA466',
             borderRadius: 8,
             justifyContent: 'center',
             height: 50,
@@ -143,6 +150,6 @@ export function ModalAddFood({ handleClose }) {
         buttonSaveText:{
            color: '#FFF',
            fontWeight: 'bold',
-           fontSize: 18,
+           fontSize: 20,
         }
     })

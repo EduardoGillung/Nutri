@@ -39,8 +39,8 @@ export function ModalAddPrescriptions({ handleClose }) {
         <View style={styles.container}>
             <View style={styles.content}>
                 <View style={styles.containerHeader}>
-                    <TextInput style={styles.taskName}
-                        placeholder="Adicione o titulo"
+                    <TextInput style={styles.title}
+                        placeholder="Nome da prescrição"
                         value={task}
                         onChangeText={(task) => setTask(task)}   
                     >
@@ -60,7 +60,7 @@ export function ModalAddPrescriptions({ handleClose }) {
                     </TouchableOpacity>
     
                     <TouchableOpacity style={[styles.button, styles.buttonSave]} onPress={addTask}>
-                        <Text style={styles.buttonSaveText}>Salvar prescrição</Text>
+                        <Text style={styles.buttonSaveText}>Salvar</Text>
                     </TouchableOpacity>        
                 </View>
             </View>
@@ -77,57 +77,55 @@ export function ModalAddPrescriptions({ handleClose }) {
         content:{
             backgroundColor: '#FFF',
             width: '90%',
-            height: 450,
             paddingTop: 24,
             paddingBottom: 24,
             alignItems: 'center',
-            justifyContent: 'flex-start',
-            borderRadius: 8,
+            justifyContent: 'center',
+            borderRadius: 12,
         },
         containerHeader: {
             width: '90%',
             flexDirection: 'row',
             justifyContent: 'space-between',
-            marginLeft: '10%',
-
         },
-        deleteButton: {
-            height: 35,
-            width: 35,
-            marginLeft: '10%',
-        },
-        taskName: {
-            backgroundColor: '#f0f0f0',
-            height: 40,
-            width: '70%',
-            borderRadius: 8,
-            marginBottom: '5%', 
-               
-        },  
         title:{
-            fontSize: 20,
+            fontSize: 24,
             fontWeight: 'bold',
-            color: '#000',
-            marginBottom: 24,
+            color: '#7C7C7C',
+            
         },
         input:{
             backgroundColor: '#f0f0f0',
             width: '90%',
-            height: '60%',
+            margin: 14,
             padding: 14,
-            borderRadius: 8,
+            borderRadius: 12,
+            fontSize: 16,
+            fontWeight: '400',
+            color: '#7C7C7C',
+            
         },
+        title: {
+            backgroundColor: '#f0f0f0',
+            width: '70%',
+            borderRadius: 12,
+            marginBottom: '5%',
+            padding: 12,
+            fontSize: 16,
+            fontWeight: '400',
+            color: '#7C7C7C', 
+               
+        },  
         text:{
             color: '#FFF',
             textAlign: 'center',
-            fontSize: 20,
+            fontSize: 24,
             fontWeight: 'bold',
             textAlign: 'center',
         },
         buttonArea:{
             flexDirection: 'row',
             width: '90%',
-            marginTop: 8,
             alignItems: 'center',
             justifyContent: 'space-between',
         },
@@ -135,17 +133,16 @@ export function ModalAddPrescriptions({ handleClose }) {
             flex: 1,
             alignItems: 'center',
             marginTop: 14,
-            marginBottom: 14,
-    
+           
         },
         buttonText:{
             fontWeight: 'bold',
-            fontSize: 18,
+            fontSize: 20,
             color: 'gray',
         },
         buttonSave:{
             backgroundColor: '#7AA466',
-            borderRadius: 8,
+            borderRadius: 12,
             justifyContent: 'center',
             height: 50,
     
@@ -153,6 +150,6 @@ export function ModalAddPrescriptions({ handleClose }) {
         buttonSaveText:{
            color: '#FFF',
            fontWeight: 'bold',
-           fontSize: 18,
+           fontSize: 20,
         }
     })

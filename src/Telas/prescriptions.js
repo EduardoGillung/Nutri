@@ -112,6 +112,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         paddingTop: '5%',
+        paddingHorizontal: '5%',
                 
     },
     renderItem: {

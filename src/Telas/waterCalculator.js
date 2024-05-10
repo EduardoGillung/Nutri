@@ -39,8 +39,8 @@ const TelaWaterCalculator = ({ navigation }) => {
                     source={require('../assets/agua.png')}
                     style={styles.logo}
                 />
-                <Text style={styles.headerText}>Calculadora de Água </Text>
-                <Text style={styles.text}>Use a calculadora abaixo para saber a quantia de água que você precisa tomar diariamente. </Text>
+                <Text style={styles.title}>Calculadora de Água </Text>
+                <Text style={styles.description}>Use a calculadora abaixo para saber a quantia de água que você precisa tomar diariamente. </Text>
             <View style={styles.content}>
                 <Text style={styles.text}>Peso (ex: 70 kg)</Text>    
             </View> 
@@ -65,7 +65,7 @@ const TelaWaterCalculator = ({ navigation }) => {
                 </Pressable>
             </View>
             <View style={styles.info}>
-                <Text style={styles.text}>A quantidade diária de água varia conforme a atividade física e temperatura ambiente.
+                <Text style={styles.infoText}>A quantidade diária de água varia conforme a atividade física e temperatura ambiente.
                  Durante exercícios intensos, pode variar entre 500 ml a 1 litro por hora.
                  Consulte um profissional de saúde para orientações personalizadas, considerando fatores individuais além de idade e peso.</Text> 
             </View>
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
         flexDirection: 'row',
-        
+        paddingTop: '2%', 
     },
     InputContent: {
         flexDirection: 'row',
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
         width: '35%',
         borderRadius: 20,
         fontSize: 22,
-        fontWeight: 'bold',
+        fontWeight: '500',
         color: 'gray',
         padding: 10,
     },
@@ -114,7 +114,13 @@ const styles = StyleSheet.create({
     info: {
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 20,
+        padding: '8%',
+    },
+    infoText: {
+        color: 'gray',
+        fontSize: 20,
+        fontWeight: '500',
+        
     },
     waterText: {
         fontWeight: 'bold',
@@ -132,17 +138,27 @@ const styles = StyleSheet.create({
     
     touchable: {
         width: '90%',
-        height: '40%',
+        paddingBottom: 14,
+        paddingTop: 14,
+        margin: 18,
         backgroundColor: '#7AA466',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 20,
     },
-    headerText: {
-       color: 'gray',
-       fontSize: 30,
-       fontWeight: 'bold',
-    },
+    title: {
+        color: 'gray',
+        fontSize: 30,
+        fontWeight: 'bold',
+        textAlign: 'center',
+     },
+     description: {
+         color: 'gray',
+         fontSize: 20,
+         fontWeight: '500',
+         textAlign: 'center',
+     },
+
     logo: {
         height: 60,
         width: 60,    

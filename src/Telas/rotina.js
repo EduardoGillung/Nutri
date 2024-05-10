@@ -3,10 +3,6 @@ import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, Touchabl
 import { ref, get, set, push, onValue, remove, getDatabase, update, child } from 'firebase/database'
 import { db } from "../Serviços/firebase";
 import { ModalAddFood } from "../Componentes/modalAddFood";
-import { ModalDeleteFood } from "../Componentes/modalDeleteFood";
-
-
-
 
 
 const TelaRotina = ({ navigation }) => {
@@ -21,18 +17,15 @@ const TelaRotina = ({ navigation }) => {
         <View style={styles.InputContent} animationType='fade'>
             <Text style={styles.title}>{item.task}</Text>
             <View style={styles.descriptionItem}>
-                <TouchableOpacity onPress={deleteTask}>
-                <Modal visible={modalVisible} animationType='fade'>
-                        <ModalDeleteFood handleClose={ () => setModalVisible(false) } />
-                    </Modal>       
+                <TouchableOpacity>
                     <Image
                         source={require('../assets/deleteButton.png')}
                         style={styles.deleteButton}
                     />
+                     
                     </TouchableOpacity> 
                     </View>    
                 <Text style={styles.description}>{item.description}</Text>
-            
         </View>
     )
 
@@ -44,9 +37,7 @@ const TelaRotina = ({ navigation }) => {
                 console.log("Tarefa apagada com sucesso do banco de dados" + task)
             })
           }     
-        })
-        
-              
+        })          
     }
     
     useEffect(() => {
@@ -96,14 +87,14 @@ const TelaRotina = ({ navigation }) => {
                         <ModalAddFood handleClose={ () => setModalVisible(false) } />
                     </Modal>
                 </View> 
-            <View style={styles.flatContent}>
-                <FlatList style={styles.flatlist}
-                    data={prescription}
-                    renderItem={renderItem}
-                    keyExtractor={item => item.taskId}
-                    
-                />                  
-            </View>  
+                <View style={styles.flatContent}>
+                    <FlatList style={styles.flatlist}
+                        data={prescription}
+                        renderItem={renderItem}
+                        keyExtractor={item => item.taskId}
+                        
+                    />                  
+                </View>  
         </View> 
     );
 };
@@ -121,7 +112,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         paddingTop: '5%',
-                
+        paddingHorizontal: '5%',       
     },
     renderItem: {
         borderRadius: 20,
