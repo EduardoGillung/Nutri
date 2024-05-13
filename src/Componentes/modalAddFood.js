@@ -2,20 +2,24 @@ import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Pressable, TextInput, Image, Modal } from 'react-native';
 import { db } from "../Serviços/firebase";
 import { ref, set, remove } from 'firebase/database'
-import { ModalAlertFood } from "./modalAlertFood";
 
-export function ModalAddFood({ handleClose }) {
+
+export function ModalAddFood({ navigation, handleClose }) {
     
     const [modalVisible, setModalVisible] = useState(false);
-
-  
     const [task, setTask] = useState('');
     const [description, setDescription] = useState('');
-    var userId = Date.now().toString()
+    var userId = Date.now().toString();
     const tarefaRef = ref(db, 'Rotina Alimentar/' + task)
+    const [ModalError, setModalError] = useState(false);
+   
 
-
-    function addTask () {        
+    function addTask () {    
+        if(task === '' || description === '') {
+            console.log("Erro ao adicionar refeição verifique os campos")
+            setModalError(true);
+            return
+        }   
         set(tarefaRef, {
             task: task,
             description: description,
@@ -25,39 +29,39 @@ export function ModalAddFood({ handleClose }) {
             //data saved sucessfully!
             
             console.log("Tarefa salva com sucesso do banco de dados")
-
+            setModalError(false)
         })
             .catch((error) => {
                 //write failed
+                setModalError(true)
                 alert(error);
             });
     }  
     
-
     return (
         <View style={styles.container}>
-            <View style={styles.content}>
+           <View style={styles.content}>
+                <Text style={styles.headerTitle}>Adicionando nova refeição</Text>
                 <View style={styles.containerHeader}>
-                    <TextInput style={styles.title}
-                        placeholder="Nome da refeição"
-                        value={task}
-                        onChangeText={(task) => setTask(task)}   
-                    >
-                    </TextInput>
-                        
-            </View>
+                <TextInput style={styles.title}
+                    placeholder="Nome da refeição"
+                    value={task}
+                    onChangeText={(task) => setTask(task)}   
+                >
+                </TextInput>
+            </View>            
                 <TextInput
                     style={styles.input}
                     placeholder="Descrição"
                     value={description}
                     onChangeText={(description) => setDescription(description)}
                 />
-    
+                {ModalError && <Text style={styles.errorText}>Erro ao adicionar refeição verifique os campos acima</Text>}
                 <View style={styles.buttonArea}>
                     <TouchableOpacity style={styles.button} onPress={handleClose}>
                         <Text style={styles.buttonText}>Voltar</Text>
                     </TouchableOpacity>
-    
+
                     <TouchableOpacity style={[styles.button, styles.buttonSave]} onPress={addTask}>
                         <Text style={styles.buttonSaveText}>Salvar</Text>
                     </TouchableOpacity>        
@@ -87,12 +91,6 @@ export function ModalAddFood({ handleClose }) {
             flexDirection: 'row',
             justifyContent: 'space-between',
         },
-        title:{
-            fontSize: 24,
-            fontWeight: 'bold',
-            color: '#7C7C7C',
-            
-        },
         input:{
             backgroundColor: '#f0f0f0',
             width: '90%',
@@ -112,9 +110,16 @@ export function ModalAddFood({ handleClose }) {
             padding: 12,
             fontSize: 16,
             fontWeight: '400',
-            color: '#7C7C7C', 
-               
-        },  
+            color: '#7C7C7C',      
+        },
+        headerTitle: {
+            color: '#7C7C7C',
+            fontSize: 26,
+            fontWeight: 'bold',
+            textAlign: 'center',
+            paddingBottom: 12,
+            margin: 10,
+        },   
         text:{
             color: '#FFF',
             textAlign: 'center',
@@ -122,6 +127,13 @@ export function ModalAddFood({ handleClose }) {
             fontWeight: 'bold',
             textAlign: 'center',
         },
+        errorText: {
+                color: 'red',
+                fontSize: 18,
+                fontWeight: '600',
+                paddingBottom: 12,
+            },
+
         buttonArea:{
             flexDirection: 'row',
             width: '90%',

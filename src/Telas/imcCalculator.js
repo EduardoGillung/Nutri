@@ -6,6 +6,7 @@ const TelaIMCcalculator = ({ navigation }) => {
         const [peso, setPeso] = useState('');
         const [altura, setAltura] = useState('');
         const [imc, setImc] = useState(null);
+        const [Error, setError] = useState(false);
 
         useEffect(() => {
             // Limpa os estados ao montar o componente
@@ -16,14 +17,21 @@ const TelaIMCcalculator = ({ navigation }) => {
         }, []);
 
         const calcularIMC = () => {
+            if(pesoKg === '' || alturaM === '') {
+                console.log("Erro ao calcular verifique os campos acima")
+                setError(true);
+                return
+            } 
           const pesoKg = parseFloat(peso);
           const alturaM = parseFloat(altura.replace(',', '.'));
       
           if (pesoKg && alturaM) {
             const imcValue = pesoKg / (alturaM * alturaM);
             setImc(imcValue.toFixed(2));
+            setError(false);
           } else {
             setImc(null);
+            setError(true);
           }
           // Close the keyboard
             Keyboard.dismiss();
@@ -84,6 +92,9 @@ const TelaIMCcalculator = ({ navigation }) => {
                     {imc !== null && <Text style={styles.imc}>{imc} {}</Text>}   
                 </Pressable>
             </View>
+            <View style={styles.ErrorContainer}>
+            {Error && <Text style={styles.errorText}>Erro ao calcular é necessario que insira seu peso e altura </Text>}
+            </View>
             <View style={styles.TableContent}>
                 <Text style={styles.textTable}>IMC</Text>
                 <Text style={styles.textTable}>Classificação</Text>
@@ -127,6 +138,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginTop: '3%',    
     },
+    ErrorContainer: {
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     InputContent: {
         flexDirection: 'row',
         width: '100%',
@@ -143,7 +159,6 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         color: 'gray',
         padding: 10,
-
     },
     imcInput: {
         backgroundColor: '#E6E6E6',
@@ -180,7 +195,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-around',
         flexDirection: 'row',
-        backgroundColor: '#fff',        
+        backgroundColor: '#fff',
+                
     },
     touchable: {
         width: '90%',
@@ -218,6 +234,14 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         color: 'gray',
+        textAlign: 'center',
+    },
+    errorText: {
+        color: 'red',
+        fontSize: 20,
+        fontWeight: '600',
+        paddingBottom: 12,
+        paddingHorizontal: 12,
         textAlign: 'center',
     },
     imc: {

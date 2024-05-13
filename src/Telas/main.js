@@ -146,9 +146,11 @@ const styles = StyleSheet.create({
     },
     button: {     
         backgroundColor: '#E6E6E6',
-        width: '80%',
-        height: '30%',
-        borderRadius: 20,        
+        width: '90%',
+        paddingBottom: 24,
+        paddingTop: 24,
+        marginBottom: '30%',
+        borderRadius: 12,        
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
@@ -157,7 +159,7 @@ const styles = StyleSheet.create({
     buttonText: {    
         fontSize: 24,
         fontWeight: 'bold',
-        color: 'gray',
+        color: '#585858',
         marginHorizontal: 20,  
     },     
 })

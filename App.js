@@ -12,12 +12,14 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
-import { FontAwesome6 } from '@expo/vector-icons';
 import TelaRotina from './src/Telas/rotina';
 import TelaWaterCalculator from './src/Telas/waterCalculator';
 import TelaIMCcalculator from './src/Telas/imcCalculator';
+import { ModalAddPrescriptions } from './src/Componentes/modalAddPrescriptions';
+import { ModalAddFood } from './src/Componentes/modalAddFood';
 
-const Tab = createBottomTabNavigator();
+
+export const Tab = createBottomTabNavigator();
 
 function App() {
 
@@ -109,8 +111,7 @@ function App() {
           options={{ headerShown: false, tabBarButton: () => null,
             tabBarVisible: false, tabBarStyle: { display: "none" }}} 
           
-         />   
-
+         />
       </Tab.Navigator>
     </NavigationContainer>
   );

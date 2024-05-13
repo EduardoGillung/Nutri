@@ -4,6 +4,7 @@ import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, Touchabl
 const TelaWaterCalculator = ({ navigation }) => {
     const [peso, setPeso] = useState('');
     const [quantiaAgua, setQuantiaAgua] = useState(null);
+    const [Error, setError] = useState(false);
 
         useEffect(() => {
             // Limpa os estados ao montar o componente
@@ -13,13 +14,20 @@ const TelaWaterCalculator = ({ navigation }) => {
         }, []);
         
         const calcularAgua = () => {
+            if(pesoKg === '') {
+                console.log("Erro ao calcular verifique os campos acima")
+                setError(true);
+                return
+            } 
           const pesoKg = parseFloat(peso);
       
           if (pesoKg) {
             const quantiaAgua = pesoKg * 0.035
             setQuantiaAgua(quantiaAgua.toFixed(1));
+            setError(false)
           } else {
             setQuantiaAgua(null);
+            setError(true)
           }
           // Close the keyboard
             Keyboard.dismiss();
@@ -56,6 +64,7 @@ const TelaWaterCalculator = ({ navigation }) => {
                 <Text style={styles.touchableText}>Calcular Água</Text>
             </TouchableOpacity>
         </View>
+        {Error && <Text style={styles.errorText}>Erro ao calcular é necessario que insira seu peso</Text>}
             <View style={styles.IMCcontent}>
                 <Text style={styles.text}>Quantia diária:</Text>
                 <Pressable style={styles.input}>
@@ -120,7 +129,15 @@ const styles = StyleSheet.create({
         color: 'gray',
         fontSize: 20,
         fontWeight: '500',
-        
+        textAlign: 'center',
+    },
+    errorText: {
+        color: 'red',
+        fontSize: 20,
+        fontWeight: '600',
+        paddingBottom: 12,
+        paddingHorizontal: 12,
+        textAlign: 'center',
     },
     waterText: {
         fontWeight: 'bold',

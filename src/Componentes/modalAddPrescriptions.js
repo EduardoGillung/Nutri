@@ -3,15 +3,20 @@ import { View, Text, StyleSheet, TouchableOpacity, Pressable, TextInput, Image }
 import { db } from "../Serviços/firebase";
 import { ref, set, remove } from 'firebase/database'
 
-export function ModalAddPrescriptions({ handleClose }) {
+export function ModalAddPrescriptions({ handleClose, navigation }) {
     
     const [task, setTask] = useState('');
     const [description, setDescription] = useState('');
     var userId = Date.now().toString()
     const tarefaRef = ref(db, 'Prescrições/' + task)
+    const [ModalError, setModalError] = useState(false);
 
-
-    function addTask () {        
+    function addTask () { 
+        if(task === '' || description === '') {
+            console.log("Erro ao adicionar prescrição verifique os campos")
+            setModalError(true);
+            return
+        }         
         set(tarefaRef, {
             task: task,
             description: description,
@@ -20,12 +25,15 @@ export function ModalAddPrescriptions({ handleClose }) {
         }).then(() => {
             //data saved sucessfully!
             alert('Tarefa adicionada');
+            navigation.navigate('Prescription')
             console.log("Tarefa salva com sucesso do banco de dados")
+            setModalError(false);
 
         })
             .catch((error) => {
                 //write failed
                 alert(error);
+                setModalError(true)
             });
     }  
     const deleteTask = () => {
@@ -38,6 +46,7 @@ export function ModalAddPrescriptions({ handleClose }) {
     return (
         <View style={styles.container}>
             <View style={styles.content}>
+                <Text style={styles.headerTitle}>Adicionando nova Prescrição</Text>
                 <View style={styles.containerHeader}>
                     <TextInput style={styles.title}
                         placeholder="Nome da prescrição"
@@ -53,7 +62,7 @@ export function ModalAddPrescriptions({ handleClose }) {
                     value={description}
                     onChangeText={(description) => setDescription(description)}
                 />
-    
+                {ModalError && <Text style={styles.errorText}>Erro ao adicionar prescrição verifique os campos acima</Text>}
                 <View style={styles.buttonArea}>
                     <TouchableOpacity style={styles.button} onPress={handleClose}>
                         <Text style={styles.buttonText}>Voltar</Text>
@@ -88,12 +97,7 @@ export function ModalAddPrescriptions({ handleClose }) {
             flexDirection: 'row',
             justifyContent: 'space-between',
         },
-        title:{
-            fontSize: 24,
-            fontWeight: 'bold',
-            color: '#7C7C7C',
-            
-        },
+        
         input:{
             backgroundColor: '#f0f0f0',
             width: '90%',
@@ -113,15 +117,29 @@ export function ModalAddPrescriptions({ handleClose }) {
             padding: 12,
             fontSize: 16,
             fontWeight: '400',
-            color: '#7C7C7C', 
-               
-        },  
+            color: '#7C7C7C',      
+        },
+        headerTitle: {
+            color: '#7C7C7C',
+            fontSize: 26,
+            fontWeight: 'bold',
+            textAlign: 'center',
+            paddingBottom: 20,
+            margin: 5,
+        },    
         text:{
             color: '#FFF',
             textAlign: 'center',
             fontSize: 24,
             fontWeight: 'bold',
             textAlign: 'center',
+        },
+        errorText: {
+            color: 'red',
+            fontSize: 18,
+            fontWeight: '600',
+            paddingBottom: 12,
+            marginHorizontal: 25,
         },
         buttonArea:{
             flexDirection: 'row',
