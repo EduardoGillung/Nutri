@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: '15%',
         
+        
     },
     containerBody: {
         backgroundColor: '#fff',
@@ -106,8 +107,6 @@ const styles = StyleSheet.create({
         width: '14%',
         marginRight: '75%',
         marginTop: '20%',
-        
-        
     },
     text: {
         fontSize: 20,
@@ -121,18 +120,14 @@ const styles = StyleSheet.create({
     comida: {
         height: 150,
         width: 150,
-        
-        
     },
     prescricao: {
         height: 150,
         width: 150,
-        
     },
     receitas: {
         height: 150,
         width: 150,
-        
     },
     substituicao: {
         height: '70%',

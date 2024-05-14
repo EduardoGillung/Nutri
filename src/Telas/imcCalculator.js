@@ -135,8 +135,7 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'space-around',
         alignItems: 'center',
-        flexDirection: 'row',
-        marginTop: '3%',    
+        flexDirection: 'row',    
     },
     ErrorContainer: {
         width: '100%',
@@ -167,18 +166,17 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         alignItems: 'center',
         justifyContent: 'center',
+        marginBottom: 10,
     },
     IMCcontent: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         width: '100%',
-        marginBottom: '5%',
         alignItems: 'center',
     }, 
     ButtonContent: {
         width: '100%',
         justifyContent: 'center',
-        flexDirection: 'row',
         alignItems: 'center',  
     },
     TableContent: {
@@ -202,7 +200,7 @@ const styles = StyleSheet.create({
         width: '90%',
         paddingBottom: 14,
         paddingTop: 14,
-        margin: 18,
+        margin: 12,
         backgroundColor: '#7AA466',
         alignItems: 'center',
         justifyContent: 'center',

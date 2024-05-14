@@ -36,7 +36,7 @@ return (
                 style={styles.logo}
             />
         
-        <View style={styles.container2}>
+        <View style={styles.content}>
             <Text style={styles.conta}>Entrar </Text>
             {loginFailed && <Text style={styles.loginFailed}>Usuário ou senha inválidos</Text>}
             <TextInput
@@ -71,14 +71,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',   
     },
-    container2:{
-        flex: 1,
+    content:{
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
         borderTopLeftRadius: 16,
         borderTopRightRadius: 16,
-        width: '100%',   
+        width: '100%',
+        paddingBottom: '20%',   
     },
     logo: {
         width: '40%',
@@ -93,12 +93,13 @@ const styles = StyleSheet.create({
     },
     input: {
         width: '80%',   
-        height: 40,
         borderColor: 'gray',
         borderWidth: 1,
         marginBottom: '8%',
-        padding: 10,
-        borderRadius: 10,
+        padding: 12,
+        borderRadius: 12,
+        fontSize: 18,
+        fontWeight: '300',
     },
     login: {
         backgroundColor: 'gray',
@@ -106,32 +107,34 @@ const styles = StyleSheet.create({
     },
     loginFailed: {
         color: 'red',
-        fontSize: 18,
+        fontSize: 20,
         margin: 10,
+        fontWeight: '700',
     },
     register: {
-        
         fontSize: 16,
-        color: '#696969',
+        color: '#717171',
+        fontWeight: '500',
     },
     button: {     
         backgroundColor: '#4169e1',
-        width: 120,
-        height: 60,
-        borderRadius: 25,  
+        width: '40%',
         justifyContent: 'center',
         alignItems: 'center', 
-        marginBottom: '10%',
-        margin: 15,
+        paddingBottom: 20,
+        paddingTop: 20,
+        borderRadius: 20,  
+        margin: 20,
         
     },    
     buttonText: {
         color: '#fff',
         fontSize: 20,
+        fontWeight: '700',
     },
     conta: {
-        marginBottom: '5%',
-        fontSize: 24,
+        margin: 50,
+        fontSize: 28,
         fontWeight: 'bold',
         color: '#696969',
     }  

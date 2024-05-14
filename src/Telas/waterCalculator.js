@@ -64,7 +64,7 @@ const TelaWaterCalculator = ({ navigation }) => {
                 <Text style={styles.touchableText}>Calcular Água</Text>
             </TouchableOpacity>
         </View>
-        {Error && <Text style={styles.errorText}>Erro ao calcular é necessario que insira seu peso</Text>}
+        {Error && <View style={styles.ErrorContent}><Text style={styles.errorText}>Erro ao calcular é necessario que insira seu peso</Text></View>}
             <View style={styles.IMCcontent}>
                 <Text style={styles.text}>Quantia diária:</Text>
                 <Pressable style={styles.input}>
@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#f0f0f0',
         borderRadius: 20,
     },
+    
     input: {
         alignItems: 'center',
         backgroundColor: '#E6E6E6',
@@ -123,7 +124,8 @@ const styles = StyleSheet.create({
     info: {
         justifyContent: 'center',
         alignItems: 'center',
-        padding: '8%',
+        paddingHorizontal: 12,
+        paddingTop: 12,
     },
     infoText: {
         color: 'gray',
