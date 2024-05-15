@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { View, TextInput, Text, Pressable, StyleSheet, Image } from 'react-native';
+import { View, TextInput, Text, Pressable, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import firebase from '../Serviços/firebase';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { auth } from '../Serviços/firebase';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 function TelaAddUser({navigation}) {
 
   const [nome, setNome] = useState('')
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [senhaConf, setSenhaConf] = useState('');
   const [createFailed, setCreateFailed] = useState(false)
 
   const registrar = () => {
@@ -16,35 +18,46 @@ function TelaAddUser({navigation}) {
       .then((userCredential) => { 
         console.log('Usuario criado com sucesso', userCredential.user.email);
         setCreateFailed(false)
-        navigation.navigate('Login')
+        navigation.navigate('Main')
       })
       .catch((error) => {
         console.error('Erro ao criar usuario:', error.message)
         setCreateFailed(true)
       })
+      
   };
 
   return (
-    <View style={styles.container}>
-        <Text style={styles.header}>Cadastrando-se</Text>
-          <Image
-              source={require('../assets/registerLogo.png')}
-              style={styles.logo}
-          />
-      <View style={styles.container2}>
-      {createFailed && <Text style={styles.createFailed}>Falha ao criar Usuário, verifique os campos</Text>}
+    <SafeAreaView style={styles.container}>   
+        <TouchableOpacity
+                onPress={() => navigation.navigate('Login')}>       
+                <Image
+                    source={require('../assets/return.png')}
+                    style={styles.returnButton}
+                />
+        </TouchableOpacity>
+       
+         
+           <Text style={styles.title}>Cadastrando-se</Text>
+           <Text style={styles.description}>Começe já a cuidar de você e sua rotina!</Text>
+        
+      <View style={styles.content}>
+      {createFailed && <Text style={styles.createFailed}>Falha ao criar cadastro, verifique os campos</Text>}
+      <Text style={styles.text}>Qual seu nome?</Text>
       <TextInput
         placeholder="Nome"
         value={nome}
         onChangeText={(text) => setNome(text)}
         style={styles.input}
       />
+      <Text style={styles.text}>Digite seu e-mail</Text>
       <TextInput
         placeholder="E-mail"
         value={email}
         onChangeText={(text) => setEmail(text)}
         style={styles.input}
       />
+      <Text style={styles.text}>Crie uma senha</Text>
       <TextInput
         placeholder="Senha"
         value={senha}
@@ -52,14 +65,20 @@ function TelaAddUser({navigation}) {
         secureTextEntry={true}
         style={styles.input}
       />
+      <Text style={styles.largeText}>Confirme sua senha</Text>
+      <TextInput
+        placeholder="Confirme sua senha"
+        value={senhaConf}
+        onChangeText={(text) => setSenhaConf(text)}
+        secureTextEntry={true}
+        style={styles.input}
+      />
       
-
-      <Pressable style={styles.button} 
-          onPress={registrar}>
-          <Text style={styles.buttonText}>Criar conta</Text>
-      </Pressable>
+        <Pressable style={styles.button} onPress={registrar}>
+            <Text style={styles.buttonText}>Concluir cadastro</Text>
+        </Pressable>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 const styles = StyleSheet.create({
@@ -69,40 +88,55 @@ const styles = StyleSheet.create({
     backgroundColor: '#4169e1',
     
   },
-  container2: {
+  content: {
     flex: 1,
     width: '100%',
     alignItems: 'center',
-    paddingTop: '10%',
-    backgroundColor: '#fff',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,       
-  },
-  containerReturn: {
-    flex: 1,
-    backgroundColor: 'red',
-  },
-  header: {
     paddingTop: '5%',
-    marginTop: '10%',
-    marginBottom: '3%',
+    backgroundColor: '#fff',
+    borderTopLeftRadius: 14,
+    borderTopRightRadius: 14, 
+          
+  },
+  title: {
     color: '#fff',
-    fontSize: 44,
+    fontSize: 40,
+    marginRight: '5%',
     fontWeight: 'bold',
   },
+  description: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '400',
+    paddingBottom: 20,
+  },
+  text:{
+    color: '#8C8C8C',
+    fontSize: 20,
+    fontWeight: '700',
+    marginRight: '40%',
+  },
+  largeText: {
+    color: '#8C8C8C',
+    fontSize: 20,
+    fontWeight: '700',
+    marginRight: '30%',
+  },
   logo:{
-    height: '15%',
-    width: '29%',
-    marginLeft: '60%',
+    height: '45%',
+    width: '15%',
+    padding: '10%',
   },  
   input: {
-    height: 60,
-    width: '80%',
-    padding: 10,
-    backgroundColor: '#dcdcdc',
-    marginBottom: 20,
-    borderRadius: 20,
-  },
+        width: '80%',   
+        borderColor: '#8C8C8C',
+        borderWidth: 1,
+        marginBottom: '8%',
+        padding: 15,
+        borderRadius: 12,
+        fontSize: 18,
+        fontWeight: '400',
+    },
   createFailed: {
     color: 'red',
     fontSize: 18,
@@ -110,18 +144,26 @@ const styles = StyleSheet.create({
     marginBottom: '5%',
   },
   button: {     
-    backgroundColor: '#4169e1',
-    width: '40%',
-    height: 60,
-    borderRadius: 25,  
+    backgroundColor: '#7AA466',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20, 
+    width: '70%',
+    borderRadius: 20,  
+    paddingTop: '5%',
+    paddingBottom: '5%',
+    
   },
   buttonText: {
     color: '#fff',
-    fontSize: 20,
+    fontSize: 22,
+    fontWeight: '700',
   }, 
+  returnButton: {
+        height: 40,
+        width: 40,
+        marginRight: '90%',
+        marginBottom: '5%',   
+    },
 });
 
 export default TelaAddUser;

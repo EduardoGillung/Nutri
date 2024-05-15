@@ -12,7 +12,7 @@ const TelaWelcome = ({ navigation }) => {
             <Text style={styles.textLogo}>Nutri</Text>
                  <View style={styles.content}>
                 <Text style={styles.text}>Monitore e cuide da sua alimentação de qualquer lugar!</Text>
-                <Text style={styles.description}>Faça o login para começar!</Text>               
+                <Text style={styles.description}>Faça o login para começar</Text>               
                 <Pressable style={styles.button} 
                     onPress={() => navigation.navigate('Login')}>
                     <Text style={styles.buttonText}>Iniciar</Text>
@@ -31,15 +31,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center',    
     },
     content: {
-        
         backgroundColor: '#fff',
         marginTop: '50%',
         width: '100%',
         borderTopLeftRadius: 12,
         borderTopRightRadius: 12,
-        padding: 12,
+        paddingBottom: 20,
+        paddingHorizontal: 12,
         alignItems: 'center',
-        justifyContent: 'center',    
+        justifyContent: 'center',
+        paddingTop: '8%',    
     },
     logo: {
         height: '20%',
@@ -47,16 +48,17 @@ const styles = StyleSheet.create({
         marginTop: '50%',
     },
     text: {
-        fontSize: 22,
+        fontSize: 24,
         fontWeight: 'bold',
-        marginBottom: 20,
-        color: '#585858'   
+        color: '#585858', 
+        marginHorizontal: 2,
     },
     description: {
         fontSize: 18,
         fontWeight: '400',
-        marginBottom: 20,
         color: '#585858',
+        padding: 12,
+           
     },
     textLogo:{
         color: '#fff',
@@ -65,10 +67,12 @@ const styles = StyleSheet.create({
         fontStyle: 'italic',
     },
     button: {     
-        backgroundColor: '#4169e1',
-        width: '40%',
-        height: '25%',
-        borderRadius: 25,  
+        backgroundColor: '#7AA466',
+        width: '50%',
+        borderRadius: 20,
+        paddingTop: 18,
+        paddingBottom: 18,
+        marginBottom: 12,  
         justifyContent: 'center',
         alignItems: 'center', 
     },    

@@ -37,7 +37,7 @@ return (
             />
         
         <View style={styles.content}>
-            <Text style={styles.conta}>Entrar </Text>
+            <Text style={styles.title}>Entrar </Text>
             {loginFailed && <Text style={styles.loginFailed}>Usuário ou senha inválidos</Text>}
             <TextInput
                 placeholder="E-mail"
@@ -53,7 +53,7 @@ return (
                 style={styles.input}
             />
             <Pressable onPress={() => navigation.navigate('addUser')}>
-                <Text style={styles.register}>Não Possui uma conta? Clique Aqui</Text>
+                <Text style={styles.registerText}>Não Possui uma conta? Clique Aqui</Text>
             </Pressable>
 
             <Pressable style={styles.button} 
@@ -75,31 +75,36 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-        borderTopLeftRadius: 16,
-        borderTopRightRadius: 16,
+        borderTopLeftRadius: 14,
+        borderTopRightRadius: 14,
         width: '100%',
-        paddingBottom: '20%',   
+        paddingBottom: '20%', 
+        paddingTop: '10%',   
     },
     logo: {
         width: '40%',
         height: '20%',
-        marginLeft: '50%', 
+        marginLeft: '50%',
+         
     },
     header:{
-        fontSize: 40,
+        fontSize: 44,
         fontWeight: 'bold',
         marginTop: 100,
-        color: '#fff',        
+        color: '#fff', 
+               
     },
     input: {
         width: '80%',   
-        borderColor: 'gray',
+        borderColor: '#8C8C8C',
         borderWidth: 1,
         marginBottom: '8%',
-        padding: 12,
+        padding: 15,
         borderRadius: 12,
         fontSize: 18,
-        fontWeight: '300',
+        fontWeight: '400',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     login: {
         backgroundColor: 'gray',
@@ -108,35 +113,34 @@ const styles = StyleSheet.create({
     loginFailed: {
         color: 'red',
         fontSize: 20,
-        margin: 10,
+        padding: 10,
         fontWeight: '700',
     },
-    register: {
-        fontSize: 16,
+    registerText: {
+        fontSize: 17,
         color: '#717171',
         fontWeight: '500',
     },
     button: {     
-        backgroundColor: '#4169e1',
-        width: '40%',
+        backgroundColor: '#7AA466',
+        width: '50%',
         justifyContent: 'center',
         alignItems: 'center', 
         paddingBottom: 20,
         paddingTop: 20,
         borderRadius: 20,  
         margin: 20,
-        
     },    
     buttonText: {
         color: '#fff',
         fontSize: 20,
         fontWeight: '700',
     },
-    conta: {
-        margin: 50,
-        fontSize: 28,
+    title: {
+        fontSize: 30,
         fontWeight: 'bold',
         color: '#696969',
+        paddingBottom: '10%',
     }  
 })
 export default TelaLogin; 
