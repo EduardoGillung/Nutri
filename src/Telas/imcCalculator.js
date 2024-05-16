@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, TouchableOpacity, Keyboard } from 'react-native';
+import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, TouchableOpacity, Keyboard, StatusBar } from 'react-native';
 
 const TelaIMCcalculator = ({ navigation }) => {
 
@@ -43,10 +43,19 @@ const TelaIMCcalculator = ({ navigation }) => {
             }
             return text;
           };
+          const getIMCColor = (imcValue) => {
+            if (imcValue < 18.5) return '#00A3FF'; // Magreza
+            if (imcValue >= 18.5 && imcValue <= 24.9) return '#00AD1C'; // Normal
+            if (imcValue >= 25.0 && imcValue <= 29.9) return '#D7C100'; // Sobrepeso
+            if (imcValue >= 30.0 && imcValue <= 39.9) return '#EF7300'; // Obesidade
+            if (imcValue >= 40.0) return '#FC0000'; // Obesidade Grave
+            return 'gray'; // Caso de erro ou valor não definido
+        };
     
     
     return (
         <View style={styles.container}>
+            
             <TouchableOpacity
                 onPress={() => navigation.navigate('Main')}>       
                 <Image
@@ -89,7 +98,11 @@ const TelaIMCcalculator = ({ navigation }) => {
             <View style={styles.IMCcontent}>
                 <Text style={styles.text}>Seu IMC:</Text>
                 <Pressable style={styles.imcInput}>
-                    {imc !== null && <Text style={styles.imc}>{imc} {}</Text>}   
+                    {imc !== null && (
+                        <Text style={[styles.imc, { color: getIMCColor(parseFloat(imc)) }]}>
+                            {imc}
+                        </Text>
+                    )}  
                 </Pressable>
             </View>
             <View style={styles.ErrorContainer}>
@@ -101,23 +114,23 @@ const TelaIMCcalculator = ({ navigation }) => {
             </View>
             <View style={styles.Table}>
                 <Text style={styles.text}>Menor que 18,5</Text>
-                <Text style={styles.description}>Magreza</Text>
+                <Text style={styles.magreza}>Magreza</Text>
             </View>
             <View style={styles.Table}>
                 <Text style={styles.text}>Entre 18,5 e 24,9</Text>
-                <Text style={styles.description}>Normal</Text>
+                <Text style={styles.normal}>Normal</Text>
             </View>
             <View style={styles.Table}>
                 <Text style={styles.text}>Entre 25,0 e 29,9</Text>
-                <Text style={styles.description}>Sobrepeso</Text>
+                <Text style={styles.sobrepeso}>Sobrepeso</Text>
             </View>
             <View style={styles.Table}>
                 <Text style={styles.text}>Entre 30,0 e 39,9</Text>
-                <Text style={styles.description}>Obesidade</Text>
+                <Text style={styles.obesidade}>Obesidade</Text>
             </View>
             <View style={styles.Table}>
                 <Text style={styles.text}>Maior que 40,0</Text>
-                <Text style={styles.description}>Obesidade Grave</Text>
+                <Text style={styles.obesidadeGrave}>Obesidade Grave</Text>
             </View>
         </View> 
     );
@@ -129,7 +142,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         backgroundColor: '#fff',
-        paddingTop: '12%',       
+        paddingTop: '2%',   
     },
     content: {  
         width: '100%',
@@ -181,11 +194,11 @@ const styles = StyleSheet.create({
     },
     TableContent: {
         width: '100%',
-        height: 50,
+        height: 40,
         alignItems: 'center',
         justifyContent: 'space-around',
         flexDirection: 'row',
-        backgroundColor: '#4169E1',        
+        backgroundColor: '#8C8C8C',        
     },
     Table: {
         width: '100%',
@@ -225,8 +238,7 @@ const styles = StyleSheet.create({
     returnButton: {
         height: 40,
         width: 40,
-        marginRight: '90%',
-        marginLeft: 10,    
+        marginRight: '85%',    
     },
     text: {
         fontSize: 20,
@@ -238,14 +250,14 @@ const styles = StyleSheet.create({
         color: 'red',
         fontSize: 20,
         fontWeight: '600',
-        paddingBottom: 12,
-        paddingHorizontal: 12,
+        paddingBottom: 5,
+        paddingHorizontal: 5,
         textAlign: 'center',
     },
     imc: {
         fontSize: 30,
         fontWeight: 'bold',
-        color: 'red',
+        color: '#8C8C8C',
         
     },
     textTable: {
@@ -259,6 +271,36 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#fff',
         textAlign: 'center',
-    },  
+    },
+    magreza: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#00A3FF',
+        textAlign: 'center',
+    },
+    normal: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#00AD1C',
+        textAlign: 'center',
+    },
+    sobrepeso:{
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#D7C100',
+        textAlign: 'center',
+    },
+    obesidade:{
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#EF7300',
+        textAlign: 'center',
+    },
+    obesidadeGrave: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#FC0000',
+        textAlign: 'center',
+    },
 })
 export default TelaIMCcalculator;

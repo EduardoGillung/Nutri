@@ -48,10 +48,10 @@ const styles = StyleSheet.create({
         marginTop: '50%',
     },
     text: {
-        fontSize: 24,
+        fontSize: 22,
         fontWeight: 'bold',
         color: '#585858', 
-        marginHorizontal: 2,
+        marginHorizontal: 1,
     },
     description: {
         fontSize: 18,
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         paddingTop: 18,
         paddingBottom: 18,
-        marginBottom: 12,  
+        marginBottom: 18,  
         justifyContent: 'center',
         alignItems: 'center', 
     },    

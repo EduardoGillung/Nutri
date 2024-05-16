@@ -27,9 +27,9 @@ export function ModalAddFood({ navigation, handleClose }) {
         
         }).then(() => {
             //data saved sucessfully!
-            
             console.log("Tarefa salva com sucesso do banco de dados")
             setModalError(false)
+            
         })
             .catch((error) => {
                 //write failed
@@ -95,7 +95,7 @@ export function ModalAddFood({ navigation, handleClose }) {
             backgroundColor: '#f0f0f0',
             width: '90%',
             margin: 14,
-            padding: 14,
+            padding: 15,
             borderRadius: 12,
             fontSize: 16,
             fontWeight: '400',
@@ -107,7 +107,7 @@ export function ModalAddFood({ navigation, handleClose }) {
             width: '70%',
             borderRadius: 12,
             marginBottom: '5%',
-            padding: 12,
+            padding: 15,
             fontSize: 16,
             fontWeight: '400',
             color: '#7C7C7C',      

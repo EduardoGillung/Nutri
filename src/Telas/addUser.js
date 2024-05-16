@@ -44,35 +44,35 @@ function TelaAddUser({navigation}) {
       <View style={styles.content}>
       {createFailed && <Text style={styles.createFailed}>Falha ao criar cadastro, verifique os campos</Text>}
       <Text style={styles.text}>Qual seu nome?</Text>
-      <TextInput
-        placeholder="Nome"
-        value={nome}
-        onChangeText={(text) => setNome(text)}
-        style={styles.input}
-      />
+        <TextInput
+          placeholder="Nome"
+          value={nome}
+          onChangeText={(text) => setNome(text)}
+          style={styles.input}
+        />
       <Text style={styles.text}>Digite seu e-mail</Text>
-      <TextInput
-        placeholder="E-mail"
-        value={email}
-        onChangeText={(text) => setEmail(text)}
-        style={styles.input}
-      />
+        <TextInput
+          placeholder="E-mail"
+          value={email}
+          onChangeText={(text) => setEmail(text)}
+          style={styles.input}
+        />
       <Text style={styles.text}>Crie uma senha</Text>
-      <TextInput
-        placeholder="Senha"
-        value={senha}
-        onChangeText={(text) => setSenha(text)}
-        secureTextEntry={true}
-        style={styles.input}
-      />
+        <TextInput
+          placeholder="Senha"
+          value={senha}
+          onChangeText={(text) => setSenha(text)}
+          secureTextEntry={true}
+          style={styles.input}
+        />
       <Text style={styles.largeText}>Confirme sua senha</Text>
-      <TextInput
-        placeholder="Confirme sua senha"
-        value={senhaConf}
-        onChangeText={(text) => setSenhaConf(text)}
-        secureTextEntry={true}
-        style={styles.input}
-      />
+        <TextInput
+          placeholder="Confirme sua senha"
+          value={senhaConf}
+          onChangeText={(text) => setSenhaConf(text)}
+          secureTextEntry={true}
+          style={styles.input}
+        />
       
         <Pressable style={styles.button} onPress={registrar}>
             <Text style={styles.buttonText}>Concluir cadastro</Text>
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
         padding: 15,
         borderRadius: 12,
         fontSize: 18,
-        fontWeight: '400',
+        fontWeight: '300',
     },
   createFailed: {
     color: 'red',
@@ -159,11 +159,11 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   }, 
   returnButton: {
-        height: 40,
-        width: 40,
-        marginRight: '90%',
-        marginBottom: '5%',   
-    },
+    height: 40,
+    width: 40,
+    marginRight: '85%',  
+    marginBottom: '5%', 
+},
 });
 
 export default TelaAddUser;

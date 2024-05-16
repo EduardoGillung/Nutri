@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
         padding: 15,
         borderRadius: 12,
         fontSize: 18,
-        fontWeight: '400',
+        fontWeight: '300',
         alignItems: 'center',
         justifyContent: 'center',
     },

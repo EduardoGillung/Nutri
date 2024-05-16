@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { View, TextInput, Button, StyleSheet, Image, Pressable, Text, FlatList, TouchableOpacity } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Image, Pressable, Text, FlatList, TouchableOpacity, StatusBar } from 'react-native';
 
 
 const TelaMain = ({ navigation }) => {
                               
     return (
         <View style={styles.container}>
+            <StatusBar
+                barStyle="light-content" // Estilo do texto da barra de status (light-content ou dark-content)
+                backgroundColor="#4169E1" // Cor de fundo da barra de status (Android)
+                translucent={false} // Define se a barra de status é translúcida ou não (Android)
+             />
                 <Image
                     source={require('../assets/logo.png')}
                     style={styles.logo}
@@ -103,10 +108,10 @@ const styles = StyleSheet.create({
        marginBottom: '5%', 
     },
     logo: {
-        height: '8%',
-        width: '14%',
+        height: 60,
+        width: 60,
         marginRight: '75%',
-        marginTop: '20%',
+        marginTop: '5%',
     },
     text: {
         fontSize: 20,

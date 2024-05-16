@@ -43,27 +43,26 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'flex-start',
         alignItems: 'center',
+        marginTop: '15%',
         
     },
     headerText: {
        color: '#fff',
        fontSize: 32,
        fontWeight: 'bold',
-       marginTop: '3%',
-       marginBottom: '5%',
+      
     },
     logo: {
         height: 60,
         width: 60,
-        marginRight: '70%',
-        marginTop: '20%',
-          
+        marginRight: '75%',
+        marginTop: '5%',
     },
     text: {
         fontSize: 30,
         fontWeight: 'bold',
         color: '#fff',
-        marginTop: 40,
+        marginTop: '15%',
     },
     textLogo:{
         fontSize: 10,

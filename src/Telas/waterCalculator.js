@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         backgroundColor: '#fff',
-        paddingTop: '12%',       
+        paddingTop: '2%',       
     },
     content: {  
         width: '100%',
@@ -185,8 +185,7 @@ const styles = StyleSheet.create({
     returnButton: {
         height: 40,
         width: 40,
-        marginRight: '90%',
-        marginLeft: 10,    
+        marginRight: '85%',   
     },
     text: {
         fontSize: 20,
