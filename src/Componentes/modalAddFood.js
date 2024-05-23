@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Pressable, TextInput, Image, Modal } from 'react-native';
-import { db } from "../Serviços/firebase";
+import { db, auth } from "../Serviços/firebase";
 import { ref, set, remove } from 'firebase/database'
 
 
-export function ModalAddFood({ navigation, handleClose }) {
+export function ModalAddFood({ handleClose }) {
     
-    const [modalVisible, setModalVisible] = useState(false);
     const [task, setTask] = useState('');
     const [description, setDescription] = useState('');
-    var userId = Date.now().toString();
-    const tarefaRef = ref(db, 'Rotina Alimentar/' + task)
+    const tarefaRef = ref(db, '/users/'+auth.currentUser.uid+'/rotinas/' + task)
     const [ModalError, setModalError] = useState(false);
    
 
@@ -23,20 +21,20 @@ export function ModalAddFood({ navigation, handleClose }) {
         set(tarefaRef, {
             task: task,
             description: description,
-            taskId: userId,
         
         }).then(() => {
             //data saved sucessfully!
+            alert('Tarefa adicionada');
             console.log("Tarefa salva com sucesso do banco de dados")
             setModalError(false)
-            
+            handleClose()
         })
             .catch((error) => {
                 //write failed
                 setModalError(true)
                 alert(error);
             });
-    }  
+    } 
     
     return (
         <View style={styles.container}>

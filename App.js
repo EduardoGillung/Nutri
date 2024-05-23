@@ -25,7 +25,11 @@ function App() {
 
   return (
     <NavigationContainer>
-      <Tab.Navigator initialRouteName='Main'>
+      <Tab.Navigator initialRouteName='Login'
+        screenOptions={{
+          tabBarShowLabel: false,
+        }}
+    >
         <Tab.Screen
           options={{ headerShown: false, tabBarButton: () => null,
             tabBarVisible: false, tabBarStyle: { display: "none" }}} 
@@ -47,7 +51,7 @@ function App() {
          <Tab.Screen
           name="Main"
           component={TelaMain}
-          options={{ headerShown: false, tabBarIcon: ({ focused, size, color }) => {
+          options={{ headerShown: false,  tabBarIcon: ({ focused, size, color }) => {
             if(focused){
                 return <Ionicons size={size} color={color} name="home" />
             }

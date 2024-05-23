@@ -1,9 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { View, TextInput, Button, StyleSheet, Image, Pressable, Text, FlatList, TouchableOpacity, StatusBar } from 'react-native';
-
+import { db, auth } from "../Serviços/firebase";
+import { ref, get, remove } from 'firebase/database'
+import { useIsFocused } from "@react-navigation/native";
 
 const TelaMain = ({ navigation }) => {
-                              
+    const [nome, setNome] = useState('');
+    const isFocused = useIsFocused()
+  useEffect(() => {
+    const userRef = ref(db, "/users/" + auth.currentUser.uid)
+    get(userRef)
+        .then((user) => {
+            setNome(user.val().nome)})
+        .catch((error) => console.log(error))
+  }, [isFocused])
+  
+
     return (
         <View style={styles.container}>
             <StatusBar
@@ -15,7 +27,7 @@ const TelaMain = ({ navigation }) => {
                     source={require('../assets/logo.png')}
                     style={styles.logo}
                 />
-                <Text style={styles.headerText}>Seja bem vindo Usuario!</Text>
+                <Text style={styles.headerText}>Seja bem vindo {nome} !</Text>
             
                  <View style={styles.containerBody}>
                  <TouchableOpacity

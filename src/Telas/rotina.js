@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, TouchableOpacity, Modal } from 'react-native';
 import { ref, get, set, push, onValue, remove, getDatabase, update, child } from 'firebase/database'
-import { db } from "../Serviços/firebase";
+import { db, auth } from "../Serviços/firebase";
 import { ModalAddFood } from "../Componentes/modalAddFood";
-
+import { useIsFocused } from "@react-navigation/native";
 
 const TelaRotina = ({ navigation }) => {
-
+    const isFocused = useIsFocused();
     const [modalVisible, setModalVisible] = useState(false);
     const [prescription, setPrescription] = useState('');
 
@@ -17,7 +17,7 @@ const TelaRotina = ({ navigation }) => {
         <View style={styles.InputContent} animationType='fade'>
             <Text style={styles.title}>{item.task}</Text>
             <View style={styles.descriptionItem}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => deleteTask(item.task)}>
                     <Image
                         source={require('../assets/deleteButton.png')}
                         style={styles.deleteButton}
@@ -29,33 +29,30 @@ const TelaRotina = ({ navigation }) => {
         </View>
     )
 
-    let deleteTask = ({ task }) => {
-        get(child(db, 'Receitas/' + task.taskId)).then(snapshot => {
-          if(snapshot.exists()) {
-            remove(ref(db, 'Receitas/' + task.taskId))
+    let deleteTask = ( task ) => {
+        remove(ref(db, '/users/'+auth.currentUser.uid+'/rotinas/' + task))
             .then(() => {
-                console.log("Tarefa apagada com sucesso do banco de dados" + task)
+                console.log("Tarefa apagada com sucesso do banco de dados: " + task)
             })
-          }     
-        })          
+            .catch((error => console.error('Erro ao apagar: '+error)))
     }
     
     useEffect(() => {
-        const tarefaRef = ref(db, 'Rotina Alimentar/')
-
-        onValue(tarefaRef, (snapshot) =>{
-        if(snapshot.exists()) {
+        setPrescription([])
+        const userPrescriptionsRef = ref(db, '/users/'+auth.currentUser.uid+'/rotinas')
+        
+        onValue(userPrescriptionsRef, (snapshot) => {
+            if(snapshot.exists()) {
             const data = snapshot.val();
             const getData = Object.values(data)
 
             setPrescription(getData)
-            console.log(getData)
             }
             else{
-                alert('Não foi encontrado nenhum item')
+                console.log('Não foi encontrado nenhum item')
             }
         })
-    },[])
+    },[isFocused])
 
     return (
         <View style={styles.container}>
@@ -171,8 +168,7 @@ const styles = StyleSheet.create({
     returnButton: {
         height: 40,
         width: 40,
-        marginRight: '85%',
-           
+        marginRight: '85%',   
     },
     addButton: {
         height: 60,

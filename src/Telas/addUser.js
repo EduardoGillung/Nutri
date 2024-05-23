@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { View, TextInput, Text, Pressable, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import firebase from '../Serviços/firebase';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
-import { auth } from '../Serviços/firebase';
+import { auth, db } from '../Serviços/firebase';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { ref, set, remove } from 'firebase/database'
+
 
 function TelaAddUser({navigation}) {
 
@@ -15,10 +17,17 @@ function TelaAddUser({navigation}) {
 
   const registrar = () => {
     createUserWithEmailAndPassword(auth, email, senha)
-      .then((userCredential) => { 
-        console.log('Usuario criado com sucesso', userCredential.user.email);
-        setCreateFailed(false)
-        navigation.navigate('Main')
+      .then((userCredential) => {
+        const userRef = ref(db, 'users/'+ userCredential.user.uid)
+            set(userRef, { nome: nome })
+              .then(() => {
+                console.log('Usuário criado com sucesso:', userCredential.user.email);
+                setCreateFailed(false)
+                navigation.navigate('Login')
+              })
+              .catch((error) => {
+                console.error("Erro ao adicionar usuário:", error);
+              })
       })
       .catch((error) => {
         console.error('Erro ao criar usuario:', error.message)
@@ -26,6 +35,7 @@ function TelaAddUser({navigation}) {
       })
       
   };
+
 
   return (
     <SafeAreaView style={styles.container}>   
@@ -44,7 +54,7 @@ function TelaAddUser({navigation}) {
       <View style={styles.content}>
       {createFailed && <Text style={styles.createFailed}>Falha ao criar cadastro, verifique os campos</Text>}
       <Text style={styles.text}>Qual seu nome?</Text>
-        <TextInput
+      <TextInput
           placeholder="Nome"
           value={nome}
           onChangeText={(text) => setNome(text)}

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, TouchableOpacity, Keyboard } from 'react-native';
+import { useIsFocused } from "@react-navigation/native";
 
 const TelaWaterCalculator = ({ navigation }) => {
+    const isFocused = useIsFocused();
     const [peso, setPeso] = useState('');
     const [quantiaAgua, setQuantiaAgua] = useState(null);
     const [Error, setError] = useState(false);
@@ -11,7 +13,7 @@ const TelaWaterCalculator = ({ navigation }) => {
             setPeso('');
             setQuantiaAgua(null);
           
-        }, []);
+        }, [isFocused]);
         
         const calcularAgua = () => {
             if(pesoKg === '') {

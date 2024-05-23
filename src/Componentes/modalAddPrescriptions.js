@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Pressable, TextInput, Image } from 'react-native';
-import { db } from "../Serviços/firebase";
+import { db, auth } from "../Serviços/firebase";
 import { ref, set, remove } from 'firebase/database'
 
 export function ModalAddPrescriptions({ handleClose, navigation }) {
     
     const [task, setTask] = useState('');
     const [description, setDescription] = useState('');
-    var userId = Date.now().toString()
-    const tarefaRef = ref(db, 'Prescrições/' + task)
+    const tarefaRef = ref(db, '/users/'+auth.currentUser.uid+'/prescricoes/' + task)
     const [ModalError, setModalError] = useState(false);
 
     function addTask () { 
@@ -19,16 +18,13 @@ export function ModalAddPrescriptions({ handleClose, navigation }) {
         }         
         set(tarefaRef, {
             task: task,
-            description: description,
-            taskId: userId,
-        
+            description: description
         }).then(() => {
             //data saved sucessfully!
             alert('Tarefa adicionada');
-            navigation.navigate('Prescription')
             console.log("Tarefa salva com sucesso do banco de dados")
-            setModalError(false);
-
+            setModalError(false)
+            handleClose()
         })
             .catch((error) => {
                 //write failed
@@ -36,12 +32,6 @@ export function ModalAddPrescriptions({ handleClose, navigation }) {
                 setModalError(true)
             });
     }  
-    const deleteTask = () => {
-        remove(ref(db, 'Lista de tarefas/'))
-            .then(() => {
-                console.log("Tarefa apagada com sucesso do banco de dados")
-            })    
-    };
 
     return (
         <View style={styles.container}>

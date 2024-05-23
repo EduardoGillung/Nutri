@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, TouchableOpacity, Modal, SafeAreaView } from 'react-native';
 import { ref, get, set, push, onValue, remove, getDatabase, update, child } from 'firebase/database'
-import { db } from "../Serviços/firebase";
+import { db, auth } from "../Serviços/firebase";
 import { ModalAddPrescriptions } from "../Componentes/modalAddPrescriptions";
+import { useIsFocused } from "@react-navigation/native";
 
 const TelaPrescriptions = ({ navigation }) => {
-
+    const isFocused = useIsFocused();
     const [modalVisible, setModalVisible] = useState(false);
-    const [prescription, setPrescription] = useState('')
-
+    const [prescription, setPrescription] = useState([])
+    
     const showModal = () => {
         setModalVisible(true);
     }
+    
     const renderItem = ({ item }) => (
         <SafeAreaView style={styles.InputContent}>
             <Text style={styles.title}>{item.task}</Text>
             <View style={styles.descriptionItem}>
-                <TouchableOpacity onPress={deleteTask}>       
+                <TouchableOpacity onPress={() => deleteTask(item.task)}>       
                     <Image
                         source={require('../assets/deleteButton.png')}
                         style={styles.deleteButton}
@@ -27,35 +29,30 @@ const TelaPrescriptions = ({ navigation }) => {
         </SafeAreaView>
     )
 
-    let deleteTask = ({ task }) => {
-        get(child(db, 'Receitas/' + task)).then(snapshot => {
-          if(snapshot.exists()) {
-            remove(ref(db, 'Receitas/' + task))
+    let deleteTask = ( task ) => {
+        remove(ref(db, '/users/'+auth.currentUser.uid+'/prescricoes/' + task))
             .then(() => {
-                console.log("Tarefa apagada com sucesso do banco de dados" + task)
+                console.log("Tarefa apagada com sucesso do banco de dados: " + task)
             })
-          }     
-        })
-        
-              
+            .catch((error => console.error('Erro ao apagar: '+error)))
     }
 
     useEffect(() => {
-        const tarefaRef = ref(db, 'Prescrições/')
+        setPrescription([])
+        const userPrescriptionsRef = ref(db, '/users/'+auth.currentUser.uid+'/prescricoes')
         
-        onValue(tarefaRef, (snapshot) => {
+        onValue(userPrescriptionsRef, (snapshot) => {
             if(snapshot.exists()) {
             const data = snapshot.val();
             const getData = Object.values(data)
 
             setPrescription(getData)
-            console.log(prescription)
             }
             else{
-                alert('Não foi encontrado nenhum item')
+                console.log('Não foi encontrado nenhum item')
             }
         })
-    },[])
+    },[isFocused])
 
     return (
         <SafeAreaView style={styles.container}>

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, TouchableOpacity, Keyboard, StatusBar } from 'react-native';
+import { useIsFocused } from "@react-navigation/native";
 
 const TelaIMCcalculator = ({ navigation }) => {
-
+        const isFocused = useIsFocused();
         const [peso, setPeso] = useState('');
         const [altura, setAltura] = useState('');
         const [imc, setImc] = useState(null);
@@ -14,7 +15,7 @@ const TelaIMCcalculator = ({ navigation }) => {
             setAltura('');
             setImc(null);
           
-        }, []);
+        }, [isFocused]);
 
         const calcularIMC = () => {
             if(pesoKg === '' || alturaM === '') {
@@ -54,6 +55,7 @@ const TelaIMCcalculator = ({ navigation }) => {
     
     
     return (
+        
         <View style={styles.container}>
             
             <TouchableOpacity
