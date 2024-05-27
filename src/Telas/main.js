@@ -7,13 +7,14 @@ import { useIsFocused } from "@react-navigation/native";
 const TelaMain = ({ navigation }) => {
     const [nome, setNome] = useState('');
     const isFocused = useIsFocused()
-  useEffect(() => {
-    const userRef = ref(db, "/users/" + auth.currentUser.uid)
-    get(userRef)
-        .then((user) => {
-            setNome(user.val().nome)})
-        .catch((error) => console.log(error))
-  }, [isFocused])
+    
+    useEffect(() => {
+        const userRef = ref(db, "/users/" + auth.currentUser.uid)
+        get(userRef)
+            .then((user) => {
+                setNome(user.val().nome)})
+            .catch((error) => console.log(error))
+    }, [isFocused])
   
 
     return (
@@ -37,7 +38,7 @@ const TelaMain = ({ navigation }) => {
                     source={require('../assets/comida.png')}
                     style={styles.comida}
                 />
-                
+                <Text style={styles.textIcons}>Alimentos</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -47,7 +48,7 @@ const TelaMain = ({ navigation }) => {
                     source={require('../assets/prescricao.png')}
                     style={styles.prescricao}
                 />
-               
+               <Text style={styles.textIcons}>Prescrições</Text>
                 </TouchableOpacity>
 
                 </View>
@@ -59,6 +60,7 @@ const TelaMain = ({ navigation }) => {
                     source={require('../assets/calculadora.png')}
                     style={styles.receitas}
                 />
+                <Text style={styles.textIcons}>IMC</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => navigation.navigate('WaterCalculator')}
@@ -67,6 +69,7 @@ const TelaMain = ({ navigation }) => {
                     source={require('../assets/agua.png')}
                     style={styles.receitas}
                 />
+                <Text style={styles.textIcons}>Água</Text>
                 </TouchableOpacity>
                 </View>
                 
@@ -91,8 +94,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#4169e1',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: '15%',
-        
+        paddingTop: '20%',
+       
         
     },
     containerBody: {
@@ -101,16 +104,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',  
         justifyContent: 'space-between',
-        padding: '5%',
-        paddingTop: '10%',    
+        padding: '8%',   
     },
     containerButtons: {
         backgroundColor: '#fff',
         width: '100%',
         alignItems: 'center',
-        paddingTop: '10%',
-        
-           
+        paddingTop: '5%',     
     },
     headerText: {
        color: '#fff',
@@ -123,7 +123,6 @@ const styles = StyleSheet.create({
         height: 60,
         width: 60,
         marginRight: '75%',
-        marginTop: '5%',
     },
     text: {
         fontSize: 20,
@@ -134,33 +133,35 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontStyle: 'italic',
     },
+    textIcons:{
+        fontSize: 24,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        color: '#585858',
+        paddingTop: '5%',
+        
+    },
     comida: {
-        height: 150,
-        width: 150,
+        height: 120,
+        width: 120,
     },
     prescricao: {
-        height: 150,
-        width: 150,
+        height: 120,
+        width: 120,
     },
     receitas: {
-        height: 150,
-        width: 150,
-    },
-    substituicao: {
-        height: '70%',
-        width: 135,
-        margin: '10%', 
+        height: 120,
+        width: 120,
     },
     configButton: {
         height: 30,
         width: 30,
-  
     },
     button: {     
         backgroundColor: '#E6E6E6',
         width: '90%',
-        paddingBottom: 24,
-        paddingTop: 24,
+        paddingBottom: 20,
+        paddingTop: 20,
         marginBottom: '30%',
         borderRadius: 12,        
         justifyContent: 'center',

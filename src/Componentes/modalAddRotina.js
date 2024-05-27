@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Pressable, TextInput, Image, Modal } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Pressable, TextInput, Image, Modal, ToastAndroid } from 'react-native';
 import { db, auth } from "../Serviços/firebase";
 import { ref, set, remove } from 'firebase/database'
 
 
-export function ModalAddFood({ handleClose }) {
+export function ModalAddRotina({ handleClose }) {
     
     const [task, setTask] = useState('');
     const [description, setDescription] = useState('');
     const tarefaRef = ref(db, '/users/'+auth.currentUser.uid+'/rotinas/' + task)
     const [ModalError, setModalError] = useState(false);
    
+    const AddRotinaToast = () => {
+        ToastAndroid.show('Refeição adicionada !', ToastAndroid.LONG);
+      };
 
-    function addTask () {    
+    function addRotina () {    
         if(task === '' || description === '') {
             console.log("Erro ao adicionar refeição verifique os campos")
             setModalError(true);
@@ -24,7 +27,7 @@ export function ModalAddFood({ handleClose }) {
         
         }).then(() => {
             //data saved sucessfully!
-            alert('Tarefa adicionada');
+            AddRotinaToast()
             console.log("Tarefa salva com sucesso do banco de dados")
             setModalError(false)
             handleClose()
@@ -60,7 +63,7 @@ export function ModalAddFood({ handleClose }) {
                         <Text style={styles.buttonText}>Voltar</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={[styles.button, styles.buttonSave]} onPress={addTask}>
+                    <TouchableOpacity style={[styles.button, styles.buttonSave]} onPress={addRotina}>
                         <Text style={styles.buttonSaveText}>Salvar</Text>
                     </TouchableOpacity>        
                 </View>

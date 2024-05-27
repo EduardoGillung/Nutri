@@ -33,6 +33,7 @@ const TelaPrescriptions = ({ navigation }) => {
         remove(ref(db, '/users/'+auth.currentUser.uid+'/prescricoes/' + task))
             .then(() => {
                 console.log("Tarefa apagada com sucesso do banco de dados: " + task)
+                alert("Tarefa apagada com sucesso")
             })
             .catch((error => console.error('Erro ao apagar: '+error)))
     }

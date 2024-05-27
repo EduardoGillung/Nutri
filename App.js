@@ -3,7 +3,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TelaLogin from './src/Telas/login';
 import TelaAddUser from './src/Telas/addUser';
-import TelaHome from './src/Telas/home';
 import TelaWelcome from './src/Telas/welcome';
 import TelaMain from './src/Telas/main';
 import TelaPrescriptions from './src/Telas/prescriptions';
@@ -15,18 +14,18 @@ import { AntDesign } from '@expo/vector-icons';
 import TelaRotina from './src/Telas/rotina';
 import TelaWaterCalculator from './src/Telas/waterCalculator';
 import TelaIMCcalculator from './src/Telas/imcCalculator';
-import { ModalAddPrescriptions } from './src/Componentes/modalAddPrescriptions';
-import { ModalAddFood } from './src/Componentes/modalAddFood';
-
+import { Animated } from 'react-native';
 
 export const Tab = createBottomTabNavigator();
 
 function App() {
-
+  
+  
   return (
     <NavigationContainer>
       <Tab.Navigator initialRouteName='Login'
         screenOptions={{
+          animation: 'fade',
           tabBarShowLabel: false,
         }}
     >
@@ -38,7 +37,7 @@ function App() {
          />
         <Tab.Screen
           options={{ headerShown: false, tabBarButton: () => null,
-            tabBarVisible: false, tabBarStyle: { display: "none" } }} 
+            tabBarVisible: false, tabBarStyle: { display: "none" }, animation: 'fade', }} 
           name="Login"
           component={TelaLogin}
          />
@@ -51,7 +50,7 @@ function App() {
          <Tab.Screen
           name="Main"
           component={TelaMain}
-          options={{ headerShown: false,  tabBarIcon: ({ focused, size, color }) => {
+          options={{ headerShown: false, animation: 'fade', tabBarIcon: ({ focused, size, color }) => {
             if(focused){
                 return <Ionicons size={size} color={color} name="home" />
             }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, TouchableOpacity, Modal } from 'react-native';
 import { ref, get, set, push, onValue, remove, getDatabase, update, child } from 'firebase/database'
 import { db, auth } from "../Serviços/firebase";
-import { ModalAddFood } from "../Componentes/modalAddFood";
+import { ModalAddRotina } from "../Componentes/modalAddRotina";
 import { useIsFocused } from "@react-navigation/native";
 
 const TelaRotina = ({ navigation }) => {
@@ -33,6 +33,7 @@ const TelaRotina = ({ navigation }) => {
         remove(ref(db, '/users/'+auth.currentUser.uid+'/rotinas/' + task))
             .then(() => {
                 console.log("Tarefa apagada com sucesso do banco de dados: " + task)
+                alert("Tarefa apagada com sucesso")
             })
             .catch((error => console.error('Erro ao apagar: '+error)))
     }
@@ -81,7 +82,7 @@ const TelaRotina = ({ navigation }) => {
                         <Text style={styles.text}>Adicionar refeição </Text>
 
                     <Modal visible={modalVisible} animationType='fade'>
-                        <ModalAddFood handleClose={ () => setModalVisible(false) } />
+                        <ModalAddRotina handleClose={ () => setModalVisible(false) } />
                     </Modal>
                 </View> 
                 <View style={styles.flatContent}>

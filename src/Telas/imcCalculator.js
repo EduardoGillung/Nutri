@@ -14,6 +14,7 @@ const TelaIMCcalculator = ({ navigation }) => {
             setPeso('');
             setAltura('');
             setImc(null);
+            setError('');
           
         }, [isFocused]);
 
@@ -197,10 +198,12 @@ const styles = StyleSheet.create({
     TableContent: {
         width: '100%',
         height: 40,
+        borderRadius: 8,
         alignItems: 'center',
         justifyContent: 'space-around',
         flexDirection: 'row',
-        backgroundColor: '#8C8C8C',        
+        backgroundColor: '#f0f0f0',
+        marginTop: '1%',    
     },
     Table: {
         width: '100%',
@@ -209,6 +212,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         flexDirection: 'row',
         backgroundColor: '#fff',
+        
                 
     },
     touchable: {
@@ -247,6 +251,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'gray',
         textAlign: 'center',
+        
     },
     errorText: {
         color: 'red',
@@ -263,10 +268,11 @@ const styles = StyleSheet.create({
         
     },
     textTable: {
-        fontSize: 20,
+        fontSize: 24,
         fontWeight: 'bold',
-        color: '#FFF',
+        color: '#8C8C8C',
         textAlign: 'center',
+        marginLeft: '10%',
     },
     touchableText: {
         fontSize: 20,
@@ -281,25 +287,25 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     normal: {
-        fontSize: 20,
+        fontSize: 22,
         fontWeight: 'bold',
         color: '#00AD1C',
         textAlign: 'center',
     },
     sobrepeso:{
-        fontSize: 20,
+        fontSize: 22,
         fontWeight: 'bold',
         color: '#D7C100',
         textAlign: 'center',
     },
     obesidade:{
-        fontSize: 20,
+        fontSize: 22,
         fontWeight: 'bold',
         color: '#EF7300',
         textAlign: 'center',
     },
     obesidadeGrave: {
-        fontSize: 20,
+        fontSize: 22,
         fontWeight: 'bold',
         color: '#FC0000',
         textAlign: 'center',

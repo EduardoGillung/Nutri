@@ -12,6 +12,7 @@ const TelaWaterCalculator = ({ navigation }) => {
             // Limpa os estados ao montar o componente
             setPeso('');
             setQuantiaAgua(null);
+            setError('');
           
         }, [isFocused]);
         

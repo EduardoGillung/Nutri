@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Pressable, TextInput, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Pressable, TextInput, Image, ToastAndroid } from 'react-native';
 import { db, auth } from "../Serviços/firebase";
 import { ref, set, remove } from 'firebase/database'
 
@@ -10,7 +10,12 @@ export function ModalAddPrescriptions({ handleClose, navigation }) {
     const tarefaRef = ref(db, '/users/'+auth.currentUser.uid+'/prescricoes/' + task)
     const [ModalError, setModalError] = useState(false);
 
-    function addTask () { 
+    //Notifica ao adicionar item no banco  
+    const AddPrescricaoToast = () => {
+        ToastAndroid.show('Prescrição adicionada !', ToastAndroid.CENTER);
+      };
+
+    function addPrescriptions () { 
         if(task === '' || description === '') {
             console.log("Erro ao adicionar prescrição verifique os campos")
             setModalError(true);
@@ -21,7 +26,7 @@ export function ModalAddPrescriptions({ handleClose, navigation }) {
             description: description
         }).then(() => {
             //data saved sucessfully!
-            alert('Tarefa adicionada');
+            AddPrescricaoToast()
             console.log("Tarefa salva com sucesso do banco de dados")
             setModalError(false)
             handleClose()
@@ -31,7 +36,8 @@ export function ModalAddPrescriptions({ handleClose, navigation }) {
                 alert(error);
                 setModalError(true)
             });
-    }  
+    } 
+    
 
     return (
         <View style={styles.container}>
@@ -58,7 +64,7 @@ export function ModalAddPrescriptions({ handleClose, navigation }) {
                         <Text style={styles.buttonText}>Voltar</Text>
                     </TouchableOpacity>
     
-                    <TouchableOpacity style={[styles.button, styles.buttonSave]} onPress={addTask}>
+                    <TouchableOpacity style={[styles.button, styles.buttonSave]} onPress={addPrescriptions}>
                         <Text style={styles.buttonSaveText}>Salvar</Text>
                     </TouchableOpacity>        
                 </View>
