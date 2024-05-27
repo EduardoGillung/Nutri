@@ -40,8 +40,9 @@ const TelaIMCcalculator = ({ navigation }) => {
         }
         const formatoAltura = (text) => {
             // Adiciona uma vírgula após o primeiro caractere digitado
-            if (text.length === 1 && text !== '0') {
-              return text + ',';
+            if (text.length > 1) {
+              text = text.replace(",", "")
+              return text[0] + ',' + text.substring(1, text.length)
             }
             return text;
           };
