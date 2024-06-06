@@ -6,9 +6,9 @@ import { ref, set, remove } from 'firebase/database'
 
 export function ModalAddRotina({ handleClose }) {
     
-    const [task, setTask] = useState('');
-    const [description, setDescription] = useState('');
-    const tarefaRef = ref(db, '/users/'+auth.currentUser.uid+'/rotinas/' + task)
+    const [routineName, setroutineName] = useState('');
+    const [routineDescription, setRoutineDescription] = useState('');
+    const tarefaRef = ref(db, '/users/'+auth.currentUser.uid+'/rotinas/' + routineName)
     const [ModalError, setModalError] = useState(false);
    
     const AddRotinaToast = () => {
@@ -16,14 +16,14 @@ export function ModalAddRotina({ handleClose }) {
       };
 
     function addRotina () {    
-        if(task === '' || description === '') {
+        if(routineName === '' || routineDescription === '') {
             console.log("Erro ao adicionar refeição verifique os campos")
             setModalError(true);
             return
         }   
         set(tarefaRef, {
-            task: task,
-            description: description,
+            routineName: routineName,
+            routineDescription: routineDescription,
         
         }).then(() => {
             //data saved sucessfully!
@@ -46,16 +46,22 @@ export function ModalAddRotina({ handleClose }) {
                 <View style={styles.containerHeader}>
                 <TextInput style={styles.title}
                     placeholder="Nome da refeição"
-                    value={task}
-                    onChangeText={(task) => setTask(task)}   
+                    value={routineName}
+                    multiline={true}
+                    numberOfLines={2}
+                    textAlignVertical="top"
+                    onChangeText={(routineName) => setroutineName(routineName)}   
                 >
                 </TextInput>
             </View>            
                 <TextInput
                     style={styles.input}
                     placeholder="Descrição"
-                    value={description}
-                    onChangeText={(description) => setDescription(description)}
+                    value={routineDescription}
+                    multiline={true}
+                    numberOfLines={5}
+                    textAlignVertical="top"
+                    onChangeText={(routineDescription) => setRoutineDescription(routineDescription)}
                 />
                 {ModalError && <Text style={styles.errorText}>Erro ao adicionar refeição verifique os campos acima</Text>}
                 <View style={styles.buttonArea}>

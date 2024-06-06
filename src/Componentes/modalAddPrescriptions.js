@@ -5,9 +5,9 @@ import { ref, set, remove } from 'firebase/database'
 
 export function ModalAddPrescriptions({ handleClose, navigation }) {
     
-    const [task, setTask] = useState('');
-    const [description, setDescription] = useState('');
-    const tarefaRef = ref(db, '/users/'+auth.currentUser.uid+'/prescricoes/' + task)
+    const [prescriptionName, setPrescriptionName] = useState('');
+    const [prescriptionDescription, setPrescriptionDescription] = useState('');
+    const tarefaRef = ref(db, '/users/'+auth.currentUser.uid+'/prescricoes/' + prescriptionName)
     const [ModalError, setModalError] = useState(false);
 
     //Notifica ao adicionar item no banco  
@@ -15,15 +15,16 @@ export function ModalAddPrescriptions({ handleClose, navigation }) {
         ToastAndroid.show('Prescrição adicionada !', ToastAndroid.CENTER);
       };
 
-    function addPrescriptions () { 
-        if(task === '' || description === '') {
+    function addPrescriptionNames () { 
+        if(prescriptionName === '' || prescriptionDescription === '') {
             console.log("Erro ao adicionar prescrição verifique os campos")
             setModalError(true);
             return
         }         
         set(tarefaRef, {
-            task: task,
-            description: description
+            prescriptionName: prescriptionName,
+            prescriptionDescription: prescriptionDescription
+
         }).then(() => {
             //data saved sucessfully!
             AddPrescricaoToast()
@@ -46,8 +47,11 @@ export function ModalAddPrescriptions({ handleClose, navigation }) {
                 <View style={styles.containerHeader}>
                     <TextInput style={styles.title}
                         placeholder="Nome da prescrição"
-                        value={task}
-                        onChangeText={(task) => setTask(task)}   
+                        value={prescriptionName}
+                        multiline={true}
+                        numberOfLines={2}
+                        textAlignVertical="top"
+                        onChangeText={(prescriptionName) => setPrescriptionName(prescriptionName)}   
                     >
                     </TextInput>
                         
@@ -55,8 +59,11 @@ export function ModalAddPrescriptions({ handleClose, navigation }) {
                 <TextInput
                     style={styles.input}
                     placeholder="Descrição"
-                    value={description}
-                    onChangeText={(description) => setDescription(description)}
+                    value={prescriptionDescription}
+                    multiline={true}
+                    numberOfLines={5}
+                    textAlignVertical="top"
+                    onChangeText={(prescriptionDescription) => setPrescriptionDescription(prescriptionDescription)}
                 />
                 {ModalError && <Text style={styles.errorText}>Erro ao adicionar prescrição verifique os campos acima</Text>}
                 <View style={styles.buttonArea}>
@@ -64,7 +71,7 @@ export function ModalAddPrescriptions({ handleClose, navigation }) {
                         <Text style={styles.buttonText}>Voltar</Text>
                     </TouchableOpacity>
     
-                    <TouchableOpacity style={[styles.button, styles.buttonSave]} onPress={addPrescriptions}>
+                    <TouchableOpacity style={[styles.button, styles.buttonSave]} onPress={addPrescriptionNames}>
                         <Text style={styles.buttonSaveText}>Salvar</Text>
                     </TouchableOpacity>        
                 </View>

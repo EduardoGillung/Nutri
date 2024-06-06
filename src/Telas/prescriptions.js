@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, TouchableOpacity, Modal, SafeAreaView } from 'react-native';
+import { View, TextInput, FlatList, StyleSheet, Image, Pressable, Text, TouchableOpacity, ToastAndroid, Modal, SafeAreaView } from 'react-native';
 import { ref, get, set, push, onValue, remove, getDatabase, update, child } from 'firebase/database'
 import { db, auth } from "../Serviços/firebase";
 import { ModalAddPrescriptions } from "../Componentes/modalAddPrescriptions";
@@ -13,27 +13,30 @@ const TelaPrescriptions = ({ navigation }) => {
     const showModal = () => {
         setModalVisible(true);
     }
+    const deletePrescriptionToast = () => {
+        ToastAndroid.show('Prescrição apagada com sucesso!', ToastAndroid.CENTER);
+      };
     
     const renderItem = ({ item }) => (
         <SafeAreaView style={styles.InputContent}>
-            <Text style={styles.title}>{item.task}</Text>
+            <Text style={styles.title}>{item.prescriptionName}</Text>
             <View style={styles.descriptionItem}>
-                <TouchableOpacity onPress={() => deleteTask(item.task)}>       
+                <TouchableOpacity onPress={() => deleteTask(item.prescriptionName)}>       
                     <Image
                         source={require('../assets/deleteButton.png')}
                         style={styles.deleteButton}
                     />
                     </TouchableOpacity> 
                     </View>    
-                <Text style={styles.description}>{item.description}</Text>    
+                <Text style={styles.description}>{item.prescriptionDescription}</Text>    
         </SafeAreaView>
     )
 
-    let deleteTask = ( task ) => {
-        remove(ref(db, '/users/'+auth.currentUser.uid+'/prescricoes/' + task))
+    let deleteTask = ( prescriptionName ) => {
+        remove(ref(db, '/users/'+auth.currentUser.uid+'/prescricoes/' + prescriptionName))
             .then(() => {
-                console.log("Tarefa apagada com sucesso do banco de dados: " + task)
-                alert("Tarefa apagada com sucesso")
+                console.log("Tarefa apagada com sucesso do banco de dados: " + prescriptionName)
+                deletePrescriptionToast();
             })
             .catch((error => console.error('Erro ao apagar: '+error)))
     }
