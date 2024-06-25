@@ -92,7 +92,7 @@ const TelaRotina = ({ navigation }) => {
                     <FlatList style={styles.flatlist}
                         data={routine}
                         renderItem={renderItem}
-                        keyExtractor={item => item.routineNameId}
+                        keyExtractor={item => item.routineName}
                         
                     />                  
                 </View>  

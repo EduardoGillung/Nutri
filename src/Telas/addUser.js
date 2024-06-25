@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { View, TextInput, Text, Pressable, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, TextInput, Text, Pressable, StyleSheet, Image, TouchableOpacity, ToastAndroid } from 'react-native';
 import firebase from '../Serviços/firebase';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { auth, db } from '../Serviços/firebase';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ref, set, remove } from 'firebase/database'
+import { useIsFocused } from "@react-navigation/native";
 
 
 function TelaAddUser({navigation}) {
@@ -15,6 +16,17 @@ function TelaAddUser({navigation}) {
   const [senhaConf, setSenhaConf] = useState('');
   const [createFailed, setCreateFailed] = useState(false)
 
+  const isFocused = useIsFocused();
+
+    useEffect(() => {
+        // Limpa os estados ao montar o componente
+        setNome('');
+        setEmail('');
+        setSenha('');
+        setSenhaConf('');
+      
+    }, [isFocused]);
+
   const registrar = () => {
     createUserWithEmailAndPassword(auth, email, senha)
       .then((userCredential) => {
@@ -23,6 +35,7 @@ function TelaAddUser({navigation}) {
               .then(() => {
                 console.log('Usuário criado com sucesso:', userCredential.user.email);
                 setCreateFailed(false)
+                completeRegisterToast()
                 navigation.navigate('Login')
               })
               .catch((error) => {
@@ -33,6 +46,9 @@ function TelaAddUser({navigation}) {
         console.error('Erro ao criar usuario:', error.message)
         setCreateFailed(true)
       })
+      const completeRegisterToast = () => {
+        ToastAndroid.show('Cadastro concluído', ToastAndroid.SHORT);
+      };
       
   };
 

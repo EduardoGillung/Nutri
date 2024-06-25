@@ -91,7 +91,7 @@ const TelaPrescriptions = ({ navigation }) => {
                 <FlatList 
                     data={prescription}
                     renderItem={renderItem}
-                    keyExtractor={item => item.taskId}
+                    keyExtractor={item => item.prescriptionName}
                     
                 />                  
             </View>  

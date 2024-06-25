@@ -23,7 +23,7 @@ function App() {
   
   return (
     <NavigationContainer>
-      <Tab.Navigator initialRouteName='Login'
+      <Tab.Navigator initialRouteName='Welcome'
         screenOptions={{
           animation: 'fade',
           tabBarShowLabel: false,

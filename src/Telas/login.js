@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, SafeAreaView, StyleSheet, Pressable, Image, Keyboard } from 'react-native';
 import { getAuth, signInWithEmailAndPassword, getReactNativePersistence } from "firebase/auth";
 import { auth } from '../Serviços/firebase';
+import { useIsFocused } from "@react-navigation/native";
 
 
 const TelaLogin = ({ navigation }) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loginFailed, setLoginFailed] = useState(false)
+    const isFocused = useIsFocused();
 
+    useEffect(() => {
+        // Limpa os estados ao montar o componente
+        setEmail('');
+        setPassword('');
+      
+    }, [isFocused]);
 
     const handleLogin = async () => {
 
