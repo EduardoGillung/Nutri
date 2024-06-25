@@ -1,2 +1,2 @@
 # Nutri app 
-Meu projeto integrador, aplicativo mobile com objetivo de auxilar o usuario a seguir sua rotina alimentar prescrita e controlar suas refeições, possibilitando que altere, exclua, edite sua rotina de maneira que facilite o monitoramento de suas refeições e facilite o contato com o profissional.
+Criado como meu trabalho de conclusão de curso, foi desenvolvido um aplicativo móvel nativo focado em auxiliar o usuário na gestão de sua alimentação e rotina, incluindo ferramentas como calculadoras para consulta nutricional e tabelas classificatórias.
