@@ -1,8 +1,7 @@
-# Nutri app
+# Nutri
 
 
-<div align="center"><strong>Next.js 14 Admin Dashboard Template</strong></div>
-<div align="center">Built with the Next.js App Router</div>
+<div align="center"><strong>Built with the React Native & Expo</strong></div>
 <br />
 <div align="center">
 <a href="https://next-admin-dash.vercel.app/">Demo</a>
