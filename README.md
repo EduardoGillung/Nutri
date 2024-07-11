@@ -26,6 +26,8 @@ Mobile application developed with a focus on assisting users with their dietary 
 
 To run the project on your machine follow these steps:
 
+    git clone git@github.com:EduardoGillung/Nutri.git
+
     npm install
 
     npm start
