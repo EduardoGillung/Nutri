@@ -5,7 +5,7 @@
 <br />
 <div align="center">
 
-<span> · </span>
+<span> Started the project development for my undergraduate thesis in Information Systems. </span>
 
 <span>
 </div>
