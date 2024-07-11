@@ -14,9 +14,9 @@
 ## Overview
 
 - Framework - [React Native (App Router)](https://reactnative.dev/)
-- Language - [JavaScript](https://www.typescriptlang.org)
-- Auth - [Firebase Authentication](https://firebase.google.com/docs/auth?hl=pt-br)
-- Database - [Firebase RealTime DB](https://firebase.google.com/docs/database?hl=pt-br)
+- Language - [JavaScript](https://www.javascript.com/)
+- Auth - [Firebase Authentication](https://console.firebase.google.com/u/0/project/myapp-14570/authentication/users?hl=pt-br)
+- Database - [Firebase RealTime DB](https://console.firebase.google.com/u/0/project/myapp-14570/database?hl=pt-br)
 - Styling - [Styled Components](https://styled-components.com/)
 - Components - [Node.JS](https://nodejs.org/pt)
 - Analytics - [Firebase Analytics](https://firebase.google.com/docs/analytics?hl=pt-br)
@@ -31,7 +31,9 @@ To run the project on your machine follow these steps:
     npm start
 
 
-You should now be able to access the application with Expo go using one of this options:
+<div>You should now be able to access the application with Expo</div>
+<div>Oppening in a localhost web pressing W or conecting in a mobile device with Expo or Android Studio:</div>
+
 
 ```
 › Metro waiting on exp:// › Scan the QR code above with Expo Go (Android) or the Camera app (iOS)
