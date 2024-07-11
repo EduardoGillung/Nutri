@@ -33,9 +33,11 @@ To run the project on your machine follow these steps:
     npm start
 
 
-<div>You should now be able to access the application with Expo</div>
-<div>Oppening in a localhost web pressing W or conecting in a mobile device with Expo or Android Studio:</div>
+<div>You should now be able to access the application with Expo
+Oppening in a localhost web pressing W or conecting in a mobile device with Expo or Android Studio:
 
+
+</div>
 
 
 
