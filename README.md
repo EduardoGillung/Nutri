@@ -12,7 +12,7 @@
 
 
 ## Overview
-<br />
+
 - Framework - [React Native (App Router)](https://reactnative.dev/)
 - Language - [JavaScript](https://www.javascript.com/)
 - Auth - [Firebase Authentication](https://console.firebase.google.com/u/0/project/myapp-14570/authentication/users?hl=pt-br)
@@ -23,7 +23,7 @@
 
 
 ## Getting Started
-<br />
+
 To run the project on your machine follow these steps:
 
     npm install
