@@ -4,9 +4,9 @@
 <div align="center"><strong>Built with the React Native & Expo</strong></div>
 <br />
 <div align="center">
-<a href="https://next-admin-dash.vercel.app/">Demo</a>
+
 <span> · </span>
-<a href="https://vercel.com/templates/next.js/admin-dashboard-tailwind-postgres-react-nextjs">Clone & Deploy</a>
+
 <span>
 </div>
 
