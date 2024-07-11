@@ -1,4 +1,4 @@
-# Nutri
+<div align="center" >Nutri </div>
 
 
 <div align="center"><strong>Built with the React Native & Expo</strong></div>
