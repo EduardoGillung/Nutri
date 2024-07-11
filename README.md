@@ -1,4 +1,55 @@
-# Nutri app 
-Criado como meu trabalho de conclusão de curso, foi desenvolvido um aplicativo móvel nativo focado em auxiliar o usuário na gestão de sua alimentação e rotina, incluindo ferramentas como calculadoras para consulta nutricional e tabelas classificatórias.
-Desenvolvido com React native e armazenando os dados no Firebase.
-Ferramentas e componentes juntamente utilizados: Expo go, Node.js, Android Studio.
+# Nutri app
+
+
+<div align="center"><strong>Next.js 14 Admin Dashboard Template</strong></div>
+<div align="center">Built with the Next.js App Router</div>
+<br />
+<div align="center">
+<a href="https://next-admin-dash.vercel.app/">Demo</a>
+<span> · </span>
+<a href="https://vercel.com/templates/next.js/admin-dashboard-tailwind-postgres-react-nextjs">Clone & Deploy</a>
+<span>
+</div>
+
+
+## Overview
+
+- Framework - [React Native (App Router)](https://reactnative.dev/)
+- Language - [JavaScript](https://www.typescriptlang.org)
+- Auth - [Firebase Authentication](https://firebase.google.com/docs/auth?hl=pt-br)
+- Database - [Firebase RealTime DB](https://firebase.google.com/docs/database?hl=pt-br)
+- Styling - [Styled Components](https://styled-components.com/)
+- Components - [Node.JS](https://nodejs.org/pt)
+- Analytics - [Firebase Analytics](https://firebase.google.com/docs/analytics?hl=pt-br)
+
+
+## Getting Started
+
+To run the project on your machine follow these steps:
+
+    npm install
+
+    npm start
+
+
+You should now be able to access the application with Expo go using one of this options:
+
+```
+› Metro waiting on exp:// › Scan the QR code above with Expo Go (Android) or the Camera app (iOS)
+
+› Using Expo Go › Press s │ switch to development build
+
+› Press a │ open Android
+
+› Press w │ open web
+
+› Press j │ open debugger
+
+› Press r │ reload app
+
+› Press m │ toggle menu
+
+› Press o │ open project code in your editor
+
+› Press ? │ show all commands
+```
