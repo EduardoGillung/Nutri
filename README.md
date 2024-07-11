@@ -37,6 +37,8 @@ To run the project on your machine follow these steps:
 <div>Oppening in a localhost web pressing W or conecting in a mobile device with Expo or Android Studio:</div>
 
 
+
+
 ```
 › Metro waiting on exp:// › Scan the QR code above with Expo Go (Android) or the Camera app (iOS)
 
