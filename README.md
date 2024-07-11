@@ -1,5 +1,5 @@
 ## Nutri
-
+Mobile application developed with a focus on assisting users with their dietary routines and encouraging them to pursue a healthier lifestyle.
 
 <div align="center"><strong>Built with the React Native & Expo</strong></div>
 <br />
